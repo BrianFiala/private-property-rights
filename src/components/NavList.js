@@ -26,8 +26,22 @@ export default function NavList() {
       <ListItem component="li" button key="Home"
         onClick={onClick}>
         <Link style={styles.link} href="/">
-          <ListItemIcon><HomeIcon color="primary" /></ListItemIcon>
+          <ListItemIcon><HomeIcon aria-hidden="true" color="primary" /></ListItemIcon>
           <ListItemText primary="Home" />
+        </Link>
+      </ListItem>
+      <ListItem component="li" button key="Videos"
+        onClick={onClick}>
+        <Link style={styles.link} href="/videos">
+          <ListItemIcon><HomeIcon aria-hidden="true" color="primary" /></ListItemIcon>
+          <ListItemText primary="Videos" />
+        </Link>
+      </ListItem>
+      <ListItem component="li" button key="Admin"
+        onClick={onClick}>
+        <Link style={styles.link} href="/admin">
+          <ListItemIcon><HomeIcon aria-hidden="true" color="primary" /></ListItemIcon>
+          <ListItemText primary="Admin" />
         </Link>
       </ListItem>
     </List>

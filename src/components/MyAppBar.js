@@ -2,7 +2,7 @@ import {h} from 'preact' /** @jsx h */
 import {useHeaderState} from '../contexts/HeaderStateProvider'
 import MenuIcon from '@material-ui/icons/Menu'
 import BrightnessIcon from '@material-ui/icons/Brightness4Outlined'
-import {makeStyles, useTheme} from '@material-ui/styles'
+import {makeStyles, useTheme} from '@material-ui/core/styles'
 import {AppBar, IconButton, Slide, Toolbar, Typography, useScrollTrigger} from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
@@ -35,7 +35,7 @@ export default function MyAppBar({toggleTheme}) {
             aria-label="expand menu"
             onClick={event => toggleDrawer(event)}
             onKeyDown={event => toggleDrawer(event)}>
-            <MenuIcon />
+            <MenuIcon aria-hidden="true" />
           </IconButton>
           <Typography
             component="h1"
@@ -50,7 +50,7 @@ export default function MyAppBar({toggleTheme}) {
             color="inherit"
             aria-label="toggle theme"
             onClick={toggleTheme}>
-            <BrightnessIcon />
+            <BrightnessIcon aria-hidden="true" />
           </IconButton>
         </Toolbar>
       </AppBar>

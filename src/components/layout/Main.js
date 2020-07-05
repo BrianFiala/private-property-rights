@@ -3,6 +3,10 @@ import {useEffect} from 'preact/hooks'
 import {Router} from 'preact-router'
 import NotFound from '../../routes/NotFound'
 import Home from '../../routes/Home'
+import Admin from '../../routes/Admin'
+import Videos from '../../routes/Videos'
+import PrivacyPolicy from '../../routes/PrivacyPolicy'
+import TermsOfService from '../../routes/TermsOfService'
 
 function removeLoader(loader) {
   requestAnimationFrame(() => {
@@ -24,6 +28,10 @@ export default function Main() {
   return (
     <Router>
       <Home path="/" />
+      <Videos path="/videos" />
+      <Admin path="/admin" />
+      <PrivacyPolicy path="/privacypolicy" />
+      <TermsOfService path="/termsofservice" />
       <NotFound default />
     </Router>
   )

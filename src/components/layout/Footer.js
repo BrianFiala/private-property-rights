@@ -1,32 +1,44 @@
 import {h} from 'preact' /** @jsx h */
 import EmailIcon from '@material-ui/icons/Email'
-import {makeStyles, useTheme} from '@material-ui/styles'
 import {Typography, Link, IconButton} from '@material-ui/core'
 
-const useStyles = makeStyles(theme => ({
+const styles = {
   footerContainer: {
-    margin: `${theme.spacing(2)}px auto 0`
+    marginTop: '16px',
+    justifyContent: 'space-between',
+    display: 'flex',
+    alignItems: 'center'
   },
-  footerMailTo: {
-    display: 'flex'
+  link: {
+    display: 'flex',
+    flexDirection: 'row'
   }
-}))
+}
 
 export default function Footer() {
-  const classes = useStyles(useTheme())
-
   return (
-    <footer className={classes.footerContainer}>
+    <footer style={styles.footerContainer}>
       <Link
         color="inherit"
-        href="mailto:serpentsmiles@gmail.com"
-        className={classes.footerMailTo}>
+        href="/privacypolicy"
+        style={styles.link}>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          align="center">
+          privacy policy
+        </Typography>
+      </Link>
+      <Link
+        color="inherit"
+        href="mailto:privatepropertyrightsinfo@gmail.com"
+        style={styles.link}>
         <span>
           <IconButton
             edge="start"
             color="inherit"
             aria-label="email the owners">
-            <EmailIcon />
+            <EmailIcon aria-hidden="true" />
           </IconButton>
         </span>
         <span>
@@ -43,6 +55,17 @@ export default function Footer() {
             Design and engineering by Brian
           </Typography>
         </span>
+      </Link>
+      <Link
+        color="inherit"
+        href="/termsofservice"
+        style={styles.link}>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          align="center">
+          terms of service
+        </Typography>
       </Link>
     </footer>
   )
