@@ -1,11 +1,11 @@
 {
-  "name": "private-property-rights",
-  "short_name": "private-property-rights",
+  "name": "brianfiala",
+  "short_name": "brianfiala",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#fff",
-  "theme_color": "#673ab8",
+  "background_color": "#607d8b",
+  "theme_color": "#607d8b",
   "icons": [
     {
       "src": "/assets/icons/android-chrome-192x192.png",
