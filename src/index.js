@@ -4,7 +4,7 @@ import 'typeface-roboto'
 import './styles'
 import defaults from './theme'
 import Loader from './effects/Loader'
-import Layout from './components/layout'
+import Layout from './components/layout/Layout'
 import {ThemeProvider, createMuiTheme} from '@material-ui/core/styles'
 import {CssBaseline} from '@material-ui/core'
 
