@@ -35,7 +35,7 @@ export default function MyAppBar({toggleTheme}) {
             aria-label="expand menu"
             onClick={event => toggleDrawer(event)}
             onKeyDown={event => toggleDrawer(event)}>
-            <MenuIcon />
+            <MenuIcon aria-hidden="true" />
           </IconButton>
           <Typography
             component="h1"
@@ -50,7 +50,7 @@ export default function MyAppBar({toggleTheme}) {
             color="inherit"
             aria-label="toggle theme"
             onClick={toggleTheme}>
-            <BrightnessIcon />
+            <BrightnessIcon aria-hidden="true" />
           </IconButton>
         </Toolbar>
       </AppBar>

@@ -38,7 +38,7 @@ export default function Footer() {
             edge="start"
             color="inherit"
             aria-label="email the owners">
-            <EmailIcon />
+            <EmailIcon aria-hidden="true" />
           </IconButton>
         </span>
         <span>
