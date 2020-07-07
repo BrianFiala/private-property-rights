@@ -6,7 +6,7 @@ import Title from '../components/Title'
 export default function VideoPlayer({ video, sizes }) {
   const src = video.host === 'youtube'
     ? `https://www.youtube-nocookie.com/embed/${video.id}`
-    : `https://player.vimeo.com/video/${video.id}?dnt=1`
+    : `https://player.vimeo.com/video/${video.id}?dnt=true`
 
   return (
     <Grid item
