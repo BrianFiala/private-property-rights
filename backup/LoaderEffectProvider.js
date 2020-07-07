@@ -1,10 +1,11 @@
 import {createContext, h} from 'preact' /** @jsx h */
-import Loader from './Loader'
+import Loader from '../src/effects/Loader'
 import {useState, useContext, useLayoutEffect, useRef} from 'preact/hooks'
 
 const LoaderEffectContext = createContext()
 export const useLoaderEffect = () => useContext(LoaderEffectContext)
 
+// TODO: deadcode - might be useful for adding loaders to individual subcomponents
 export const LoaderEffectProvider = ({children}) => {
   const [loaded, setLoaded] = useState(false)
   const loader = useRef(null)

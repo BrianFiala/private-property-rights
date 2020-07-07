@@ -6,10 +6,8 @@ import { HeaderStateProvider } from '../../contexts/HeaderStateProvider'
 export default function Header({toggleTheme}) {
   return (
     <HeaderStateProvider>
-      <header>
-        <MyAppBar toggleTheme={toggleTheme} />
-        <MyDrawer />
-      </header>
+      <MyAppBar toggleTheme={toggleTheme} />
+      <MyDrawer />
     </HeaderStateProvider>
   )
 }

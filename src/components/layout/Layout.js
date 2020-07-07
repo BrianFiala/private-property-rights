@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     width: '100%',
-    minHeight: '100%'
+    minHeight: '100vh'
   },
   contents: {
     minHeight: 'calc(100% - 64px)',
@@ -35,9 +35,7 @@ export default function Layout({toggleTheme}) {
         <Container
           disableGutters
           className={classes.contents}>
-          <Container disableGutters>
-            <Main />
-          </Container>
+          <Main />
           <Footer />
         </Container>
       </Container>
