@@ -4,7 +4,7 @@ import {Typography, Link, IconButton} from '@material-ui/core'
 
 const styles = {
   footerContainer: {
-    marginTop: '16px',
+    marginTop: '16px', // TODO: use consts pulled from theme
     justifyContent: 'space-between',
     display: 'flex',
     alignItems: 'center'
