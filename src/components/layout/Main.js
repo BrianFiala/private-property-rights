@@ -3,7 +3,6 @@ import {useEffect} from 'preact/hooks'
 import {Router} from 'preact-router'
 import NotFound from '../../routes/NotFound'
 import Home from '../../routes/Home'
-import Admin from '../../routes/Admin'
 import Videos from '../../routes/Videos'
 import PrivacyPolicy from '../../routes/PrivacyPolicy'
 import TermsOfService from '../../routes/TermsOfService'
@@ -28,7 +27,6 @@ export default function Main() {
     <Router>
       <Home path="/" />
       <Videos path="/videos" />
-      <Admin path="/admin" />
       <PrivacyPolicy path="/privacypolicy" />
       <TermsOfService path="/termsofservice" />
       <NotFound default />
