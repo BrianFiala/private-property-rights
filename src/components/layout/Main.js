@@ -7,7 +7,7 @@ import Videos from '../../routes/Videos'
 import PrivacyPolicy from '../../routes/PrivacyPolicy'
 import TermsOfService from '../../routes/TermsOfService'
 
-function removeLoader(loader) {
+const removeLoader = (loader) => {
   requestAnimationFrame(() => {
     loader.style.opacity = 0
     setTimeout(() => {
@@ -18,13 +18,17 @@ function removeLoader(loader) {
   })
 }
 
-export default function Main() {
+export default function Main({url}) {
+  const handleRoute = (event) => {
+    // route('/', true) this is where we can do auth stuff
+  }
+
   useEffect(() => {
     document.querySelectorAll('.loader-wrapper').forEach(loader => removeLoader(loader))
   }, [])
 
   return (
-    <Router>
+    <Router url={url} onChange={handleRoute}>
       <Home path="/" />
       <Videos path="/videos" />
       <PrivacyPolicy path="/privacypolicy" />
