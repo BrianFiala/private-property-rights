@@ -1,2 +1,3 @@
 #!/bin/bash
+echo "running post-merge hook"
 ./cicd.sh
