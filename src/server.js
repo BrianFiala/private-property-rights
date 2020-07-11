@@ -10,16 +10,23 @@ const {PORT = 3000} = process.env
 const RGX = /<div id="app"[^>]*>.*?(?=<script)/i
 const template = readFileSync('build/index.html', 'utf8')
 
-// async function authenticate(req, res, next) {
-//   let token = req.headers.authorization
-//   if (!token) return (res.statusCode=401, res.end('No token!'))
-//   //req.user = await Users.find(token)
-//   next()
-// }
+const authenticate = (req) => {
+  let token = req.headers.authorization
+  if (!token) return false
+  return 'Brian Fiala'
+}
 
 polka()
   .use(compression)
   .get('*', (req, res) => {
+    if (req.url === '/auth') {
+      const username = authenticate(req)
+      if (!username) {
+        res.statusCode(401)
+        res.end()
+      }
+      res.end(username)
+    }
     res.setHeader('Content-Type', 'text/html')
     res.setHeader('Cache-Control', 'no-cache')
     res.end(template.replace(RGX, render(h(App, {url: req.url}))))

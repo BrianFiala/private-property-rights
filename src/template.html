@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="google-signin-client_id" content="232224794524-imoonsmkl2m636nr4fj0ial43rq1m0rg.apps.googleusercontent.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://apis.google.com">
     <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
     <% preact.headEnd %>
 </head>
@@ -34,11 +35,5 @@
             <h4><a href="//privatepropertyrights.info/assets/legal/terms-of-service.html">terms and conditions</a></h4>
         </article>
     </noscript>
-    <script>
-        function onSignIn(googleUser) {
-            var id_token = googleUser.getAuthResponse().id_token;
-            console.log("ID Token: " + id_token);
-        }
-    </script>
 </body>
 </html>
