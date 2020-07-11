@@ -4,6 +4,7 @@ import {Router} from 'preact-router'
 import NotFound from '../../routes/NotFound'
 import Home from '../../routes/Home'
 import Videos from '../../routes/Videos'
+import Admin from '../../routes/Admin'
 import PrivacyPolicy from '../../routes/PrivacyPolicy'
 import TermsOfService from '../../routes/TermsOfService'
 
@@ -19,18 +20,15 @@ const removeLoader = (loader) => {
 }
 
 export default function Main({url}) {
-  const handleRoute = (event) => {
-    // route('/', true) this is where we can do auth stuff
-  }
-
   useEffect(() => {
     document.querySelectorAll('.loader-wrapper').forEach(loader => removeLoader(loader))
   }, [])
 
   return (
-    <Router url={url} onChange={handleRoute}>
+    <Router url={url}>
       <Home path="/" />
       <Videos path="/videos" />
+      <Admin path="/admin" />
       <PrivacyPolicy path="/privacypolicy" />
       <TermsOfService path="/termsofservice" />
       <NotFound default />

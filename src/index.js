@@ -6,10 +6,11 @@ import 'fontsource-roboto/latin-500-normal.css'
 import 'fontsource-roboto/latin-700-normal.css'
 import './styles'
 import defaults from './theme'
-import Loader from './effects/Loader'
-import Layout from './components/layout/Layout'
 import {ThemeProvider, createMuiTheme} from '@material-ui/core/styles'
 import {CssBaseline} from '@material-ui/core'
+import {AdminStateProvider} from './contexts/AdminStateProvider'
+import Loader from './effects/Loader'
+import Layout from './components/layout/Layout'
 
 export default function App({url}) {
   const [theme, setTheme] = useState(createMuiTheme(defaults))
@@ -25,7 +26,9 @@ export default function App({url}) {
       <Loader />
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Layout toggleTheme={toggleTheme} url={url} />
+        <AdminStateProvider>
+          <Layout toggleTheme={toggleTheme} url={url} />
+        </AdminStateProvider>
       </ThemeProvider>
     </div>
   )
