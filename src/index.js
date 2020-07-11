@@ -8,7 +8,7 @@ import './styles'
 import defaults from './theme'
 import {ThemeProvider, createMuiTheme} from '@material-ui/core/styles'
 import {CssBaseline} from '@material-ui/core'
-import AdminStateProvider from './contexts/AdminStateProvider'
+import {AdminStateProvider} from './contexts/AdminStateProvider'
 import Loader from './effects/Loader'
 import Layout from './components/layout/Layout'
 

@@ -30,7 +30,7 @@ export const AdminStateProvider = ({children}) => {
   }
 
   return (
-    <AdminStateProvider.Provider value={{
+    <AdminStateContext.Provider value={{
       token,
       username,
       setUsername,
@@ -38,6 +38,6 @@ export const AdminStateProvider = ({children}) => {
       toggleAdminMode
     }}>
       {children}
-    </AdminStateProvider.Provider>
+    </AdminStateContext.Provider>
   )
 }
