@@ -11,7 +11,7 @@ import Layout from './components/layout/Layout'
 import {ThemeProvider, createMuiTheme} from '@material-ui/core/styles'
 import {CssBaseline} from '@material-ui/core'
 
-export default function App() {
+export default function App({url}) {
   const [theme, setTheme] = useState(createMuiTheme(defaults))
 
   function toggleTheme() {
@@ -25,7 +25,7 @@ export default function App() {
       <Loader />
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Layout toggleTheme={toggleTheme} />
+        <Layout toggleTheme={toggleTheme} url={url} />
       </ThemeProvider>
     </div>
   )
