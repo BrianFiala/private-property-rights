@@ -1,13 +1,13 @@
 {
   "private": true,
   "name": "private-property-rights",
-  "version": "0.0.0",
+  "version": "0.0.0-alpha.1",
   "license": "MIT",
   "scripts": {
     "start": "per-env",
     "start:production": "npm run -s serve",
     "start:development": "npm run -s dev",
-    "build": "preact build",
+    "build": "preact build && cp src/server.js build/server.js",
     "serve": "sirv build --cors --single",
     "dev": "preact watch",
     "lint": "eslint src",

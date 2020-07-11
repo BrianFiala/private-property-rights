@@ -50,7 +50,7 @@ export default function NavList() {
       </ListItem>
       <ListItem component="li" button key="Sign In"
         onClick={onClick}>
-        <div class="g-signin2" data-onsuccess="onSignIn" />
+        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" />
       </ListItem>
     </List>
   )
