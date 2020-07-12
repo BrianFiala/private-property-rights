@@ -1,0 +1,8 @@
+#!/bin/bash
+# do nothing if the branch is not master
+if [[ $(git branch | grep "*" | sed "s/\* //") = "master" ]]; then
+    if [[ $(git diff HEAD@{1}..HEAD@{0} -- "package.json" | wc -l) -gt 0 ]]; then
+        npm install
+    fi
+    npm run build
+fi
