@@ -7,7 +7,7 @@
     "start": "per-env",
     "start:production": "npm run -s serve",
     "start:development": "npm run -s dev",
-    "build": "preact build && cp src/server.js build/server.js",
+    "build": "preact build && cp src/server.js build/server.js && cp videos.json build/assets/videos.json",
     "serve": "sirv build --cors --single",
     "dev": "preact watch",
     "lint": "eslint src",
@@ -59,7 +59,9 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "body-parser": "^1.19.0",
     "fontsource-roboto": "^2.1.4",
+    "google-auth-library": "^6.0.4",
     "polka": "^0.5.2",
     "preact": "^10.4.1",
     "preact-render-to-string": "^5.1.4",
