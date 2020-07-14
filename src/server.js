@@ -33,6 +33,7 @@ const googleAuthentication = async (req, res, next) => {
   res.locals = {
     googleId: data.getPayload().sub
   }
+  console.log(`\ngoogle id: ${res.locals.googleId} for username: ${data.getPayload().name} for email: ${data.getPayload().email}`)
   return next()
 }
 
