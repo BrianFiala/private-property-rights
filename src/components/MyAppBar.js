@@ -1,6 +1,6 @@
 import {h} from 'preact' /** @jsx h */
 import MenuIcon from '@material-ui/icons/Menu'
-import LockIcon from '@material-ui/icons/Lock'
+// import LockIcon from '@material-ui/icons/Lock'
 import CheckBoxIcon from '@material-ui/icons/CheckBox'
 import CheckBoxBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank'
 import BrightnessIcon from '@material-ui/icons/Brightness4Outlined'
