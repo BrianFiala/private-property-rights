@@ -1,9 +1,9 @@
-import {blueGrey, grey} from '@material-ui/core/colors'
+import {brown, blueGrey} from '@material-ui/core/colors'
 const defaults = {
   palette: {
     type: 'dark',
-    primary: blueGrey,
-    secondary: grey
+    primary: brown,
+    secondary: blueGrey
   }
 }
 
