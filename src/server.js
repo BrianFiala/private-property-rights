@@ -3,7 +3,7 @@ const polka = require('polka')
 const {readFileSync} = require('fs')
 const compression = require('compression')()
 const render = require('preact-render-to-string')
-// const bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 const {OAuth2Client} = require('google-auth-library')
 const bundle = require('../build/ssr-build/ssr-bundle')
 const users = require('../users.json')
@@ -57,8 +57,8 @@ polka()
   .use(logging)
   .use(googleAuthentication)
   .use(authorization)
-  // .use(bodyParser.json()) // TODO: move below post?
-  // .use(bodyParser.urlencoded({extended: true}))
+  .use(bodyParser.json()) // TODO: move below post?
+  .use(bodyParser.urlencoded({extended: true}))
   .use(compression)
   .get('/auth', (req, res) => {
     if (res.statusCode !== 200) res.end()
@@ -69,6 +69,7 @@ polka()
     res.end(template.replace(RGX, render(h(App, {url: req.url}))))
   })
   .post('/update', (req, res) => {
+    console.log('req.body', req.body)
     res.end()
   })
   .listen(PORT, err => {

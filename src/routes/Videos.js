@@ -1,6 +1,7 @@
 import {h} from 'preact' /** @jsx h */
-import {useEffect, useState} from 'preact/hooks'
-import {Grid} from '@material-ui/core'
+import RefreshIcon from '@material-ui/icons/Refresh'
+import {Grid, IconButton} from '@material-ui/core'
+import {useVideos} from '../contexts/VideosProvider'
 import VideoPlayer from '../components/VideoPlayer'
 import MyPaper from '../components/MyPaper'
 import Title from '../components/Title'
@@ -19,32 +20,30 @@ const sizes = (videos) => {
       case 1: return 12
       case 2: return 6
       }
-      return 4
+      return 6
     })(),
     xl: (() => {
       switch(videos.length) {
       case 1: return 12
       case 2: return 6
-      case 3: return 4
+      case 3: return 6
       }
-      return 3
+      return 6
     })()
   }
 }
 
-const refreshVideos = async (setVideos) => {
-  fetch('assets/videos.json')
-    .then(data => data.json())
-    .then(videos => setVideos(videos))
-    .catch(console.error)
+
+const styles = {
+  heading: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  }
 }
 
 export default function Videos() {
-  const [videos, setVideos] = useState()
-  
-  useEffect(() => {
-    refreshVideos(setVideos)
-  }, [])
+  const {videos, refreshVideos} = useVideos()
   
   // TODO: add lazy loading of videos
   return (
@@ -55,7 +54,16 @@ export default function Videos() {
         <>
           <Grid item xs={12}>
             <MyPaper>
-              <Title>Videos</Title>
+              <aside style={styles.heading}>
+                <Title>Videos</Title>
+                <IconButton
+                  edge="end"
+                  color="inherit"
+                  aria-label="refresh videos"
+                  onClick={refreshVideos}>
+                  <RefreshIcon aria-hidden="true" color="primary" />
+                </IconButton>
+              </aside>
             </MyPaper>
           </Grid>
           { videos.map(video => (
@@ -68,9 +76,8 @@ export default function Videos() {
         <Grid item xs={12}>
           <InfoItem
             identifier="Videos"
-            title="Welcome to the home route"
             message="We don't have any videos right now. Would you like to try again?"
-            onClick={() => refreshVideos(setVideos)} />
+            onClick={refreshVideos} />
         </Grid>
       )}
     </Grid>
