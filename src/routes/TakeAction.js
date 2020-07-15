@@ -1,8 +1,31 @@
 import {h} from 'preact' /** @jsx h */
 import InfoItem from '../components/InfoItem'
 import {Grid, TextField} from '@material-ui/core'
+import {makeStyles, useTheme} from '@material-ui/core/styles'
+
+const useStyles = makeStyles(theme => ({
+  textFieldSection: {
+    display: 'flex', 
+    flexGrow: 1, 
+    marginTop: theme.spacing(2)
+  },
+  textFieldName: {
+    flexGrow: 1,
+    marginRight: theme.spacing(1)
+  },
+  textFieldPhone: {
+    flexGrow: 1,
+    marginLeft: theme.spacing(1)
+  },
+  textFieldEmail: {
+    flexGrow: 1,
+    marginTop: theme.spacing(2)
+  }
+}))
 
 export default function TakeAction() {
+  const classes = useStyles(useTheme())
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -20,23 +43,23 @@ export default function TakeAction() {
           message="We will never share your information without your explicit consent. Ever. See our privacy policy for more details."
           buttonAction={() => {}}
           buttonText="Sign Me Up!">
-          <section style={{display: 'flex', flexGrow: 1, marginTop: '12px'}}>
+          <section className={classes.textFieldSection}>
             <TextField
               onChange={() => {}}
-              style={{flexGrow: 1, marginRight: '12px'}}
+              className={classes.textFieldName}
               fullwidth
               label="name (optional)"
               variant="outlined" />
             <TextField
               onChange={() => {}}
-              style={{flexGrow: 1, marginLeft: '12px'}}
+              className={classes.textFieldPhone}
               fullwidth
               label="phone (optional)"
               variant="outlined" />
           </section>
           <TextField
             onChange={() => {}}
-            style={{flexGrow: 1, marginTop: '12px'}}
+            className={classes.textFieldEmail}
             fullwidth
             label="email (required)"
             variant="outlined" />
