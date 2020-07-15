@@ -3,10 +3,10 @@ import MyAppBar from '../MyAppBar'
 import MyDrawer from '../MyDrawer'
 import { HeaderStateProvider } from '../../contexts/HeaderStateProvider'
 
-export default function Header({toggleTheme}) {
+export default function Header() {
   return (
     <HeaderStateProvider>
-      <MyAppBar toggleTheme={toggleTheme} />
+      <MyAppBar />
       <MyDrawer />
     </HeaderStateProvider>
   )

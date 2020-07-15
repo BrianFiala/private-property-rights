@@ -2,7 +2,7 @@ import {h} from 'preact' /** @jsx h */
 import InfoItem from '../components/InfoItem'
 import {Grid, TextField} from '@material-ui/core'
 
-export default function Home() {
+export default function CityCouncil() {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
