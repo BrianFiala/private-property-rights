@@ -34,7 +34,7 @@ export default function MyAppBar() {
   const {toggleDrawer} = useHeaderState()
   const {userProfile, toggleAdminMode, adminModeEnabled} = useAdminState()
   const trigger = useScrollTrigger({threshold: 32})
-  const [value, setValue] = useState(window?.location?.pathname || '/')
+  const [value, setValue] = useState(typeof window !== 'undefined' ? window.location.pathname : '/')
 
   const handleChange = (event, newValue) => {
     event.preventDefault()
