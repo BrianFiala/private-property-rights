@@ -2,8 +2,9 @@ import {h} from 'preact' /** @jsx h */
 import {useHeaderState} from '../contexts/HeaderStateProvider'
 import HomeIcon from '@material-ui/icons/People'
 import {List, Link, ListItem, ListItemText, ListItemIcon} from '@material-ui/core'
+import {makeStyles, useTheme} from '@material-ui/core/styles'
 
-const styles = {
+const useStyles = makeStyles(theme => ({
   list: {
     overflow: 'hidden'
   },
@@ -11,14 +12,15 @@ const styles = {
     display: 'flex',
     height: '100%',
     width: '100%',
-    padding: '8px 18px' // TODO: use consts pulled from theme
+    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`
   },
   listItem: {
     padding: 0
   }
-}
+}))
 
 export default function NavList() {
+  const classes = useStyles(useTheme())
   const {toggleDrawer} = useHeaderState()
 
   function onClick(event) {
@@ -26,17 +28,17 @@ export default function NavList() {
   }
 
   return (
-    <List style={styles.list}>
-      <ListItem style={styles.listItem} component="li" button key="Home"
+    <List className={classes.list}>
+      <ListItem className={classes.listItem} component="li" button key="Home"
         onClick={onClick}>
-        <Link style={styles.link} href="/">
+        <Link className={classes.link} href="/">
           <ListItemIcon><HomeIcon aria-hidden="true" color="primary" /></ListItemIcon>
           <ListItemText primary="Home" />
         </Link>
       </ListItem>
-      <ListItem style={styles.listItem} component="li" button key="Videos"
+      <ListItem className={classes.listItem} component="li" button key="Videos"
         onClick={onClick}>
-        <Link style={styles.link} href="/videos">
+        <Link className={classes.link} href="/videos">
           <ListItemIcon><HomeIcon aria-hidden="true" color="primary" /></ListItemIcon>
           <ListItemText primary="Videos" />
         </Link>

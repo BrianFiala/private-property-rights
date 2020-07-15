@@ -1,5 +1,6 @@
 import {h} from 'preact' /** @jsx h */
 import {useState} from 'preact/hooks'
+import {useHeaderState} from '../contexts/HeaderStateProvider'
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary'
 import AnnouncementIcon from '@material-ui/icons/Announcement'
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople'
@@ -9,7 +10,8 @@ import EmailIcon from '@material-ui/icons/Email'
 import SettingsIcon from '@material-ui/icons/Settings'
 import HowToVoteIcon from '@material-ui/icons/HowToVote'
 import HomeIcon from '@material-ui/icons/Home'
-import {AppBar, Slide, Toolbar, useScrollTrigger, Tabs, Tab} from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu'
+import {AppBar, Slide, Toolbar, useScrollTrigger, Tabs, Tab, IconButton} from '@material-ui/core'
 import {makeStyles, useTheme} from '@material-ui/core/styles'
 import {useAdminState} from '../contexts/AdminStateProvider'
 
@@ -28,12 +30,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function MyAppBar() {
-  const theme = useTheme()
-  const classes = useStyles(theme)
-
+  const classes = useStyles(useTheme())
+  const {toggleDrawer} = useHeaderState()
   const {userProfile, toggleAdminMode, adminModeEnabled} = useAdminState()
   const trigger = useScrollTrigger({threshold: 32})
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState(window?.location?.pathname || '/')
 
   const handleChange = (event, newValue) => {
     event.preventDefault()
@@ -42,16 +43,20 @@ export default function MyAppBar() {
     }
   }
 
-  if (value === null && typeof window !== 'undefined') {
-    setValue(window.location.pathname)
-  }
-
   return (
     <Slide appear={false} direction="down" in={!trigger}>
       <AppBar
         color="primary"
         className={classes.appBar}>
         <Toolbar>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="expand menu"
+            onClick={event => toggleDrawer(event)}
+            onKeyDown={event => toggleDrawer(event)}>
+            <MenuIcon />
+          </IconButton>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -62,7 +67,7 @@ export default function MyAppBar() {
             centered
           >
             <Tab icon={<HomeIcon />} label="HOME" href="/" value="/" />
-            <Tab icon={<AnnouncementIcon />} label="ACTION ITEMS" href="/actionitems" value="/actionitems" />
+            <Tab icon={<AnnouncementIcon />} label="TAKE ACTION" href="/takeaction" value="/takeaction" />
             <Tab icon={<HowToVoteIcon />} label="CITY COUNCIL" href="/citycouncil" value="/citycouncil" />
             <Tab icon={<VideoLibraryIcon />} label="VIDEOS" href="/videos" value="/videos" />
             <Tab icon={<EmojiPeopleIcon />} label="WHO WE ARE" href="/whoweare" value="/whoweare" />
