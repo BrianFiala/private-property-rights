@@ -3,9 +3,9 @@ import {useEffect} from 'preact/hooks'
 import {Router} from 'preact-router'
 import NotFound from '../../routes/NotFound'
 import Home from '../../routes/Home'
-import ActionItems from '../../routes/ActionItems'
-import CityCouncil from '../../routes/CityCouncil'
+import TakeAction from '../../routes/TakeAction'
 import Videos from '../../routes/Videos'
+import CityCouncil from '../../routes/CityCouncil'
 import WhoWeAre from '../../routes/WhoWeAre'
 import Feedback from '../../routes/Feedback'
 import Admin from '../../routes/Admin'
@@ -31,7 +31,7 @@ export default function Main({url}) {
   return (
     <Router url={url}>
       <Home path="/" />
-      <ActionItems path="/actionitems" />
+      <TakeAction path="/takeaction" />
       <CityCouncil path="/citycouncil" />
       <Videos path="/videos" />
       <WhoWeAre path="/whoweare" />

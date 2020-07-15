@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: '100vh'
   },
   contents: {
-    minHeight: 'calc(100% - 64px)',
+    minHeight: 'calc(100% - 72px)',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -21,7 +21,9 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(3)
     }
   },
-  appBarSpacer: theme.mixins.toolbar
+  appBarSpacer: {
+    marginTop: '72px'
+  }
 }))
 
 export default function Layout({url}) {
