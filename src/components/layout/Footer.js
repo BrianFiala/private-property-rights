@@ -46,7 +46,7 @@ export default function Footer() {
             variant="body2"
             color="textSecondary"
             align="left">
-            {`Copyright © Zoya ${new Date().getFullYear()}.`}
+            {`© ${new Date().getFullYear()} privatepropertyrights.info`}
           </Typography>
           <Typography
             variant="body2"

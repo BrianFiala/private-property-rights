@@ -24,12 +24,12 @@ const useStyles = makeStyles(theme => ({
   appBarSpacer: theme.mixins.toolbar
 }))
 
-export default function Layout({toggleTheme, url}) {
+export default function Layout({url}) {
   const classes = useStyles(useTheme())
 
   return (
     <div className={classes.root}>
-      <Header toggleTheme={toggleTheme} />
+      <Header />
       <Container disableGutters>
         <div className={classes.appBarSpacer} />
         <Container
