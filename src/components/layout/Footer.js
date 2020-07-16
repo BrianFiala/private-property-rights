@@ -11,8 +11,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   link: {
-    display: 'flex',
-    flexDirection: 'row'
+    display: 'flex'
   }
 }))
 
