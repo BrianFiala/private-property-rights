@@ -76,7 +76,7 @@ export default function VideoAdminMenu({ video }) {
         <Button
           variant="outlined"
           onClick={onSubmit}
-          color="primary">
+          color="secondary">
           Submit
         </Button>
         <IconButton
