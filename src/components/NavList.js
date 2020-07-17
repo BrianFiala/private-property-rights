@@ -1,47 +1,59 @@
 import {h} from 'preact' /** @jsx h */
 import {useHeaderState} from '../contexts/HeaderStateProvider'
-import HomeIcon from '@material-ui/icons/People'
+import {useAdminState} from '../contexts/AdminStateProvider'
+import {EmojiPeople, Email, Settings} from '@material-ui/icons'
 import {List, Link, ListItem, ListItemText, ListItemIcon} from '@material-ui/core'
-import {makeStyles, useTheme} from '@material-ui/core/styles'
 
-const useStyles = makeStyles(theme => ({
+const styles = {
   list: {
-    overflow: 'hidden'
+    overflow: 'hidden',
+    marginTop: '8px'
   },
   link: {
     display: 'flex',
     height: '100%',
     width: '100%',
-    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`
+    padding: '8px 16px'
   },
   listItem: {
     padding: 0
   }
-}))
+}
 
 export default function NavList() {
-  const classes = useStyles(useTheme())
   const {toggleDrawer} = useHeaderState()
+  const {userProfile} = useAdminState()
 
   function onClick(event) {
     toggleDrawer(event, false)
   }
 
   return (
-    <List className={classes.list}>
-      <ListItem className={classes.listItem} component="li" button key="Home"
+    <List style={styles.list}>
+      <ListItem style={styles.listItem} component="li" button key="WhoWeAre"
         onClick={onClick}>
-        <Link className={classes.link} href="/">
-          <ListItemIcon><HomeIcon aria-hidden="true" color="primary" /></ListItemIcon>
-          <ListItemText primary="Home" />
+        <Link style={styles.link} href="/whoweare">
+          <ListItemIcon><EmojiPeople aria-hidden="true" color="primary" /></ListItemIcon>
+          <ListItemText primary="WHO WE ARE" />
         </Link>
       </ListItem>
-      <ListItem className={classes.listItem} component="li" button key="Videos"
+      <ListItem style={styles.listItem} component="li" button key="Feedback"
         onClick={onClick}>
-        <Link className={classes.link} href="/videos">
-          <ListItemIcon><HomeIcon aria-hidden="true" color="primary" /></ListItemIcon>
-          <ListItemText primary="Videos" />
+        <Link style={styles.link} href="/feedback">
+          <ListItemIcon><Email aria-hidden="true" color="primary" /></ListItemIcon>
+          <ListItemText primary="FEEDBACK" />
         </Link>
+      </ListItem>
+      <ListItem style={styles.listItem} component="li" button key="Admin"
+        onClick={onClick}>
+        <Link style={styles.link} href="/admin">
+          <ListItemIcon><Settings aria-hidden="true" color="primary" /></ListItemIcon>
+          <ListItemText primary="ADMIN" />
+        </Link>
+      </ListItem>
+      <ListItem style={styles.listItem} component="li" button key="Videos"
+        onClick={onClick}>
+        <div style={`${userProfile ? '' : 'display: none;'}`} class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" />
       </ListItem>
     </List>
   )
