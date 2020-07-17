@@ -5,12 +5,14 @@ const VideosContext = createContext()
 export const useVideos = () => useContext(VideosContext)
 
 export const VideosProvider = ({children}) => {
-  const [videos, setVideos] = useState()
+  const [videos, setVideos] = useState([])
   
   const refreshVideos = async () => {
     fetch('assets/videos.json')
-      .then(data => data.json())
-      .then(videos => setVideos(videos))
+      .then(data => {
+        if (data.status === 200) return data.json()
+      })
+      .then(videos => setVideos(videos || []))
       .catch(console.error)
   }
 
