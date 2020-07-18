@@ -21,9 +21,9 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: fade(theme.palette.common.white, 0.25)
     },
     flexGrow: 1,
-    margin: theme.spacing(0, 3, 0, 3),
-    [theme.breakpoints.up('md')]: {
-      width: '20ch'
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(2)
     }
   },
   searchIcon: {
@@ -37,16 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch'
-    }
-  },
-  toolbar: {
-    display: 'flex'
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`
   },
   adminMode: {
     marginLeft: theme.spacing(2)
@@ -101,11 +92,10 @@ export default function MyAppBar() {
       <AppBar
         color="primary"
         className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
+        <Toolbar>
           <Tabs
             value={tabValue}
             onChange={handleChange}
-            // variant="fullWidth"
             indicatorColor="secondary"
             textColor="secondary"
             aria-label="navigation"
