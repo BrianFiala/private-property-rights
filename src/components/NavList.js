@@ -1,10 +1,9 @@
 import {h} from 'preact' /** @jsx h */
 import clsx from 'clsx'
 import {useHeaderState} from '../contexts/HeaderStateProvider'
-import {List, ListItem} from '@material-ui/core'
+import {EmojiPeople, Email, HowToVote, Announcement, VideoLibrary} from '@material-ui/icons'
+import {List, Link, ListItem, ListItemText, ListItemIcon} from '@material-ui/core'
 import {makeStyles, useTheme} from '@material-ui/core/styles'
-import NavListLink from './NavListLink'
-import navListItems from '../assets/navlist-manifest.json'
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -67,22 +66,48 @@ export default function NavList() {
     toggleDrawer(event, false)
   }
 
-  const sizes = ['xSmall', 'small', 'medium', 'large', 'xLarge', 'xxLarge']
-  const generateClassNames = position => ({
-    listItem: clsx(classes.listItem, classes[sizes[position]]),
-    link: classes.link,
-    highlightedText: classes.secondary
-  })
-
   return (
     <List className={classes.list}>
-      {navListItems.map((navListItem, i) => (
-        <NavListLink
-          classNames={generateClassNames(i)}
-          onClick={onClick}
-          navListItem={navListItem}
-          highlighted={tabValue === navListItem.href} />
-      ))}
+      <ListItem id="/takeaction" className={clsx(classes.listItem, classes.xSmall)} component="li" button key="TakeAction" onClick={onClick}>
+        <Link className={classes.link} href="/takeaction">
+          <ListItemIcon>
+            <Announcement aria-hidden="true" color={tabValue === '/takeaction' ? 'secondary' : 'primary'} />
+          </ListItemIcon>
+          <ListItemText className={tabValue === '/takeaction' && classes.secondary} primary="TAKE ACTION" />
+        </Link>
+      </ListItem>
+      <ListItem id="/videos" className={clsx(classes.listItem, classes.small)} component="li" button key="Videos" onClick={onClick}>
+        <Link className={classes.link} href="/videos">
+          <ListItemIcon>
+            <VideoLibrary aria-hidden="true" color={tabValue === '/videos' ? 'secondary' : 'primary'} />
+          </ListItemIcon>
+          <ListItemText className={tabValue === '/videos' && classes.secondary} primary="VIDEOS" />
+        </Link>
+      </ListItem>
+      <ListItem id="/citycouncil" className={clsx(classes.listItem, classes.medium)} component="li" button key="CityCouncil" onClick={onClick}>
+        <Link className={classes.link} href="/citycouncil">
+          <ListItemIcon>
+            <HowToVote aria-hidden="true" color={tabValue === '/citycouncil' ? 'secondary' : 'primary'} />
+          </ListItemIcon>
+          <ListItemText className={tabValue === '/citycouncil' && classes.secondary} primary="CITY COUNCIL" />
+        </Link>
+      </ListItem>
+      <ListItem id="/whoweare" className={clsx(classes.listItem, classes.large)} component="li" button key="WhoWeAre" onClick={onClick}>
+        <Link className={classes.link} href="/whoweare">
+          <ListItemIcon>
+            <EmojiPeople aria-hidden="true" color={tabValue === '/whoweare' ? 'secondary' : 'primary'} />
+          </ListItemIcon>
+          <ListItemText className={tabValue === '/whoweare' && classes.secondary} primary="WHO WE ARE" />
+        </Link>
+      </ListItem>
+      <ListItem id="/feedback" className={clsx(classes.listItem, classes.xLarge)} component="li" button key="Feedback" onClick={onClick}>
+        <Link className={classes.link} href="/feedback">
+          <ListItemIcon>
+            <Email aria-hidden="true" color={tabValue === '/feedback' ? 'secondary' : 'primary'} />
+          </ListItemIcon>
+          <ListItemText className={tabValue === '/feedback' && classes.secondary} primary="FEEDBACK" />
+        </Link>
+      </ListItem>
       <ListItem className={clsx(classes.listItem, classes.login)} component="li" button key="SignIn" onClick={onClick}>
         <div class="g-signin2"
           data-onsuccess="onSignIn"

@@ -9,6 +9,7 @@ import defaults from './theme'
 import {ThemeProvider, createMuiTheme} from '@material-ui/core/styles'
 import {CssBaseline} from '@material-ui/core'
 import {AdminStateProvider} from './contexts/AdminStateProvider'
+import {HeaderStateProvider} from './contexts/HeaderStateProvider'
 import {VideosProvider} from './contexts/VideosProvider'
 import Loader from './effects/Loader'
 import Layout from './components/layout/Layout'
@@ -29,7 +30,9 @@ export default function App({url}) {
         <CssBaseline />
         <VideosProvider>
           <AdminStateProvider>
-            <Layout toggleTheme={toggleTheme} url={url} />
+            <HeaderStateProvider url={url}>
+              <Layout toggleTheme={toggleTheme} url={url} />
+            </HeaderStateProvider>
           </AdminStateProvider>
         </VideosProvider>
       </ThemeProvider>

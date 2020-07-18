@@ -8,7 +8,7 @@ import {Drawer, Paper} from '@material-ui/core'
 const useStyles = makeStyles(theme => ({
   drawerPaper: {
     width: 280,
-    transition: theme.transitions.create('position', {
+    transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
     })
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     overflowX: 'hidden',
     width: 0,
     border: 0,
-    transition: theme.transitions.create('position', {
+    transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     })
@@ -35,8 +35,7 @@ export default function MyDrawer() {
         anchor="right"
         open={open}
         onClose={event => toggleDrawer(event, false)}
-        transitionDuration={420}
-        variant="persistent">
+        transitionDuration={420}>
         <NavList />
       </Drawer>
     </Paper>

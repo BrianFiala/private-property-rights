@@ -2,10 +2,12 @@ import {h} from 'preact' /** @jsx h */
 import {fade, makeStyles, useTheme} from '@material-ui/core/styles'
 import {useHeaderState} from '../contexts/HeaderStateProvider'
 import {useAdminState} from '../contexts/AdminStateProvider'
-import {AppBar, Slide, Toolbar, useScrollTrigger, Tabs, Tab,
+import {
+  AppBar, Slide, Toolbar, useScrollTrigger, Tabs, Tab,
   IconButton, InputBase} from '@material-ui/core'
-import MyIcon from './MyIcon'
-import navListItems from '../assets/navlist-manifest.json'
+import {
+  Home, Menu, Search, CheckBox, CheckBoxOutlineBlank, EmojiPeople,
+  Mail, HowToVote, Announcement, VideoLibrary} from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -94,8 +96,6 @@ export default function MyAppBar() {
     }
   }
 
-  const sizes = ['xSmall', 'small', 'medium', 'large', 'xLarge', 'xxLarge']
-
   return (
     <Slide appear={false} direction="down" in={!trigger}>
       <AppBar
@@ -105,18 +105,28 @@ export default function MyAppBar() {
           <Tabs
             value={tabValue}
             onChange={handleChange}
-            variant="fullWidth"
+            // variant="fullWidth"
             indicatorColor="secondary"
             textColor="secondary"
             aria-label="navigation"
           >
-            <Tab icon={<MyIcon icon="home" />}
+            <Tab icon={<Home />}
               label="HOME" href="/" value="/" />
-            {navListItems.map((item, i) => (
-              <Tab icon={<MyIcon icon={item.icon} />}
-                className={classes[sizes[i]]}
-                label={item.text} href={item.href} value={item.href} />
-            ))}
+            <Tab icon={<Announcement />}
+              className={classes.xSmall}
+              label="TAKE ACTION" href="/takeaction" value="/takeaction" />
+            <Tab icon={<VideoLibrary />}
+              className={classes.small}
+              label="VIDEOS" href="/videos" value="/videos" />
+            <Tab icon={<HowToVote />}
+              className={classes.medium}
+              label="CITY COUNCIL" href="/citycouncil" value="/citycouncil" />
+            <Tab icon={<EmojiPeople />}
+              className={classes.large}
+              label="WHO WE ARE" href="/whoweare" value="/whoweare" />
+            <Tab icon={<Mail />}
+              className={classes.xLarge}
+              label="FEEDBACK" href="/feedback" value="/feedback" />
             {userProfile && (
               <Tab
                 label="ADMIN"
@@ -124,13 +134,13 @@ export default function MyAppBar() {
                 aria-label="toggle admin mode"
                 value="tabNoHighlight"
                 icon={adminModeEnabled
-                  ? <MyIcon icon="checkbox" aria-hidden="true" />
-                  : <MyIcon icon="checkboxBlank" aria-hidden="true" />} />
+                  ? <CheckBox aria-hidden="true" />
+                  : <CheckBoxOutlineBlank aria-hidden="true" />} />
             )}
           </Tabs>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <MyIcon icon="search" />
+              <Search aria-hidden="true" />
             </div>
             <InputBase
               placeholder="Search…"
@@ -144,7 +154,7 @@ export default function MyAppBar() {
             aria-label="expand menu"
             onClick={event => toggleDrawer(event)}
             onKeyDown={event => toggleDrawer(event)}>
-            <MyIcon icon="menu" />
+            <Menu />
           </IconButton>
         </Toolbar>
       </AppBar>

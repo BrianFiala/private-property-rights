@@ -1,8 +1,8 @@
 import {h} from 'preact' /** @jsx h */
 import {Grid, Button, Typography} from '@material-ui/core'
-import {useAdminState} from '../contexts/AdminStateProvider'
-import Title from '../components/Title'
-import MyPaper from '../components/MyPaper'
+import {useAdminState} from '../src/contexts/AdminStateProvider'
+import Title from '../src/components/Title'
+import MyPaper from '../src/components/MyPaper'
 
 export default function Admin() {
   const {userProfile, adminModeEnabled, toggleAdminMode} = useAdminState()
