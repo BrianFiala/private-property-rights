@@ -2,10 +2,12 @@ import {h} from 'preact' /** @jsx h */
 import {fade, makeStyles, useTheme} from '@material-ui/core/styles'
 import {useHeaderState} from '../contexts/HeaderStateProvider'
 import {useAdminState} from '../contexts/AdminStateProvider'
-import {VideoLibrary, Announcement, CheckBox, CheckBoxOutlineBlank,
-  HowToVote, Home, Menu, Search, Settings, EmojiPeople, Mail} from '@material-ui/icons'
-import {AppBar, Slide, Toolbar, useScrollTrigger, Tabs, Tab,
+import {
+  AppBar, Slide, Toolbar, useScrollTrigger, Tabs, Tab,
   IconButton, InputBase} from '@material-ui/core'
+import {
+  Home, Menu, Search, CheckBox, CheckBoxOutlineBlank, EmojiPeople,
+  Mail, HowToVote, Announcement, VideoLibrary} from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -19,9 +21,9 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: fade(theme.palette.common.white, 0.25)
     },
     flexGrow: 1,
-    margin: `0 ${theme.spacing(3)}px`,
-    [theme.breakpoints.up('md')]: {
-      width: '20ch'
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(2)
     }
   },
   searchIcon: {
@@ -35,46 +37,37 @@ const useStyles = makeStyles(theme => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch'
-    }
-  },
-  toolbar: {
-    display: 'flex'
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`
   },
   adminMode: {
     marginLeft: theme.spacing(2)
   },
-  hideBelowXSmall: {
+  xSmall: {
     [theme.breakpoints.down(700)]: {
       display: 'none'
     }
   },
-  hideBelowSmall: {
+  small: {
     [theme.breakpoints.down(870)]: {
       display: 'none'
     }
   },
-  hideBelowMedium: {
+  medium: {
     [theme.breakpoints.down(1080)]: {
       display: 'none'
     }
   },
-  hideBelowBig: {
+  large: {
     [theme.breakpoints.down(1200)]: {
       display: 'none'
     }
   },
-  hideBelowReallyBig: {
+  xLarge: {
     [theme.breakpoints.down(1380)]: {
       display: 'none'
     }
   },
-  hideBelowReallyReallyBig: {
+  xxLarge: {
     [theme.breakpoints.down(1500)]: {
       display: 'none'
     }
@@ -99,11 +92,10 @@ export default function MyAppBar() {
       <AppBar
         color="primary"
         className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
+        <Toolbar>
           <Tabs
             value={tabValue}
             onChange={handleChange}
-            variant="fullWidth"
             indicatorColor="secondary"
             textColor="secondary"
             aria-label="navigation"
@@ -111,23 +103,20 @@ export default function MyAppBar() {
             <Tab icon={<Home />}
               label="HOME" href="/" value="/" />
             <Tab icon={<Announcement />}
-              className={classes.hideBelowXSmall}
+              className={classes.xSmall}
               label="TAKE ACTION" href="/takeaction" value="/takeaction" />
             <Tab icon={<VideoLibrary />}
-              className={classes.hideBelowSmall}
+              className={classes.small}
               label="VIDEOS" href="/videos" value="/videos" />
             <Tab icon={<HowToVote />}
-              className={classes.hideBelowMedium}
+              className={classes.medium}
               label="CITY COUNCIL" href="/citycouncil" value="/citycouncil" />
             <Tab icon={<EmojiPeople />}
-              className={classes.hideBelowBig}
+              className={classes.large}
               label="WHO WE ARE" href="/whoweare" value="/whoweare" />
             <Tab icon={<Mail />}
-              className={classes.hideBelowReallyBig}
+              className={classes.xLarge}
               label="FEEDBACK" href="/feedback" value="/feedback" />
-            <Tab icon={<Settings />}
-              className={classes.hideBelowReallyReallyBig}
-              label="ADMIN" href="/admin" value="/admin" />
             {userProfile && (
               <Tab
                 label="ADMIN"
@@ -141,7 +130,7 @@ export default function MyAppBar() {
           </Tabs>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <Search />
+              <Search aria-hidden="true" />
             </div>
             <InputBase
               placeholder="Search…"

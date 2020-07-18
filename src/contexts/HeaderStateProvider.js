@@ -4,9 +4,9 @@ import {useState, useContext} from 'preact/hooks'
 const HeaderStateContext = createContext()
 export const useHeaderState = () => useContext(HeaderStateContext)
 
-export const HeaderStateProvider = ({children}) => {
+export const HeaderStateProvider = ({children, url}) => {
   const [open, setOpen] = useState(false)
-  const [tabValue, setTabValue] = useState(typeof window !== 'undefined' ? window.location.pathname : '/')
+  const [tabValue, setTabValue] = useState(url || '/')
 
   function toggleDrawer(event, providedValue) {
     if (!(event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift'))) {

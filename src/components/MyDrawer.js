@@ -6,7 +6,6 @@ import {makeStyles, useTheme} from '@material-ui/core/styles'
 import {Drawer, Paper} from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
-  appBarSpacer: theme.mixins.toolbar,
   drawerPaper: {
     width: 280,
     transition: theme.transitions.create('width', {
@@ -36,9 +35,7 @@ export default function MyDrawer() {
         anchor="right"
         open={open}
         onClose={event => toggleDrawer(event, false)}
-        transitionDuration={420}
-      >
-        <div className={classes.appBarSpacer} />
+        transitionDuration={420}>
         <NavList />
       </Drawer>
     </Paper>
