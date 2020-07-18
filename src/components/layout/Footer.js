@@ -1,11 +1,10 @@
 import {h} from 'preact' /** @jsx h */
 import EmailIcon from '@material-ui/icons/Email'
 import {Typography, Link, IconButton} from '@material-ui/core'
-import {makeStyles, useTheme} from '@material-ui/core/styles'
 
-const useStyles = makeStyles(theme => ({
+const styles = {
   footerContainer: {
-    marginTop: theme.spacing(3),
+    marginTop: '24px',
     justifyContent: 'space-between',
     display: 'flex',
     alignItems: 'center'
@@ -13,17 +12,15 @@ const useStyles = makeStyles(theme => ({
   link: {
     display: 'flex'
   }
-}))
+}
 
 export default function Footer() {
-  const classes = useStyles(useTheme())
-
   return (
-    <footer className={classes.footerContainer}>
+    <footer style={styles.footerContainer}>
       <Link
         color="inherit"
         href="/privacypolicy"
-        className={classes.link}>
+        style={styles.link}>
         <Typography
           variant="body2"
           color="textSecondary"
@@ -34,7 +31,7 @@ export default function Footer() {
       <Link
         color="inherit"
         href="mailto:privatepropertyrightsinfo@gmail.com"
-        className={classes.link}>
+        style={styles.link}>
         <span>
           <IconButton
             edge="start"
@@ -55,7 +52,7 @@ export default function Footer() {
       <Link
         color="inherit"
         href="/termsofservice"
-        className={classes.link}>
+        style={styles.link}>
         <Typography
           variant="body2"
           color="textSecondary"

@@ -6,34 +6,37 @@ import {makeStyles, useTheme} from '@material-ui/core/styles'
 import {Container} from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    width: '100%',
-    minHeight: '100vh'
-  },
   contents: {
     minHeight: 'calc(100% - 72px)',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding: theme.spacing(2),
+    padding: '16px',
     [theme.breakpoints.up('sm')]: {
       padding: theme.spacing(3)
     }
+  }
+}))
+
+const styles = {
+  root: {
+    display: 'flex',
+    width: '100%',
+    minHeight: '100vh'
   },
   appBarSpacer: {
     marginTop: '72px'
   }
-}))
+}
 
 export default function Layout({url}) {
   const classes = useStyles(useTheme())
 
   return (
-    <div className={classes.root}>
+    <div style={styles.root}>
       <Header />
       <Container disableGutters>
-        <div className={classes.appBarSpacer} />
+        <div style={styles.appBarSpacer} />
         <Container
           disableGutters
           className={classes.contents}>

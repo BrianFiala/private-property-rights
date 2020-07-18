@@ -50,36 +50,33 @@ export default function Videos() {
     <Grid container
       spacing={3}
       justify="center">
-      { videos ? (
-        <>
-          <Grid item xs={12}>
-            <MyPaper>
-              <aside style={styles.heading}>
-                <Title>Videos</Title>
-                <IconButton
-                  edge="end"
-                  color="inherit"
-                  aria-label="refresh videos"
-                  onClick={refreshVideos}>
-                  <RefreshIcon aria-hidden="true" color="primary" />
-                </IconButton>
-              </aside>
-            </MyPaper>
-          </Grid>
-          { videos.map(video => (
-            <VideoPlayer
-              video={video}
-              sizes={sizes(videos)} />
-          ))}
-        </>
-      ) : (
-        <Grid item xs={12}>
+      <Grid item xs={12}>
+        {videos && videos.length ? (
+          <MyPaper>
+            <aside style={styles.heading}>
+              <Title>Videos</Title>
+              <IconButton
+                edge="end"
+                color="inherit"
+                aria-label="refresh videos"
+                onClick={refreshVideos}>
+                <RefreshIcon aria-hidden="true" color="primary" />
+              </IconButton>
+            </aside>
+          </MyPaper>
+        ): (
           <InfoItem
             identifier="Videos"
             message="We don't have any videos right now. Would you like to try again?"
-            onClick={refreshVideos} />
-        </Grid>
-      )}
+            buttonText="Refresh"
+            buttonAction={refreshVideos} />
+        )}
+      </Grid>
+      { videos && videos.map(video => (
+        <VideoPlayer
+          video={video}
+          sizes={sizes(videos)} />
+      ))}
     </Grid>
   )
 }
