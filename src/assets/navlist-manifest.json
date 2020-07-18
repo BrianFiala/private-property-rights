@@ -1,0 +1,25 @@
+[{
+    "href": "/takeaction",
+    "text": "TAKE ACTION",
+    "icon": "announcement"
+  },{
+    "href": "/videos",
+    "text": "VIDEOS",
+    "icon": "videoLibrary"
+  },{
+    "href": "/citycouncil",
+    "text": "CITY COUNCIL",
+    "icon": "howToVote"
+  },{
+    "href": "/whoweare",
+    "text": "WHO WE ARE",
+    "icon": "emojiPeople"
+  },{
+    "href": "/feedback",
+    "text": "FEEDBACK",
+    "icon": "email"
+  },{
+    "href": "/admin",
+    "text": "ADMIN",
+    "icon": "settings"
+}]
