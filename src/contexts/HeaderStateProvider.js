@@ -6,7 +6,7 @@ export const useHeaderState = () => useContext(HeaderStateContext)
 
 export const HeaderStateProvider = ({children, url}) => {
   const [open, setOpen] = useState(false)
-  const [tabValue, setTabValue] = useState(url || '/')
+  const [tabValue, setTabValue] = useState(url || window.location.pathname || '/')
 
   function toggleDrawer(event, providedValue) {
     if (!(event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift'))) {

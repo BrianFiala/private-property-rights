@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function WhoWeAre() {
+export default function About() {
   const classes = useStyles(useTheme())
 
   return (

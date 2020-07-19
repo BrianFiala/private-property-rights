@@ -1,74 +1,62 @@
 import {h} from 'preact' /** @jsx h */
-import {fade, makeStyles, useTheme} from '@material-ui/core/styles'
+import clsx from 'clsx'
+import {makeStyles, useTheme} from '@material-ui/core/styles'
 import {useHeaderState} from '../contexts/HeaderStateProvider'
 import {useAdminState} from '../contexts/AdminStateProvider'
-import {
-  AppBar, Slide, Toolbar, useScrollTrigger, Tabs, Tab,
-  IconButton, InputBase} from '@material-ui/core'
-import {
-  Home, Menu, Search, CheckBox, CheckBoxOutlineBlank, EmojiPeople,
-  Mail, HowToVote, Announcement, VideoLibrary} from '@material-ui/icons'
+import {AppBar, Slide, Toolbar, useScrollTrigger, Tabs, Tab, IconButton} from '@material-ui/core'
+import {Home, Menu, Event, CheckBox, CheckBoxOutlineBlank, EmojiPeople,
+  Announcement, NewReleases, NotificationImportant} from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   appBar: {
-    zIndex: 1301
+    zIndex: 1301,
+    padding: theme.spacing(0, 3, 0, 3)
   },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25)
-    },
-    flexGrow: 1,
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(2)
+  toolbar: {    
+    display: 'flex',
+    justifyContent: 'space-between',
+    [theme.breakpoints.up('lg')]: {
+      width: theme.spacing(154),
+      margin:'auto'
     }
   },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`
+  tab: {
+    display: 'none',
+    width: '160px'
   },
   adminMode: {
     marginLeft: theme.spacing(2)
   },
+  persist: {
+    display: 'initial'
+  },
   xSmall: {
-    [theme.breakpoints.down(700)]: {
-      display: 'none'
+    [theme.breakpoints.up(theme.spacing(51))]: {
+      display: 'initial'
     }
   },
   small: {
-    [theme.breakpoints.down(870)]: {
-      display: 'none'
+    [theme.breakpoints.up(theme.spacing(71))]: {
+      display: 'initial'
     }
   },
   medium: {
-    [theme.breakpoints.down(1080)]: {
-      display: 'none'
+    [theme.breakpoints.up(theme.spacing(91))]: {
+      display: 'initial'
     }
   },
   large: {
-    [theme.breakpoints.down(1200)]: {
-      display: 'none'
+    [theme.breakpoints.up(theme.spacing(111))]: {
+      display: 'initial'
     }
   },
   xLarge: {
-    [theme.breakpoints.down(1380)]: {
-      display: 'none'
+    [theme.breakpoints.up(theme.spacing(131))]: {
+      display: 'initial'
     }
   },
-  xxLarge: {
-    [theme.breakpoints.down(1500)]: {
+  menu: {
+    [theme.breakpoints.up(theme.spacing(131))]: {
       display: 'none'
     }
   }
@@ -92,31 +80,34 @@ export default function MyAppBar() {
       <AppBar
         color="primary"
         className={classes.appBar}>
-        <Toolbar>
+        <Toolbar
+          disableGutters
+          className={classes.toolbar}>
           <Tabs
             value={tabValue}
             onChange={handleChange}
             indicatorColor="secondary"
             textColor="secondary"
             aria-label="navigation"
-          >
+            tabItemContainerStyle={{width: '160px'}}>
             <Tab icon={<Home />}
+              className={clsx(classes.tab, classes.persist)}
               label="HOME" href="/" value="/" />
-            <Tab icon={<Announcement />}
-              className={classes.xSmall}
+            <Tab icon={<NewReleases />}
+              className={clsx(classes.tab, classes.xSmall)}
               label="TAKE ACTION" href="/takeaction" value="/takeaction" />
-            <Tab icon={<VideoLibrary />}
-              className={classes.small}
-              label="VIDEOS" href="/videos" value="/videos" />
-            <Tab icon={<HowToVote />}
-              className={classes.medium}
-              label="CITY COUNCIL" href="/citycouncil" value="/citycouncil" />
             <Tab icon={<EmojiPeople />}
-              className={classes.large}
-              label="WHO WE ARE" href="/whoweare" value="/whoweare" />
-            <Tab icon={<Mail />}
-              className={classes.xLarge}
-              label="FEEDBACK" href="/feedback" value="/feedback" />
+              className={clsx(classes.tab, classes.small)}
+              label="ABOUT" href="/about" value="/about" />
+            <Tab icon={<Announcement />}
+              className={clsx(classes.tab, classes.medium)}
+              label="NEWS" href="/news" value="/news" />
+            <Tab icon={<NotificationImportant />}
+              className={clsx(classes.tab, classes.large)}
+              label="ISSUES" href="/issues" value="/issues" />
+            <Tab icon={<Event />}
+              className={clsx(classes.tab, classes.xLarge)}
+              label="CALENDAR" href="/calendar" value="/calendar" />
             {userProfile && (
               <Tab
                 label="ADMIN"
@@ -128,17 +119,8 @@ export default function MyAppBar() {
                   : <CheckBoxOutlineBlank aria-hidden="true" />} />
             )}
           </Tabs>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <Search aria-hidden="true" />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{input: classes.inputInput}}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
           <IconButton
+            className={classes.menu}
             edge="end"
             color="secondary"
             aria-label="expand menu"

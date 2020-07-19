@@ -1,5 +1,5 @@
 import {h} from 'preact' /** @jsx h */
-import InfoItem from '../components/InfoItem'
+import InfoItem from '../src/components/InfoItem'
 import {Grid, TextField} from '@material-ui/core'
 import {makeStyles, useTheme} from '@material-ui/core/styles'
 
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function TakeAction() {
+export default function Feedback() {
   const classes = useStyles(useTheme())
 
   return (

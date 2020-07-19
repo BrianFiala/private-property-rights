@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function CityCouncil() {
+export default function Calendar() {
   const classes = useStyles(useTheme())
 
   return (

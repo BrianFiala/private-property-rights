@@ -1,15 +1,16 @@
 import {h} from 'preact' /** @jsx h */
 import {useEffect} from 'preact/hooks'
 import {Router} from 'preact-router'
-import NotFound from '../../routes/NotFound'
 import Home from '../../routes/Home'
+import About from '../../routes/About'
+import News from '../../routes/News'
+import Issues from '../../routes/Issues'
+import Calendar from '../../routes/Calendar'
 import TakeAction from '../../routes/TakeAction'
-import Videos from '../../routes/Videos'
-import CityCouncil from '../../routes/CityCouncil'
-import WhoWeAre from '../../routes/WhoWeAre'
-import Feedback from '../../routes/Feedback'
 import PrivacyPolicy from '../../routes/PrivacyPolicy'
 import TermsOfService from '../../routes/TermsOfService'
+import Admin from '../../routes/Admin'
+import NotFound from '../../routes/NotFound'
 
 const removeLoader = (loader) => {
   requestAnimationFrame(() => {
@@ -30,13 +31,14 @@ export default function Main({url}) {
   return (
     <Router url={url}>
       <Home path="/" />
+      <About path="/about" />
+      <News path="/news" />
+      <Issues path="/issues" />
+      <Calendar path="/calendar" />
       <TakeAction path="/takeaction" />
-      <CityCouncil path="/citycouncil" />
-      <Videos path="/videos" />
-      <WhoWeAre path="/whoweare" />
-      <Feedback path="/feedback" />
       <PrivacyPolicy path="/privacypolicy" />
       <TermsOfService path="/termsofservice" />
+      <Admin path="/admin" />
       <NotFound default />
     </Router>
   )

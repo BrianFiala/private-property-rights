@@ -42,7 +42,7 @@ const styles = {
   }
 }
 
-export default function Videos() {
+export default function Issues() {
   const {videos, refreshVideos} = useVideos()
   
   // TODO: add lazy loading of videos
