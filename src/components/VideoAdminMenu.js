@@ -1,25 +1,27 @@
 import {h} from 'preact' /** @jsx h */
 import {useState} from 'preact/hooks'
+import {useTheme, makeStyles} from '@material-ui/core/styles'
 import {IconButton, TextField, FormControlLabel, Checkbox, Button} from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import {useVideos} from '../contexts/VideosProvider'
 
-const styles = {
+const useStyles = makeStyles(theme => ({
   heading: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: '12px'
+    marginBottom: theme.spacing(1.5)
   },
   grow: {
     flexGrow: 1
   },
   buttons: {
-    marginLeft: '16px'
+    marginLeft: theme.spacing(2)
   }
-}
+}))
 
 export default function VideoAdminMenu({ video }) {
+  const classes = useStyles(useTheme())
   const {videos, setVideos} = useVideos()
   const [videoData, setVideoData] = useState(video)
 
@@ -39,7 +41,6 @@ export default function VideoAdminMenu({ video }) {
       ...videoData,
       featured: !videoData.featured
     })
-    // setFeatured(!featured)
   }
 
   const onSubmit = () => {
@@ -52,27 +53,26 @@ export default function VideoAdminMenu({ video }) {
   }
 
   return (
-    <aside style={styles.heading}>
+    <aside className={classes.heading}>
       <TextField
         onChange={editTitle}
-        style={styles.grow}
+        className={classes.grow}
         fullwidth
         label="edit"
         defaultValue={videoData.title}
         placeholder={videoData.title}
         variant="outlined" />
-      <section style={styles.buttons}>
+      <section className={classes.buttons}>
         <FormControlLabel
+          label="Large"
+          labelPlacement="end"
           control={
             <Checkbox
               checked={videoData.featured}
               onChange={changeFeatured}
               name="changeFeatured"
               color="primary" />
-          }
-          label="Large"
-          labelPlacement="end"
-        />
+          } />
         <Button
           variant="outlined"
           onClick={onSubmit}

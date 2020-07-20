@@ -8,7 +8,7 @@ export const VideosProvider = ({children}) => {
   const [videos, setVideos] = useState([])
   
   const refreshVideos = async () => {
-    fetch('assets/videos.json')
+    fetch('/assets/videos.json')
       .then(data => {
         if (data.status === 200) return data.json()
       })

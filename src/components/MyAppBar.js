@@ -1,5 +1,4 @@
 import {h} from 'preact' /** @jsx h */
-import clsx from 'clsx'
 import {makeStyles, useTheme} from '@material-ui/core/styles'
 import {useHeaderState} from '../contexts/HeaderStateProvider'
 import {useAdminState} from '../contexts/AdminStateProvider'
@@ -10,9 +9,12 @@ import {Home, Menu, Event, CheckBox, CheckBoxOutlineBlank, EmojiPeople,
 const useStyles = makeStyles(theme => ({
   appBar: {
     zIndex: 1301,
-    padding: theme.spacing(0, 3, 0, 3)
+    padding: theme.spacing(0, 2, 0, 2),
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(0, 3, 0, 3)
+    }
   },
-  toolbar: {    
+  toolBar: {
     display: 'flex',
     justifyContent: 'space-between',
     [theme.breakpoints.up('lg')]: {
@@ -21,49 +23,54 @@ const useStyles = makeStyles(theme => ({
     }
   },
   tab: {
-    display: 'none',
-    width: '160px'
-  },
-  adminMode: {
-    marginLeft: theme.spacing(2)
-  },
-  persist: {
-    display: 'initial'
+    width: theme.spacing(20)
   },
   xSmall: {
+    display: 'none',
     [theme.breakpoints.up(theme.spacing(51))]: {
+      width: theme.spacing(20),
       display: 'initial'
     }
   },
   small: {
+    display: 'none',
     [theme.breakpoints.up(theme.spacing(71))]: {
+      width: theme.spacing(20),
       display: 'initial'
     }
   },
   medium: {
+    display: 'none',
     [theme.breakpoints.up(theme.spacing(91))]: {
+      width: theme.spacing(20),
       display: 'initial'
     }
   },
   large: {
+    display: 'none',
     [theme.breakpoints.up(theme.spacing(111))]: {
+      width: theme.spacing(20),
       display: 'initial'
     }
   },
   xLarge: {
+    display: 'none',
     [theme.breakpoints.up(theme.spacing(131))]: {
+      width: theme.spacing(20),
       display: 'initial'
     }
   },
   menu: {
     [theme.breakpoints.up(theme.spacing(131))]: {
+      width: theme.spacing(20),
       display: 'none'
     }
   }
 }))
 
 export default function MyAppBar() {
-  const classes = useStyles(useTheme())
+  const theme = useTheme()
+  const classes = useStyles(theme)
   const {toggleDrawer, tabValue, setTabValue} = useHeaderState()
   const {userProfile, toggleAdminMode, adminModeEnabled} = useAdminState()
   const trigger = useScrollTrigger({threshold: 32})
@@ -82,31 +89,30 @@ export default function MyAppBar() {
         className={classes.appBar}>
         <Toolbar
           disableGutters
-          className={classes.toolbar}>
+          className={classes.toolBar}>
           <Tabs
             value={tabValue}
             onChange={handleChange}
             indicatorColor="secondary"
             textColor="secondary"
-            aria-label="navigation"
-            tabItemContainerStyle={{width: '160px'}}>
+            aria-label="navigation">
             <Tab icon={<Home />}
-              className={clsx(classes.tab, classes.persist)}
+              className={classes.tab}
               label="HOME" href="/" value="/" />
             <Tab icon={<NewReleases />}
-              className={clsx(classes.tab, classes.xSmall)}
+              className={classes.xSmall}
               label="TAKE ACTION" href="/takeaction" value="/takeaction" />
             <Tab icon={<EmojiPeople />}
-              className={clsx(classes.tab, classes.small)}
+              className={classes.small}
               label="ABOUT" href="/about" value="/about" />
             <Tab icon={<Announcement />}
-              className={clsx(classes.tab, classes.medium)}
+              className={classes.medium}
               label="NEWS" href="/news" value="/news" />
             <Tab icon={<NotificationImportant />}
-              className={clsx(classes.tab, classes.large)}
+              className={classes.large}
               label="ISSUES" href="/issues" value="/issues" />
             <Tab icon={<Event />}
-              className={clsx(classes.tab, classes.xLarge)}
+              className={classes.xLarge}
               label="CALENDAR" href="/calendar" value="/calendar" />
             {userProfile && (
               <Tab
@@ -124,8 +130,8 @@ export default function MyAppBar() {
             edge="end"
             color="secondary"
             aria-label="expand menu"
-            onClick={event => toggleDrawer(event)}
-            onKeyDown={event => toggleDrawer(event)}>
+            onClick={toggleDrawer}
+            onKeyDown={toggleDrawer}>
             <Menu />
           </IconButton>
         </Toolbar>

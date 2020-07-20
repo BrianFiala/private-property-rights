@@ -66,6 +66,4 @@ build/
 htdocs/
 size-plugin.json
 .vscode/
-users.json
-keys.json
-src/assets/videos.json
+secure/

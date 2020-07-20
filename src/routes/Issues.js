@@ -1,6 +1,7 @@
 import {h} from 'preact' /** @jsx h */
 import RefreshIcon from '@material-ui/icons/Refresh'
 import {Grid, IconButton} from '@material-ui/core'
+import {makeStyles} from '@material-ui/core/styles'
 import {useVideos} from '../contexts/VideosProvider'
 import VideoPlayer from '../components/VideoPlayer'
 import MyPaper from '../components/MyPaper'
@@ -33,17 +34,17 @@ const sizes = (videos) => {
   }
 }
 
-
-const styles = {
+const useStyles = makeStyles(() => ({
   heading: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center'
   }
-}
+}))
 
 export default function Issues() {
   const {videos, refreshVideos} = useVideos()
+  const classes = useStyles()
   
   // TODO: add lazy loading of videos
   return (
@@ -53,7 +54,7 @@ export default function Issues() {
       <Grid item xs={12}>
         {videos && videos.length ? (
           <MyPaper>
-            <aside style={styles.heading}>
+            <aside className={classes.heading}>
               <Title>Videos</Title>
               <IconButton
                 edge="end"

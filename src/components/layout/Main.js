@@ -25,6 +25,7 @@ const removeLoader = (loader) => {
 
 export default function Main({url}) {
   useEffect(() => {
+    typeof window !== 'undefined' &&
     document.querySelectorAll('.loader-wrapper').forEach(loader => removeLoader(loader))
   }, [])
 

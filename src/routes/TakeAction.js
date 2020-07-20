@@ -1,7 +1,7 @@
 import {h} from 'preact' /** @jsx h */
 import InfoItem from '../components/InfoItem'
 import {Grid, TextField} from '@material-ui/core'
-import {makeStyles, useTheme} from '@material-ui/core/styles'
+import {useTheme, makeStyles} from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   textFieldSection: {

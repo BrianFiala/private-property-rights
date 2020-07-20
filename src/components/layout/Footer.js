@@ -6,16 +6,24 @@ import {useTheme} from '@material-ui/core/styles'
 export default function Footer() {
   const theme = useTheme()
 
-  return (
-    <footer style={{
-      marginTop: `${theme.spacing(3)}`,
+  const styles = {
+    footer: {
+      marginTop: theme.spacing(3),
       justifyContent: 'space-between',
       display: 'flex',
-      alignItems: 'center'}}>
+      alignItems: 'center'
+    },
+    link: {
+      display: 'flex'
+    }
+  }
+
+  return (
+    <footer style={styles.footer}>
       <Link
         color="inherit"
         href="/privacypolicy"
-        style={{display: 'flex'}}>
+        style={styles.link}>
         <Typography
           variant="body2"
           color="textSecondary"
@@ -26,7 +34,7 @@ export default function Footer() {
       <Link
         color="inherit"
         href="mailto:privatepropertyrightsinfo@gmail.com"
-        style={{display: 'flex'}}>
+        style={styles.link}>
         <span>
           <IconButton
             edge="start"
@@ -47,7 +55,7 @@ export default function Footer() {
       <Link
         color="inherit"
         href="/termsofservice"
-        style={{display: 'flex'}}>
+        style={styles.link}>
         <Typography
           variant="body2"
           color="textSecondary"

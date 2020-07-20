@@ -38,6 +38,7 @@ export const AdminStateProvider = ({children}) => {
   const [userProfile, setUserProfile] = useState()
   const [adminModeEnabled, setAdminModeEnabled] = useState(false)
   const toggleAdminMode = () => setAdminModeEnabled(!adminModeEnabled)
+  
   const logout = () => {
     // TODO: disconnect from google
     setUserProfile(null)
