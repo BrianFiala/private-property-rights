@@ -1,4 +1,5 @@
 const {h} = require('preact')
+// const React = require('react')
 const polka = require('polka')
 const {readFileSync} = require('fs')
 const compression = require('compression')()
@@ -6,11 +7,9 @@ const render = require('preact-render-to-string')
 const bodyParser = require('body-parser')
 const {OAuth2Client} = require('google-auth-library')
 const bundle = require('../build/ssr-build/ssr-bundle')
-const {ServerStyleSheets, ThemeProvider} = require('@material-ui/core/styles')
-const theme = require('./theme')
+// const {ServerStyleSheets} = require('@material-ui/core/styles')
 const users = require('../secure/users.json')
 const keys = require('../secure/keys.json')
-
 const App = bundle.default
 const {PORT = 42230} = process.env
 const RGXBODY = /<div id="app"[^>]*>.*?(?=<script)/i
@@ -19,15 +18,15 @@ const template = readFileSync('build/index.html', 'utf8')
 const client = new OAuth2Client(keys.client_id, keys.client_secret)
 
 const renderFullPage = (req) => {
-  const sheets = new ServerStyleSheets()
-  const withBody = template.replace(RGXBODY, render(
-    sheets.collect(
-      <ThemeProvider theme={theme}>
-        <App url={req.url} />
-      </ThemeProvider>
-    )
-  ))
-  return withBody.replace(RGXCSS, sheets.toString())
+  // const sheets = new ServerStyleSheets()
+  // const html = render(sheets.collect(h(App, {url: req.url})))
+  const html = render(h(App, {url: req.url}))
+  // console.log(html)
+  // console.log(sheets.toString())
+  const withBody = template.replace(RGXBODY, html)
+  // console.log(withBody)
+  return withBody
+  // return withBody.replace(RGXCSS, sheets.toString())
 }
 
 const googleAuthentication = async (req, res, next) => {
