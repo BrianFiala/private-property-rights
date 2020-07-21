@@ -14,12 +14,13 @@
     <link rel="preload" href="/176f8f5bd5f02b3abfcf894955d7e919.woff2" as="font" crossorigin="anonymous">
     <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
     <% preact.headEnd %>
+    <style id="jss-server-side">${ htmlWebpackPlugin.options.css() }</style>
 </head>
 <body>
     <% preact.bodyEnd %>
     <noscript>
         <style>h1,a{color:#DDD}article{z-index:10000;position:fixed;bottom:10vh;width:100%}h1,h4{text-align:center}</style>
-        <div class="loader-wrapper">
+        <!-- <div class="loader-wrapper">
             <div class="loader">
                 <div class="la-pacman">
                     <div></div>
@@ -30,7 +31,7 @@
                     <div></div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <article>
             <h1>This page requires Javascript</h1>
             <h4><a href="//privatepropertyrights.info/assets/legal/privacy-policy.html">privacy policy</a></h4>
