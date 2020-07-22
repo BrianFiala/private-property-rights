@@ -34,7 +34,8 @@ export default function MyDrawer() {
         classes={{paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)}}
         anchor="right"
         open={open}
-        onClose={event => toggleDrawer(event, false)}
+        onClose={toggleDrawer}
+        // onClose={event => toggleDrawer(event, false)}
         transitionDuration={420}>
         <NavList />
       </Drawer>

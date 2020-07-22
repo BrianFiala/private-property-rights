@@ -69,8 +69,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function MyAppBar() {
-  const theme = useTheme()
-  const classes = useStyles(theme)
+  const classes = useStyles(useTheme())
   const {toggleDrawer, tabValue, setTabValue} = useHeaderState()
   const {userProfile, toggleAdminMode, adminModeEnabled} = useAdminState()
   const trigger = useScrollTrigger({threshold: 32})
@@ -98,6 +97,7 @@ export default function MyAppBar() {
             aria-label="navigation">
             <Tab icon={<Home />}
               className={classes.tab}
+              // onClick={setOpen(false)}
               label="HOME" href="/" value="/" />
             <Tab icon={<NewReleases />}
               className={classes.xSmall}

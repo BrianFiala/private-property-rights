@@ -16,8 +16,12 @@ html, body, #app {
   overflow-x: hidden;
   position: relative;
   margin: 0;
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
+}
+
+.abcRioButton {
+  background-color: #607d8b!important;
 }
 
 .loader, .loader-wrapper {
@@ -53,11 +57,9 @@ html, body, #app {
 .la-pacman {
   display: block;
   font-size: 0;
-  color: #607d8b
-}
-
-.la-pacman.la-dark {
-  color: #333
+  color: #607d8b;
+  width: 64px;
+  height: 64px
 }
 
 .la-pacman>div {
@@ -65,11 +67,6 @@ html, body, #app {
   float: none;
   background-color: currentColor;
   border: 0 solid currentColor
-}
-
-.la-pacman {
-  width: 64px;
-  height: 64px
 }
 
 .la-pacman>div:nth-child(1), .la-pacman>div:nth-child(2) {
@@ -326,8 +323,4 @@ html, body, #app {
     -o-transform: translateY(-50%);
     transform: translateY(-50%)
   }
-}
-
-.abcRioButton {
-  background-color: #607d8b!important;
 }

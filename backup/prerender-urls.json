@@ -1,47 +1,38 @@
 [
   {
     "url": "/",
-    "title": "Home",
-    "route": "/"
+    "title": "Home"
   },
   {
     "url": "/about",
-    "title": "About",
-    "route": "/about"
+    "title": "About"
   },
   {
     "url": "/calendar",
-    "title": "Calendar",
-    "route": "/"
+    "title": "Calendar"
   },
   {
     "url": "/issues",
-    "title": "Issues",
-    "route": "/issues"
+    "title": "Issues"
   },
   {
     "url": "/news",
-    "title": "News",
-    "route": "/news"
+    "title": "News"
   },
   {
     "url": "/takeaction",
-    "title": "Take Action",
-    "route": "/takeaction"
+    "title": "Take Action"
   },
   {
     "url": "/admin",
-    "title": "Admin",
-    "route": "/admin"
+    "title": "Admin"
   },
   {
     "url": "/privacypolicy",
-    "title": "Privacy Policy",
-    "route": "/privacypolicy"
+    "title": "Privacy Policy"
   },
   {
     "url": "/termsofservice",
-    "title": "Terms of Service",
-    "route": "/termsofservice"
+    "title": "Terms of Service"
   }
 ]

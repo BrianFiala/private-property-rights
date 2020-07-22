@@ -5,9 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "per-env",
-    "start:production": "npm run -s serve",
+    "start:production": "npm run -s serve && cp src/server.js build/server.js",
     "start:development": "npm run -s dev",
-    "build": "preact build",
+    "build": "preact build --preload",
     "serve": "sirv build --cors --single",
     "dev": "preact watch",
     "lint": "eslint src",

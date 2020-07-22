@@ -15,18 +15,21 @@ import {VideosProvider} from './contexts/VideosProvider'
 import Loader from './effects/Loader'
 import Layout from './components/layout/Layout'
 
-export const createCss = () => {
+export const createCss = (url) => {
   const sheets = new ServerStyleSheets()
-  renderToString(
-    sheets.collect(<App />)
+  const html = renderToString(
+    sheets.collect(<App url={url} />)
   )
-
-  return sheets.toString()
+  const css = sheets.toString()
+  return {html, css}
 }
 
+const initialTheme = createMuiTheme(defaults)
+
 export default function App({url}) {
-  const [theme, setTheme] = useState(createMuiTheme(defaults))
+  const [theme, setTheme] = useState(initialTheme)
   useEffect(() => {
+    // maybe check for window is unneeded
     if (typeof window !== 'undefined') {
       const jssStyles = document.getElementById('jss-server-side')
       if (jssStyles) {
@@ -34,7 +37,8 @@ export default function App({url}) {
       }
     }
   }, [])
-  
+
+  // maybe this is unneeded
   const currentUrl = url
     ? url
     : (typeof window !== 'undefined'
@@ -47,6 +51,7 @@ export default function App({url}) {
     setTheme(createMuiTheme(newTheme))
   }
 
+  // ideas: determine if running in client, hydrate, otherwise render
   return (
     <div id="app">
       <Loader />
