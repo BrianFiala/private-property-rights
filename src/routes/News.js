@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Home() {
+export default function News() {
   const classes = useStyles(useTheme())
 
   return (

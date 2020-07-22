@@ -61,13 +61,9 @@ typings/
 
 # lock files
 yarn.lock
-package-lock.json
 
 build/
 htdocs/
 size-plugin.json
 .vscode/
-users.json
-keys.json
-videos.json
-src/assets/videos.json
+secure/

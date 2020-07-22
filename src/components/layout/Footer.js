@@ -1,22 +1,25 @@
 import {h} from 'preact' /** @jsx h */
 import EmailIcon from '@material-ui/icons/Email'
 import {Typography, Link, IconButton} from '@material-ui/core'
-
-const styles = {
-  footerContainer: {
-    marginTop: '24px',
-    justifyContent: 'space-between',
-    display: 'flex',
-    alignItems: 'center'
-  },
-  link: {
-    display: 'flex'
-  }
-}
+import {useTheme} from '@material-ui/core/styles'
 
 export default function Footer() {
+  const theme = useTheme()
+
+  const styles = {
+    footer: {
+      marginTop: theme.spacing(3),
+      justifyContent: 'space-between',
+      display: 'flex',
+      alignItems: 'center'
+    },
+    link: {
+      display: 'flex'
+    }
+  }
+
   return (
-    <footer style={styles.footerContainer}>
+    <footer style={styles.footer}>
       <Link
         color="inherit"
         href="/privacypolicy"

@@ -1,59 +1,52 @@
 import {h} from 'preact' /** @jsx h */
-import clsx from 'clsx'
 import {useHeaderState} from '../contexts/HeaderStateProvider'
-import {EmojiPeople, Email, HowToVote, Announcement, VideoLibrary} from '@material-ui/icons'
+import {EmojiPeople, Event, NotificationImportant, Announcement, NewReleases} from '@material-ui/icons'
 import {List, Link, ListItem, ListItemText, ListItemIcon} from '@material-ui/core'
 import {makeStyles, useTheme} from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   list: {
     overflow: 'hidden',
-    marginTop: theme.spacing(9)
+    marginTop: theme.spacing(10)
   },
   link: {
     display: 'flex',
     height: '100%',
     width: '100%',
-    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`
-  },
-  listItem: {
-    padding: `${theme.spacing(1)}px 0`
+    padding: theme.spacing(1, 3, 1, 3)
   },
   secondary: {
     color: theme.palette.secondary.main
   },
   xSmall: {
-    [theme.breakpoints.up(700)]: {
+    padding: theme.spacing(1, 2, 1, 2),
+    [theme.breakpoints.up(theme.spacing(51))]: {
       display: 'none'
     }
   },
   small: {
-    [theme.breakpoints.up(870)]: {
+    padding: theme.spacing(1, 2, 1, 2),
+    [theme.breakpoints.up(theme.spacing(71))]: {
       display: 'none'
     }
   },
   medium: {
-    [theme.breakpoints.up(1080)]: {
+    padding: theme.spacing(1, 2, 1, 2),
+    [theme.breakpoints.up(theme.spacing(91))]: {
       display: 'none'
     }
   },
   large: {
-    [theme.breakpoints.up(1200)]: {
+    padding: theme.spacing(1, 2, 1, 2),
+    [theme.breakpoints.up(theme.spacing(111))]: {
       display: 'none'
     }
   },
   xLarge: {
-    [theme.breakpoints.up(1380)]: {
+    padding: theme.spacing(1, 2, 1, 2),
+    [theme.breakpoints.up(theme.spacing(131))]: {
       display: 'none'
     }
-  },
-  xxLarge: {
-    [theme.breakpoints.up(1500)]: {
-      display: 'none'
-    }
-  },
-  login: {
-    paddingLeft: theme.spacing(2)
   }
 }))
 
@@ -66,54 +59,52 @@ export default function NavList() {
     toggleDrawer(event, false)
   }
 
+  const tabColor = (thisTabValue = '') => {
+    if (thisTabValue === tabValue) return 'secondary'
+    return 'primary'
+  }
+
   return (
     <List className={classes.list}>
-      <ListItem id="/takeaction" className={clsx(classes.listItem, classes.xSmall)} component="li" button key="TakeAction" onClick={onClick}>
+      <ListItem id="/takeaction" className={classes.xSmall} component="li" button key="takeaction" onClick={onClick}>
         <Link className={classes.link} href="/takeaction">
           <ListItemIcon>
-            <Announcement aria-hidden="true" color={tabValue === '/takeaction' ? 'secondary' : 'primary'} />
+            <NewReleases aria-hidden="true" color={tabColor('/takeaction')} />
           </ListItemIcon>
           <ListItemText className={tabValue === '/takeaction' && classes.secondary} primary="TAKE ACTION" />
         </Link>
       </ListItem>
-      <ListItem id="/videos" className={clsx(classes.listItem, classes.small)} component="li" button key="Videos" onClick={onClick}>
-        <Link className={classes.link} href="/videos">
+      <ListItem id="/about" className={classes.small} component="li" button key="about" onClick={onClick}>
+        <Link className={classes.link} href="/about">
           <ListItemIcon>
-            <VideoLibrary aria-hidden="true" color={tabValue === '/videos' ? 'secondary' : 'primary'} />
+            <EmojiPeople aria-hidden="true" color={tabColor('/about')} />
           </ListItemIcon>
-          <ListItemText className={tabValue === '/videos' && classes.secondary} primary="VIDEOS" />
+          <ListItemText className={tabValue === '/about' && classes.secondary} primary="ABOUT" />
         </Link>
       </ListItem>
-      <ListItem id="/citycouncil" className={clsx(classes.listItem, classes.medium)} component="li" button key="CityCouncil" onClick={onClick}>
-        <Link className={classes.link} href="/citycouncil">
+      <ListItem id="/news" className={classes.medium} component="li" button key="news" onClick={onClick}>
+        <Link className={classes.link} href="/news">
           <ListItemIcon>
-            <HowToVote aria-hidden="true" color={tabValue === '/citycouncil' ? 'secondary' : 'primary'} />
+            <Announcement aria-hidden="true" color={tabColor('/news')} />
           </ListItemIcon>
-          <ListItemText className={tabValue === '/citycouncil' && classes.secondary} primary="CITY COUNCIL" />
+          <ListItemText className={tabValue === '/news' && classes.secondary} primary="NEWS" />
         </Link>
       </ListItem>
-      <ListItem id="/whoweare" className={clsx(classes.listItem, classes.large)} component="li" button key="WhoWeAre" onClick={onClick}>
-        <Link className={classes.link} href="/whoweare">
+      <ListItem id="/issues" className={classes.large} component="li" button key="issues" onClick={onClick}>
+        <Link className={classes.link} href="/issues">
           <ListItemIcon>
-            <EmojiPeople aria-hidden="true" color={tabValue === '/whoweare' ? 'secondary' : 'primary'} />
+            <NotificationImportant aria-hidden="true" color={tabColor('/issues')} />
           </ListItemIcon>
-          <ListItemText className={tabValue === '/whoweare' && classes.secondary} primary="WHO WE ARE" />
+          <ListItemText className={tabValue === '/issues' && classes.secondary} primary="ISSUES" />
         </Link>
       </ListItem>
-      <ListItem id="/feedback" className={clsx(classes.listItem, classes.xLarge)} component="li" button key="Feedback" onClick={onClick}>
-        <Link className={classes.link} href="/feedback">
+      <ListItem id="/calendar" className={classes.xLarge} component="li" button key="calendar" onClick={onClick}>
+        <Link className={classes.link} href="/calendar">
           <ListItemIcon>
-            <Email aria-hidden="true" color={tabValue === '/feedback' ? 'secondary' : 'primary'} />
+            <Event aria-hidden="true" color={tabColor('/calendar')} />
           </ListItemIcon>
-          <ListItemText className={tabValue === '/feedback' && classes.secondary} primary="FEEDBACK" />
+          <ListItemText className={tabValue === '/calendar' && classes.secondary} primary="CALENDAR" />
         </Link>
-      </ListItem>
-      <ListItem className={clsx(classes.listItem, classes.login)} component="li" button key="SignIn" onClick={onClick}>
-        <div class="g-signin2"
-          data-onsuccess="onSignIn"
-          data-theme="dark" data-longtitle="true"
-          data-height="48" data-width="248" />
-        <script async src="https://apis.google.com/js/platform.js" />
       </ListItem>
     </List>
   )

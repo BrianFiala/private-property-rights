@@ -6,7 +6,7 @@ import {Grid} from '@material-ui/core'
 export default function PrivacyPolicy() {
   const backToHome = event => {
     event.preventDefault()
-    window.location.href = '//privatepropertyrights.info'
+    if (typeof window !== 'undefined') window.location.href = '//privatepropertyrights.info'
   }
   return (
     <Grid container spacing={3}>

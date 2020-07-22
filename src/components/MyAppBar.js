@@ -1,74 +1,68 @@
 import {h} from 'preact' /** @jsx h */
-import {fade, makeStyles, useTheme} from '@material-ui/core/styles'
+import {makeStyles, useTheme} from '@material-ui/core/styles'
 import {useHeaderState} from '../contexts/HeaderStateProvider'
 import {useAdminState} from '../contexts/AdminStateProvider'
-import {
-  AppBar, Slide, Toolbar, useScrollTrigger, Tabs, Tab,
-  IconButton, InputBase} from '@material-ui/core'
-import {
-  Home, Menu, Search, CheckBox, CheckBoxOutlineBlank, EmojiPeople,
-  Mail, HowToVote, Announcement, VideoLibrary} from '@material-ui/icons'
+import {AppBar, Slide, Toolbar, useScrollTrigger, Tabs, Tab, IconButton} from '@material-ui/core'
+import {Home, Menu, Event, CheckBox, CheckBoxOutlineBlank, EmojiPeople,
+  Announcement, NewReleases, NotificationImportant} from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   appBar: {
-    zIndex: 1301
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25)
-    },
-    flexGrow: 1,
-    marginRight: theme.spacing(2),
+    zIndex: 1301,
+    padding: theme.spacing(0, 2, 0, 2),
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(2)
+      padding: theme.spacing(0, 3, 0, 3)
     }
   },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
+  toolBar: {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'space-between',
+    [theme.breakpoints.up('lg')]: {
+      width: theme.spacing(154),
+      margin:'auto'
+    }
   },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`
-  },
-  adminMode: {
-    marginLeft: theme.spacing(2)
+  tab: {
+    width: theme.spacing(20)
   },
   xSmall: {
-    [theme.breakpoints.down(700)]: {
-      display: 'none'
+    display: 'none',
+    [theme.breakpoints.up(theme.spacing(51))]: {
+      width: theme.spacing(20),
+      display: 'initial'
     }
   },
   small: {
-    [theme.breakpoints.down(870)]: {
-      display: 'none'
+    display: 'none',
+    [theme.breakpoints.up(theme.spacing(71))]: {
+      width: theme.spacing(20),
+      display: 'initial'
     }
   },
   medium: {
-    [theme.breakpoints.down(1080)]: {
-      display: 'none'
+    display: 'none',
+    [theme.breakpoints.up(theme.spacing(91))]: {
+      width: theme.spacing(20),
+      display: 'initial'
     }
   },
   large: {
-    [theme.breakpoints.down(1200)]: {
-      display: 'none'
+    display: 'none',
+    [theme.breakpoints.up(theme.spacing(111))]: {
+      width: theme.spacing(20),
+      display: 'initial'
     }
   },
   xLarge: {
-    [theme.breakpoints.down(1380)]: {
-      display: 'none'
+    display: 'none',
+    [theme.breakpoints.up(theme.spacing(131))]: {
+      width: theme.spacing(20),
+      display: 'initial'
     }
   },
-  xxLarge: {
-    [theme.breakpoints.down(1500)]: {
+  menu: {
+    [theme.breakpoints.up(theme.spacing(131))]: {
+      width: theme.spacing(20),
       display: 'none'
     }
   }
@@ -92,31 +86,34 @@ export default function MyAppBar() {
       <AppBar
         color="primary"
         className={classes.appBar}>
-        <Toolbar>
+        <Toolbar
+          disableGutters
+          className={classes.toolBar}>
           <Tabs
             value={tabValue}
             onChange={handleChange}
             indicatorColor="secondary"
             textColor="secondary"
-            aria-label="navigation"
-          >
+            aria-label="navigation">
             <Tab icon={<Home />}
+              className={classes.tab}
+              // onClick={setOpen(false)}
               label="HOME" href="/" value="/" />
-            <Tab icon={<Announcement />}
+            <Tab icon={<NewReleases />}
               className={classes.xSmall}
               label="TAKE ACTION" href="/takeaction" value="/takeaction" />
-            <Tab icon={<VideoLibrary />}
-              className={classes.small}
-              label="VIDEOS" href="/videos" value="/videos" />
-            <Tab icon={<HowToVote />}
-              className={classes.medium}
-              label="CITY COUNCIL" href="/citycouncil" value="/citycouncil" />
             <Tab icon={<EmojiPeople />}
+              className={classes.small}
+              label="ABOUT" href="/about" value="/about" />
+            <Tab icon={<Announcement />}
+              className={classes.medium}
+              label="NEWS" href="/news" value="/news" />
+            <Tab icon={<NotificationImportant />}
               className={classes.large}
-              label="WHO WE ARE" href="/whoweare" value="/whoweare" />
-            <Tab icon={<Mail />}
+              label="ISSUES" href="/issues" value="/issues" />
+            <Tab icon={<Event />}
               className={classes.xLarge}
-              label="FEEDBACK" href="/feedback" value="/feedback" />
+              label="CALENDAR" href="/calendar" value="/calendar" />
             {userProfile && (
               <Tab
                 label="ADMIN"
@@ -128,22 +125,13 @@ export default function MyAppBar() {
                   : <CheckBoxOutlineBlank aria-hidden="true" />} />
             )}
           </Tabs>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <Search aria-hidden="true" />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{input: classes.inputInput}}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
           <IconButton
+            className={classes.menu}
             edge="end"
             color="secondary"
             aria-label="expand menu"
-            onClick={event => toggleDrawer(event)}
-            onKeyDown={event => toggleDrawer(event)}>
+            onClick={toggleDrawer}
+            onKeyDown={toggleDrawer}>
             <Menu />
           </IconButton>
         </Toolbar>

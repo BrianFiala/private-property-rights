@@ -1,7 +1,7 @@
 import {h} from 'preact' /** @jsx h */
 import InfoItem from '../components/InfoItem'
 import {Grid, TextField} from '@material-ui/core'
-import {makeStyles, useTheme} from '@material-ui/core/styles'
+import {useTheme, makeStyles} from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   textFieldSection: {
@@ -30,19 +30,18 @@ export default function TakeAction() {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <InfoItem
-          identifier="About Us"
-          title="We are here to help"
-          message="Oakland property laws are intense."
+          identifier="Let us know how we're doing"
+          title="We'd like to hear from you!"
+          message="Feel free to send us a message anytime."
           buttonAction={() => {}} />
       </Grid>
           
       <Grid item xs={12}>
         <InfoItem
-          identifier="Stay informed by signing up for news and announcements"
-          title="Join Us!"
-          message="We will never share your information without your explicit consent. Ever. See our privacy policy for more details."
+          identifier="Please share your thoughts with us"
+          message="Your feedback is guaranteed anonymous unless you want us to know who you are. Your response will be received when you click send. If you'd like us to stay in touch, you can select the checkbox below to include your contact info along with your message."
           buttonAction={() => {}}
-          buttonText="Sign Me Up!">
+          buttonText="SEND!">
           <section className={classes.textFieldSection}>
             <TextField
               onChange={() => {}}
@@ -61,8 +60,19 @@ export default function TakeAction() {
             onChange={() => {}}
             className={classes.textFieldEmail}
             fullwidth
-            label="email (required)"
+            label="email (optional)"
             variant="outlined" />
+          <section className={classes.textFieldSection}>
+            <TextField
+              autocomplete
+              multiline
+              rows="15"
+              onChange={() => {}}
+              className={classes.textFieldName}
+              fullwidth
+              label="Share your thoughts"
+              variant="outlined" />
+          </section>
         </InfoItem>
       </Grid>
     </Grid>
