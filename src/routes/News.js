@@ -1,31 +1,9 @@
 import {h} from 'preact' /** @jsx h */
 import InfoItem from '../components/InfoItem'
 import {Grid, TextField} from '@material-ui/core'
-import {useTheme, makeStyles} from '@material-ui/core/styles'
-
-const useStyles = makeStyles(theme => ({
-  textFieldSection: {
-    display: 'flex', 
-    flexGrow: 1, 
-    marginTop: theme.spacing(2)
-  },
-  textFieldName: {
-    flexGrow: 1,
-    marginRight: theme.spacing(1)
-  },
-  textFieldPhone: {
-    flexGrow: 1,
-    marginLeft: theme.spacing(1)
-  },
-  textFieldEmail: {
-    flexGrow: 1,
-    marginTop: theme.spacing(2)
-  }
-}))
+import classes from './News.scss'
 
 export default function News() {
-  const classes = useStyles(useTheme())
-
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>

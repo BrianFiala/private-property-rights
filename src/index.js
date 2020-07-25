@@ -8,7 +8,7 @@ import 'fontsource-roboto/latin-700-normal.css'
 import 'fontsource-roboto/latin-900-normal.css'
 import './styles' // TODO: remove this antiquated nonsense
 import defaults from './theme'
-import {ThemeProvider, ServerStyleSheets} from '@material-ui/core/styles'
+import {ThemeProvider, ServerStyleSheets, StylesProvider} from '@material-ui/core/styles'
 import {CssBaseline} from '@material-ui/core'
 import {AdminStateProvider} from './contexts/AdminStateProvider'
 import {HeaderStateProvider} from './contexts/HeaderStateProvider'
@@ -49,19 +49,21 @@ export default function App({url}) {
   // ideas: determine if running in client, hydrate, otherwise render
   return (
     <div id="app">
-      <Loader />
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <VideosProvider>
-          <AdminStateProvider>
-            <HeaderStateProvider url={currentUrl}>
-              <Header />
-              <Main url={currentUrl} />
-              <Footer />
-            </HeaderStateProvider>
-          </AdminStateProvider>
-        </VideosProvider>
-      </ThemeProvider>
+      <StylesProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Loader />
+          <VideosProvider>
+            <AdminStateProvider>
+              <HeaderStateProvider url={currentUrl}>
+                <Header />
+                <Main url={currentUrl} />
+                <Footer />
+              </HeaderStateProvider>
+            </AdminStateProvider>
+          </VideosProvider>
+        </ThemeProvider>
+      </StylesProvider>
     </div>
   )
 }

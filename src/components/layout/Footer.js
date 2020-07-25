@@ -1,50 +1,9 @@
 import {h} from 'preact' /** @jsx h */
 import EmailIcon from '@material-ui/icons/Email'
 import {Typography, Link, IconButton} from '@material-ui/core'
-import {useTheme, makeStyles} from '@material-ui/core/styles'
-
-const useStyles = makeStyles(theme => ({
-  footer: {
-    width: '100%',
-    margin: '0 auto',
-    justifyContent: 'space-between',
-    display: 'flex',
-    alignItems: 'center',
-    backgroundColor: theme.palette.primary,
-    color: theme.palette.primary.contrastText,
-    padding: theme.spacing(0, 1, .5, 1),
-    [theme.breakpoints.up(423)]: {
-      padding: theme.spacing(1, 3, 1, 3)
-    }
-  },
-  emailAdmins: {
-    display: 'flex',
-    padding: theme.spacing(0, 1),
-    margin: theme.spacing(0, 1, 0, 0),
-    [theme.breakpoints.up(343)]: {
-      margin: theme.spacing(0, 1, 0, 2)
-    },
-    [theme.breakpoints.up(343)]: {
-      margin: theme.spacing(0, 1, 0, 3)
-    },
-    [theme.breakpoints.up(359)]: {
-      margin: theme.spacing(0, 1, 0, 5)
-    },
-    [theme.breakpoints.up(455)]: {
-      margin: theme.spacing(0, 1)
-    },
-    color: theme.palette.primary.contrastText
-  },
-  vertical: {
-    display: 'flex',
-    alignItems: 'center',
-    color: theme.palette.primary.contrastText
-  }
-}))
+import classes from './Footer.scss'
 
 export default function Footer() {
-  const classes = useStyles(useTheme())
-
   return (
     <footer className={classes.footer}>
       <Link href="/privacypolicy" color="inherit">

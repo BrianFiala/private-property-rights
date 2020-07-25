@@ -1,5 +1,5 @@
 import {createContext, h} from 'preact' /** @jsx h */
-import {useState, useContext, useEffect} from 'preact/hooks'
+import {useState, useContext} from 'preact/hooks'
 
 const VideosContext = createContext()
 export const useVideos = () => useContext(VideosContext)
@@ -15,10 +15,6 @@ export const VideosProvider = ({children}) => {
       .then(videos => setVideos(videos || []))
       .catch(console.error)
   }
-
-  useEffect(() => {
-    refreshVideos()
-  }, [])
 
   return (
     <VideosContext.Provider value={{

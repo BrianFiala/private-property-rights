@@ -1,0 +1,43 @@
+.appBar {
+  z-index: 1;
+  width: 100vw;
+  flex-direction: row;
+  color: #DDD;
+}
+
+.spacer {
+  margin: auto;
+  width: 100%;
+  max-width: 1456px;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 8px 16px;
+  @media (min-width: 600px) {
+    padding: 16px 24px;
+  }
+}
+
+.button {
+  margin-left: 24px;
+}
+
+.tab {
+  display: none;
+  @media (min-width: 784px) {
+    width: 96px;
+    min-width: 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.menu {
+  @media (min-width: 784px) {
+    margin-left: 16px;
+    width: 80px;
+    display: none;
+  }
+}

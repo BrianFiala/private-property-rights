@@ -1,0 +1,11 @@
+.drawerPaper {
+  width: 280px;
+  transition: width .2 ease-in;
+}
+
+.drawerPaperClose {
+  overflow-x: hidden;
+  width: 0;
+  border: 0;
+  transition: width .2 ease-out;
+}

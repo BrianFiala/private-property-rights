@@ -1,12 +1,13 @@
 import {h} from 'preact' /** @jsx h */
+import {useEffect} from 'preact/hooks' /** @jsx h */
 import RefreshIcon from '@material-ui/icons/Refresh'
 import {Grid, IconButton} from '@material-ui/core'
-import {makeStyles} from '@material-ui/core/styles'
 import {useVideos} from '../contexts/VideosProvider'
 import VideoPlayer from '../components/VideoPlayer'
 import MyPaper from '../components/MyPaper'
 import Title from '../components/Title'
 import InfoItem from '../components/InfoItem'
+import classes from './Issues.scss'
 
 const sizes = (videos) => {
   return {
@@ -34,17 +35,12 @@ const sizes = (videos) => {
   }
 }
 
-const useStyles = makeStyles(() => ({
-  heading: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  }
-}))
-
 export default function Issues() {
   const {videos, refreshVideos} = useVideos()
-  const classes = useStyles()
+
+  useEffect(() => {
+    refreshVideos()
+  }, [refreshVideos])
   
   // TODO: add lazy loading of videos
   return (

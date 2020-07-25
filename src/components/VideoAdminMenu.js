@@ -1,27 +1,11 @@
 import {h} from 'preact' /** @jsx h */
 import {useState} from 'preact/hooks'
-import {useTheme, makeStyles} from '@material-ui/core/styles'
 import {IconButton, TextField, FormControlLabel, Checkbox, Button} from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import {useVideos} from '../contexts/VideosProvider'
-
-const useStyles = makeStyles(theme => ({
-  heading: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: theme.spacing(1.5)
-  },
-  grow: {
-    flexGrow: 1
-  },
-  buttons: {
-    marginLeft: theme.spacing(2)
-  }
-}))
+import classes from './VideoAdminMenu.scss'
 
 export default function VideoAdminMenu({ video }) {
-  const classes = useStyles(useTheme())
   const {videos, setVideos} = useVideos()
   const [videoData, setVideoData] = useState(video)
 
