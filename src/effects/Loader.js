@@ -1,5 +1,4 @@
 import {h} from 'preact' /** @jsx h */
-import './Loader.scss'
 
 export default function Loader() {
   return (

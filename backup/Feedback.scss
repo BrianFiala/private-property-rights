@@ -1,0 +1,17 @@
+.textFieldSection {
+  display: flex;
+  flex-grow: 1;
+  margin-top: 16px;
+}
+.textFieldName {
+  flex-grow: 1;
+  margin-right: 8px;
+}
+.textFieldPhone {
+  flex-grow: 1;
+  margin-left: 8px;
+}
+.textFieldEmail {
+  flex-grow: 1;
+  margin-top: 16px;
+}
