@@ -7,7 +7,7 @@ import VideoPlayer from '../components/VideoPlayer'
 import MyPaper from '../components/MyPaper'
 import Title from '../components/Title'
 import InfoItem from '../components/InfoItem'
-import classes from './Issues.scss'
+import {heading} from './index.scss'
 
 const sizes = (videos) => {
   return {
@@ -50,7 +50,7 @@ export default function Issues() {
       <Grid item xs={12}>
         {videos && videos.length ? (
           <MyPaper>
-            <aside className={classes.heading}>
+            <aside className={heading}>
               <Title>Videos</Title>
               <IconButton
                 edge="end"

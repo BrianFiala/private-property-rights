@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import NavList from './NavList'
 import {useHeaderState} from '../contexts/HeaderStateProvider'
 import {Drawer, Paper} from '@material-ui/core'
-import classes from './MyDrawer.scss'
+import {drawerPaper, drawerPaperClose} from './index.scss'
 
 export default function MyDrawer() {
   const {open, toggleDrawer} = useHeaderState()
@@ -11,7 +11,7 @@ export default function MyDrawer() {
   return (
     <Paper>
       <Drawer
-        classes={{paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)}}
+        classes={{paper: clsx(drawerPaper, !open && drawerPaperClose)}}
         anchor="right"
         open={open}
         onClose={event => toggleDrawer(event, false)}

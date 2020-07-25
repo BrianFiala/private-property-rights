@@ -2,7 +2,7 @@ import {h} from 'preact' /** @jsx h */
 import {useHeaderState} from '../contexts/HeaderStateProvider'
 import {AppBar, Tabs, Tab, IconButton, Button} from '@material-ui/core'
 import {Menu} from '@material-ui/icons'
-import classes from './MyAppBar.scss'
+import {appBar, spacer, tab, button, menu} from './index.scss'
 
 export default function MyAppBar() {
   const {toggleDrawer, tabValue, setTabValue} = useHeaderState()
@@ -13,23 +13,23 @@ export default function MyAppBar() {
   }
 
   return (
-    <AppBar elevation={0} color="primary" className={classes.appBar}>
-      <div className={classes.spacer}>
+    <AppBar elevation={0} color="primary" className={appBar}>
+      <div className={spacer}>
         <Tabs value={tabValue} onChange={handleChange} aria-label="navigation">
-          <Tab className={classes.tab} label="HOME" href="/" value="/" />
-          <Tab className={classes.tab} label="ABOUT" href="/about" value="/about" />
-          <Tab className={classes.tab} label="NEWS" href="/news" value="/news" />
-          <Tab className={classes.tab} label="ISSUES" href="/issues" value="/issues" />
-          <Tab className={classes.tab} label="CALENDAR" href="/calendar" value="/calendar" />
+          <Tab className={tab} label="HOME" href="/" value="/" />
+          <Tab className={tab} label="ABOUT" href="/about" value="/about" />
+          <Tab className={tab} label="NEWS" href="/news" value="/news" />
+          <Tab className={tab} label="ISSUES" href="/issues" value="/issues" />
+          <Tab className={tab} label="CALENDAR" href="/calendar" value="/calendar" />
         </Tabs>
-        <Button className={classes.button}
+        <Button className={button}
           href="/takeaction"
           variant="outlined" color="inherit"
           size="medium">
           Take Action
         </Button>
         <IconButton
-          className={classes.menu}
+          className={menu}
           edge="end"
           color="inherit"
           aria-label="expand menu"

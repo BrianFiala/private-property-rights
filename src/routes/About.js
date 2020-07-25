@@ -1,7 +1,7 @@
 import {h} from 'preact' /** @jsx h */
 import InfoItem from '../components/InfoItem'
 import {Grid, TextField} from '@material-ui/core'
-import classes from './About.scss'
+import {textFieldSection, textFieldName, textFieldPhone, textFieldEmail} from './index.scss'
 
 export default function About() {
   return (
@@ -21,23 +21,23 @@ export default function About() {
           message="We will never share your information without your explicit consent. Ever. See our privacy policy for more details."
           buttonAction={() => {}}
           buttonText="Sign Me Up!">
-          <section className={classes.textFieldSection}>
+          <section className={textFieldSection}>
             <TextField
               onChange={() => {}}
-              className={classes.textFieldName}
+              className={textFieldName}
               fullwidth
               label="name (optional)"
               variant="outlined" />
             <TextField
               onChange={() => {}}
-              className={classes.textFieldPhone}
+              className={textFieldPhone}
               fullwidth
               label="phone (optional)"
               variant="outlined" />
           </section>
           <TextField
             onChange={() => {}}
-            className={classes.textFieldEmail}
+            className={textFieldEmail}
             fullwidth
             label="email (required)"
             variant="outlined" />

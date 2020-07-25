@@ -1,0 +1,48 @@
+.footer {
+  width: 100%;
+  margin: 0 auto;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  background-color: #615656;
+  color: #DDD;
+  padding: 0 8px 4px 8px;
+  @media (min-width: 455px) {
+    padding: 8px 24px;
+  }
+}
+
+.emailAdmins {
+  display: flex;
+  padding: 0 8px;
+  margin: 0 8px 0 0;
+  @media (min-width: 343px) {
+    margin: 0 8px 0 24px;
+  }
+  @media (min-width: 359px) {
+    margin: 0 8px 0 40px;
+  }
+  @media (min-width: 455px) {
+    margin: 0 8px;
+  }
+  color: #DDD;
+}
+
+.vertical {
+  display: flex;
+  align-items: center;
+  color: #DDD;
+}
+
+.contents {
+  min-height: calc(100vh - 64px);
+  padding-top: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1440px;
+  margin: auto;
+  @media (min-width: 600px) {
+    padding-top: 80px;
+  }
+}

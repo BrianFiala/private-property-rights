@@ -41,3 +41,46 @@
     display: none;
   }
 }
+
+.drawerPaper {
+  width: 280px;
+  transition: width .2 ease-in;
+}
+
+.drawerPaperClose {
+  overflow-x: hidden;
+  width: 0;
+  border: 0;
+  transition: width .2 ease-out;
+}
+
+.list {
+  overflow: hidden;
+  margin-top: 80px;
+}
+
+.link {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 8px 24px;
+}
+
+.secondary {
+  color: rgb(148, 43, 44);
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.buttons {
+  margin-left: 16px;
+}

@@ -13,7 +13,7 @@ import PrivacyPolicy from '../../routes/PrivacyPolicy'
 import TermsOfService from '../../routes/TermsOfService'
 import Admin from '../../routes/Admin'
 import NotFound from '../../routes/NotFound'
-import classes from './Main.scss'
+import {contents} from './index.scss'
 
 const removeLoader = loader => {
   requestAnimationFrame(() => {
@@ -39,7 +39,7 @@ export default function Main({url}) {
   const handleRoute = event => setTabValue(tabs.includes(event.url) ? event.url : false)
 
   return (
-    <Container maxWidth={false} className={classes.contents}>
+    <Container maxWidth={false} className={contents}>
       <Router url={url} onChange={handleRoute}>
         <Home path="/" />
         <About path="/about" />

@@ -1,7 +1,7 @@
 import {h} from 'preact' /** @jsx h */
 import InfoItem from '../components/InfoItem'
 import {Grid, TextField} from '@material-ui/core'
-import classes from './TakeAction.scss'
+import {textFieldSection, textFieldName, textFieldPhone, textFieldEmail} from './index.scss'
 
 export default function TakeAction() {
   return (
@@ -20,33 +20,33 @@ export default function TakeAction() {
           message="Your feedback is guaranteed anonymous unless you want us to know who you are. Your response will be received when you click send. If you'd like us to stay in touch, you can select the checkbox below to include your contact info along with your message."
           buttonAction={() => {}}
           buttonText="SEND!">
-          <section className={classes.textFieldSection}>
+          <section className={textFieldSection}>
             <TextField
               onChange={() => {}}
-              className={classes.textFieldName}
+              className={textFieldName}
               fullwidth
               label="name (optional)"
               variant="outlined" />
             <TextField
               onChange={() => {}}
-              className={classes.textFieldPhone}
+              className={textFieldPhone}
               fullwidth
               label="phone (optional)"
               variant="outlined" />
           </section>
           <TextField
             onChange={() => {}}
-            className={classes.textFieldEmail}
+            className={textFieldEmail}
             fullwidth
             label="email (optional)"
             variant="outlined" />
-          <section className={classes.textFieldSection}>
+          <section className={textFieldSection}>
             <TextField
               autocomplete
               multiline
               rows="15"
               onChange={() => {}}
-              className={classes.textFieldName}
+              className={textFieldName}
               fullwidth
               label="Share your thoughts"
               variant="outlined" />
