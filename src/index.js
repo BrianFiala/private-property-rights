@@ -5,15 +5,18 @@ import 'fontsource-roboto/latin-300-normal.css'
 import 'fontsource-roboto/latin-400-normal.css'
 import 'fontsource-roboto/latin-500-normal.css'
 import 'fontsource-roboto/latin-700-normal.css'
+import 'fontsource-roboto/latin-900-normal.css'
 import './styles' // TODO: remove this antiquated nonsense
 import defaults from './theme'
-import {createMuiTheme, ThemeProvider, ServerStyleSheets} from '@material-ui/core/styles'
+import {ThemeProvider, ServerStyleSheets} from '@material-ui/core/styles'
 import {CssBaseline} from '@material-ui/core'
 import {AdminStateProvider} from './contexts/AdminStateProvider'
 import {HeaderStateProvider} from './contexts/HeaderStateProvider'
 import {VideosProvider} from './contexts/VideosProvider'
 import Loader from './effects/Loader'
-import Layout from './components/layout/Layout'
+import Header from './components/layout/Header'
+import Main from './components/layout/Main'
+import Footer from './components/layout/Footer'
 
 export const createCss = (url) => {
   const sheets = new ServerStyleSheets()
@@ -24,10 +27,8 @@ export const createCss = (url) => {
   return {html, css}
 }
 
-const initialTheme = createMuiTheme(defaults)
-
 export default function App({url}) {
-  const [theme, setTheme] = useState(initialTheme)
+  const [theme] = useState(defaults)
   useEffect(() => {
     // maybe check for window is unneeded
     if (typeof window !== 'undefined') {
@@ -45,12 +46,6 @@ export default function App({url}) {
       ? window.location.pathname
       : '/')
 
-  function toggleTheme() {
-    const newTheme = {...defaults}
-    newTheme.palette.type = theme.palette.type === 'light' ? 'dark' : 'light'
-    setTheme(createMuiTheme(newTheme))
-  }
-
   // ideas: determine if running in client, hydrate, otherwise render
   return (
     <div id="app">
@@ -60,7 +55,9 @@ export default function App({url}) {
         <VideosProvider>
           <AdminStateProvider>
             <HeaderStateProvider url={currentUrl}>
-              <Layout toggleTheme={toggleTheme} url={currentUrl} />
+              <Header />
+              <Main url={currentUrl} />
+              <Footer />
             </HeaderStateProvider>
           </AdminStateProvider>
         </VideosProvider>

@@ -1,6 +1,8 @@
 import {h} from 'preact' /** @jsx h */
 import {useEffect} from 'preact/hooks'
 import {Router} from 'preact-router'
+import {Container} from '@material-ui/core'
+import {useTheme, makeStyles} from '@material-ui/core/styles'
 import Home from '../../routes/Home'
 import About from '../../routes/About'
 import News from '../../routes/News'
@@ -23,24 +25,42 @@ const removeLoader = (loader) => {
   })
 }
 
+const useStyles = makeStyles(theme => ({
+  contents: {
+    height: `calc(100vh - ${theme.spacing(8)}px)`,
+    paddingTop: theme.spacing(8),
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: theme.spacing(10)
+    },
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    maxWidth: theme.spacing(180),
+    margin: 'auto'
+  }
+}))
+
 export default function Main({url}) {
+  const classes = useStyles(useTheme())
   useEffect(() => {
     typeof window !== 'undefined' &&
     document.querySelectorAll('.loader-wrapper').forEach(loader => removeLoader(loader))
   }, [])
 
   return (
-    <Router url={url}>
-      <Home path="/" />
-      <About path="/about" />
-      <News path="/news" />
-      <Issues path="/issues" />
-      <Calendar path="/calendar" />
-      <TakeAction path="/takeaction" />
-      <PrivacyPolicy path="/privacypolicy" />
-      <TermsOfService path="/termsofservice" />
-      <Admin path="/admin" />
-      <NotFound default />
-    </Router>
+    <Container maxWidth={false} className={classes.contents}>
+      <Router url={url}>
+        <Home path="/" />
+        <About path="/about" />
+        <News path="/news" />
+        <Issues path="/issues" />
+        <Calendar path="/calendar" />
+        <TakeAction path="/takeaction" />
+        <PrivacyPolicy path="/privacypolicy" />
+        <TermsOfService path="/termsofservice" />
+        <Admin path="/admin" />
+        <NotFound default />
+      </Router>
+    </Container>
   )
 }

@@ -1,4 +1,4 @@
-const {h} = require('preact')
+const {h} = require('preact') /** @jsx h */
 const polka = require('polka')
 const {readFileSync} = require('fs')
 const compression = require('compression')()

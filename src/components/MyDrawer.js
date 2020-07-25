@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     width: 280,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
+      duration: theme.transitions.duration
     })
   },
   drawerPaperClose: {
@@ -34,8 +34,8 @@ export default function MyDrawer() {
         classes={{paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)}}
         anchor="right"
         open={open}
-        onClose={toggleDrawer}
-        // onClose={event => toggleDrawer(event, false)}
+        // onClose={toggleDrawer}
+        onClose={event => toggleDrawer(event, false)}
         transitionDuration={420}>
         <NavList />
       </Drawer>
