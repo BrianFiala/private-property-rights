@@ -1,49 +1,83 @@
+@import '../styles/functions', '../styles/variables';
+
 .appBar {
   z-index: 1;
   width: 100vw;
   flex-direction: row;
-  color: #DDD;
-}
-
-.spacer {
-  margin: auto;
-  width: 100%;
-  max-width: 1456px;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: row;
-  justify-content: flex-end;
-  padding: 8px 16px;
-  @media (min-width: 600px) {
-    padding: 16px 24px;
-  }
-}
-
-.button {
-  margin-left: 24px;
-}
-
-.tab {
-  display: none;
-  @media (min-width: 784px) {
-    width: 96px;
-    min-width: 96px;
+  color: $primaryDarkText;
+  // position: absolute;
+  
+  .spacer {
+    margin: auto;
+    width: 100%;
+    max-width: spacing(182);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: spacing(2) spacing(2) spacing(1);
+    height: spacing(8);
+    @media (min-width: #{spacing(75)}) {
+      height: spacing(10);
+      padding: spacing(3) spacing(3) spacing(2);
+    }
+  
+    .imageButton {
+      min-width: 0;
+      padding: 0;
+      
+      img {
+        height: spacing(6);
+        width: spacing(6);
+      }
+      
+      @media (min-width: #{spacing(75)}) {
+        position: relative;
+        top: spacing(0);
 
-.menu {
-  @media (min-width: 784px) {
-    margin-left: 16px;
-    width: 80px;
-    display: none;
-  }
+        img {
+          height: spacing(8);
+          width: spacing(8);
+        }
+      }
+    }
+  
+    nav {
+      display: flex;
+      
+      .tab {
+        display: none;
+      }
+
+      .button {
+        margin: 0 spacing(3) 0 0;
+      }
+
+      @media (min-width: #{spacing(98)}) {
+        .button {
+          margin: 0 0 0 spacing(3);
+        }
+
+        .tab {
+          width: spacing(12);
+          min-width: spacing(12);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .menu {
+          margin-left: spacing(2);
+          width: spacing(10);
+          display: none;
+        }
+      }    
+    }
+  }  
 }
 
 .drawerPaper {
-  width: 280px;
+  width: 2spacing(10);
   transition: width .2 ease-in;
 }
 
@@ -56,25 +90,30 @@
 
 .list {
   overflow: hidden;
-  margin-top: 80px;
+  margin-top: spacing(10);
+  color: $primaryDarkText;
 }
 
 .link {
   display: flex;
   height: 100%;
   width: 100%;
-  padding: 8px 24px;
+  padding: spacing(1) spacing(3);
 }
 
 .secondary {
-  color: rgb(148, 43, 44);
+  color: $secondaryDark;
+}
+
+.primary {
+  color: $primaryDarkText;
 }
 
 .heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: spacing(1.5);
 }
 
 .grow {
@@ -82,5 +121,5 @@
 }
 
 .buttons {
-  margin-left: 16px;
+  margin-left: spacing(2);
 }

@@ -2,7 +2,7 @@ import {h} from 'preact' /** @jsx h */
 import {useEffect} from 'preact/hooks'
 import {Router} from 'preact-router'
 import {Container} from '@material-ui/core'
-import {useHeaderState} from '../../contexts/HeaderStateProvider'
+import {useHeaderState, tabValues} from '../../contexts/HeaderStateProvider'
 import Home from '../../routes/Home'
 import About from '../../routes/About'
 import News from '../../routes/News'
@@ -26,17 +26,18 @@ const removeLoader = loader => {
   })
 }
 
-const tabs = ['/', '/about', '/news', '/issues', '/calendar']
-
 export default function Main({url}) {
-  const {setTabValue} = useHeaderState()
+  const {setTabValue, setRoute} = useHeaderState()
 
   useEffect(() => {
     typeof window !== 'undefined' &&
     document.querySelectorAll('.loader-wrapper').forEach(loader => removeLoader(loader))
   }, [])
 
-  const handleRoute = event => setTabValue(tabs.includes(event.url) ? event.url : false)
+  const handleRoute = event => {
+    setTabValue(tabValues.includes(event.url) ? event.url : false)
+    setRoute(event.url)
+  }
 
   return (
     <Container maxWidth={false} className={contents}>

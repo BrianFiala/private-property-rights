@@ -7,13 +7,12 @@ import 'fontsource-roboto/latin-500-normal.css'
 import 'fontsource-roboto/latin-700-normal.css'
 import 'fontsource-roboto/latin-900-normal.css'
 import './styles' // TODO: remove this antiquated nonsense
-import defaults from './theme'
+import {darkTheme, lightTheme} from './theme'
 import {ThemeProvider, ServerStyleSheets, StylesProvider} from '@material-ui/core/styles'
 import {CssBaseline} from '@material-ui/core'
 import {AdminStateProvider} from './contexts/AdminStateProvider'
 import {HeaderStateProvider} from './contexts/HeaderStateProvider'
 import {VideosProvider} from './contexts/VideosProvider'
-import Loader from './effects/Loader'
 import Header from './components/layout/Header'
 import Main from './components/layout/Main'
 import Footer from './components/layout/Footer'
@@ -28,7 +27,7 @@ export const createCss = (url) => {
 }
 
 export default function App({url}) {
-  const [theme] = useState(defaults)
+  const [theme] = useState(darkTheme)
   useEffect(() => {
     // maybe check for window is unneeded
     if (typeof window !== 'undefined') {
@@ -52,7 +51,7 @@ export default function App({url}) {
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Loader />
+          {/* <Loader /> */}
           <VideosProvider>
             <AdminStateProvider>
               <HeaderStateProvider url={currentUrl}>

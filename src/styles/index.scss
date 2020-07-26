@@ -1,11 +1,14 @@
 // export variables for theme things
+@import './functions', './variables';
+
 html, body, #app {
   overflow-x: hidden;
   position: relative;
   width: 100vw;
   min-height: 100vh;
+  // background-color: $darkBackground;
 }
 
 .abcRioButton {
-  background-color: #607d8b!important;
+  background-color: $darkBackground !important;
 }

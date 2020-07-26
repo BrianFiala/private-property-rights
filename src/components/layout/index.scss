@@ -1,48 +1,66 @@
-.footer {
-  width: 100%;
+@import '../../styles/functions', '../../styles/variables';
+
+
+.footerWrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: spacing(182);
   margin: 0 auto;
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
-  background-color: #615656;
-  color: #DDD;
-  padding: 0 8px 4px 8px;
-  @media (min-width: 455px) {
-    padding: 8px 24px;
+  z-index: -1;
+  
+  @media (max-width: 455px) {
+    padding: 0 spacing(1);
+  }
+
+  .footer {
+    width: 100%;
+    max-height: spacing(8);
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    background-color: $darkBackground;
+    color: $primaryDarkText;
+    padding-bottom: spacing(.5);
+  
+    @media (min-width: 455px) {
+      padding: spacing(1) 0;
+    }
   }
 }
 
 .emailAdmins {
   display: flex;
-  padding: 0 8px;
-  margin: 0 8px 0 0;
+  padding: 0 spacing(1);
+  margin: 0 spacing(1) 0 0;
   @media (min-width: 343px) {
-    margin: 0 8px 0 24px;
+    margin: 0 spacing(1) 0 spacing(3);
   }
   @media (min-width: 359px) {
-    margin: 0 8px 0 40px;
+    margin: 0 spacing(1) 0 spacing(5);
   }
   @media (min-width: 455px) {
-    margin: 0 8px;
+    margin: 0 spacing(1);
   }
-  color: #DDD;
+  color: $primaryDarkText;
 }
 
 .vertical {
   display: flex;
   align-items: center;
-  color: #DDD;
+  color: $primaryDarkText;
 }
 
 .contents {
-  min-height: calc(100vh - 64px);
-  padding-top: 64px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  max-width: 1440px;
-  margin: auto;
-  @media (min-width: 600px) {
-    padding-top: 80px;
+  position: fixed;
+  top: spacing(8);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  overflow-y: scroll;
+  @media (min-width: #{spacing(75)}) {
+    top: spacing(10);
   }
 }

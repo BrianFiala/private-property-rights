@@ -1,47 +1,56 @@
+@import '../styles/functions', '../styles/variables';
+
 .textFieldSection {
   display: flex;
   flex-grow: 1 ;
-  margin-top: 16px;
+  margin-top: spacing(2);
 }
 
 .textFieldName {
   flex-grow: 1;
-  margin-right: 8px;
+  margin-right: spacing(1);
 }
 
 .textFieldPhone {
   flex-grow: 1;
-  margin-left: 8px;
+  margin-left: spacing(1);
 }
 
 .textFieldEmail {
   flex-grow: 1;
-  margin-top: 16px;
+  margin-top: spacing(2);
 }
 
-.items {
-  width: 100%;
-  padding: 24px 0;
-  background-image: url(/assets/just-a-house.png);
-  background-repeat: no-repeat;
-  background-position: 50% 20%;
-  background-size: 30%;
+.banner, .bannerSpacer {
+  height: 50vh;
 }
 
 .banner {
-  position: relative;
-  height: 50vh;
-  width: 100%;
-  // marginBottom: 24px;
+  z-index: -1;
+  width: calc(100% - #{spacing(4)});
+  max-width: spacing(174);
+  position: fixed;
+  background: url(/assets/iit-logo.png) center/contain;
+  background-repeat: no-repeat;
+  
+  @media (min-width: #{spacing(75)}) {
+    width: calc(100% - #{spacing(6)});
+  }
 }
 
-.title {
-  position: absolute;
+.bannerSpacer {
   width: 100%;
-  margin: auto;
-  top: 40%;
-  color: #EEE;
-  font-weight: 400;
+}
+
+.homeItems {
+  width: 100%;
+  max-width: spacing(175);
+  min-height: 100%;
+  margin: spacing(2) auto spacing(10);
+  
+  @media (min-width: #{spacing(75)}) {
+    margin: spacing(3) auto spacing(11);
+  }
 }
 
 .heading {
