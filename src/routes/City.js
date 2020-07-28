@@ -35,7 +35,7 @@ const sizes = (videos) => {
   }
 }
 
-export default function Issues() {
+export default function City() {
   const {videos, refreshVideos} = useVideos()
 
   useEffect(() => {

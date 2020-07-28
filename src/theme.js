@@ -62,5 +62,3 @@ export const defaultsDark = {
 
 export const darkTheme = createMuiTheme(defaultsDark)
 export const lightTheme = createMuiTheme(defaultsLight)
-
-export default darkTheme

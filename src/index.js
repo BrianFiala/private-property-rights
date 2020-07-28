@@ -27,7 +27,16 @@ export const createCss = (url) => {
 }
 
 export default function App({url}) {
-  const [theme] = useState(darkTheme)
+  const [darkMode, setDarkMode] = useState(true)
+  const [theme, setTheme] = useState(darkTheme)
+
+  function toggleTheme() {
+    const willBeDarkMode = !darkMode
+    const newTheme = willBeDarkMode ? darkTheme : lightTheme
+    setDarkMode(willBeDarkMode)
+    setTheme(newTheme)
+  }
+
   useEffect(() => {
     // maybe check for window is unneeded
     if (typeof window !== 'undefined') {
@@ -55,7 +64,7 @@ export default function App({url}) {
           <VideosProvider>
             <AdminStateProvider>
               <HeaderStateProvider url={currentUrl}>
-                <Header />
+                <Header toggleTheme={toggleTheme} />
                 <Main url={currentUrl} />
                 <Footer />
               </HeaderStateProvider>

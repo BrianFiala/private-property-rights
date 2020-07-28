@@ -6,7 +6,8 @@ import {useHeaderState, tabValues} from '../../contexts/HeaderStateProvider'
 import Home from '../../routes/Home'
 import About from '../../routes/About'
 import News from '../../routes/News'
-import Issues from '../../routes/Issues'
+import City from '../../routes/City'
+import GetHelp from '../../routes/GetHelp'
 import Calendar from '../../routes/Calendar'
 import TakeAction from '../../routes/TakeAction'
 import PrivacyPolicy from '../../routes/PrivacyPolicy'
@@ -45,7 +46,8 @@ export default function Main({url}) {
         <Home path="/" />
         <About path="/about" />
         <News path="/news" />
-        <Issues path="/issues" />
+        <City path="/city" />
+        <GetHelp path="/gethelp" />
         <Calendar path="/calendar" />
         <TakeAction path="/takeaction" />
         <PrivacyPolicy path="/privacypolicy" />

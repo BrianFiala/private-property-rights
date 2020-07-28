@@ -1,18 +1,14 @@
 import {h} from 'preact' /** @jsx h */
 import InfoItem from '../components/InfoItem'
 import {route} from 'preact-router'
-import {Grid, useMediaQuery} from '@material-ui/core'
-import {useTheme} from '@material-ui/core/styles'
+import {Grid} from '@material-ui/core'
 import {homeItems, banner, bannerSpacer} from './index.scss'
 
 export default function Home() {
-  const theme = useTheme()
-  const moreSpace = useMediaQuery(theme.breakpoints.up('xs'))
-
   return (
-    <Grid container spacing={moreSpace ? 3 : 2} className={homeItems}>
-      <Grid item xs={12} className={banner} />
-      <Grid item xs={12} className={bannerSpacer} />
+    <Grid container spacing={1} className={homeItems}>
+      {/* <Grid item xs={12} className={banner} />
+      <Grid item xs={12} className={bannerSpacer} /> */}
       <Grid item xs={12}>
         <InfoItem
           elevation={10}
