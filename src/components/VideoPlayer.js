@@ -20,11 +20,11 @@ export default function VideoPlayer({ video, sizes }) {
       md={video.featured ? 12 : sizes.md}
       lg={video.featured ? 12 : sizes.lg}
       xl={video.featured ? 12 : sizes.xl}>
-      <MyPaper>
+      <MyPaper elevation={10}>
         {adminModeEnabled ? (
           <VideoAdminMenu video={video} />
         ) : (<>
-          <Title>{video.title}</Title>
+          <Title color="secondary">{video.title}</Title>
           <br />
         </>)}
         <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">

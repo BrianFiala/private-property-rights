@@ -5,8 +5,8 @@ import Title from './Title'
 
 export default function TermsOfServiceDetails() {
   return (
-    <MyPaper>
-      <Title>Terms and Conditions</Title><br />
+    <MyPaper elevation={10}>
+      <Title color="secondary">Terms and Conditions</Title><br />
       <div dangerouslySetInnerHTML={{ __html: termsOfService }} />
     </MyPaper>
   )

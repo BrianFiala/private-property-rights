@@ -52,8 +52,6 @@ const renderFullPage = (req) => {
   // }
   // console.log('used template ${prop})
   const {html, css} = bundle.createCss(req.url)
-  console.log('\n\n\n\n', html)
-  console.log('\n\n\n\n', css)
   const withBody = properTemplate.replace(RGXBODY, html)
   const withStyle = withBody.replace(RGXCSS, css)
   return withStyle
@@ -72,8 +70,10 @@ const googleAuthentication = async (req, res, next) => {
   }).catch(err => {
     console.log(`\ngoogle auth error for token:${authToken}`, err)
     res.statusCode = 401
-    return next()
   })
+
+  if (res.statusCode !== 200) return next()
+
   const payload = data.getPayload()
   res.locals = {
     googleId: payload.sub

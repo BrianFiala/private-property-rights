@@ -30,6 +30,7 @@ export default function Feedback() {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <InfoItem
+          elevation={10}
           identifier="Let us know how we're doing"
           title="We'd like to hear from you!"
           message="Feel free to send us a message anytime."
@@ -38,6 +39,7 @@ export default function Feedback() {
           
       <Grid item xs={12}>
         <InfoItem
+          elevation={10}
           identifier="Please share your thoughts with us"
           message="Your feedback is guaranteed anonymous unless you want us to know who you are. Your response will be received when you click send. If you'd like us to stay in touch, you can select the checkbox below to include your contact info along with your message."
           buttonAction={() => {}}

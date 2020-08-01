@@ -5,8 +5,8 @@ import Title from './Title'
 
 export default function PrivacyPolicyDetails() {
   return (
-    <MyPaper>
-      <Title>Privacy Policy</Title><br />
+    <MyPaper elevation={10}>
+      <Title color="secondary">Privacy Policy</Title><br />
       <div dangerouslySetInnerHTML={{ __html: privacyPolicy }} />
     </MyPaper>
   )

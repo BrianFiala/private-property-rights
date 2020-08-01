@@ -49,9 +49,9 @@ export default function City() {
       justify="center">
       <Grid item xs={12}>
         {videos && videos.length ? (
-          <MyPaper>
+          <MyPaper elevation={10}>
             <aside className={heading}>
-              <Title>Videos</Title>
+              <Title color="secondary">Videos</Title>
               <IconButton
                 edge="end"
                 color="inherit"
@@ -63,6 +63,7 @@ export default function City() {
           </MyPaper>
         ): (
           <InfoItem
+            elevation={10}
             identifier="Videos"
             message="We don't have any videos right now. Would you like to try again?"
             buttonText="Refresh"

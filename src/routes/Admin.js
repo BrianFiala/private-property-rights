@@ -10,7 +10,7 @@ export default function Admin() {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <MyPaper>
+        <MyPaper elevation={10}>
           {userProfile ? (<>
             <Typography variant="h3">Welcome {userProfile.username}</Typography><br />
             <Button color="primary" size="large"
@@ -18,7 +18,7 @@ export default function Admin() {
               {`${adminModeEnabled ? 'Disable' : 'Enable'} Admin Mode`}
             </Button>
           </>) : (<>
-            <Title>Please signin to continue</Title><br />
+            <Title color="secondary">Please signin to continue</Title><br />
           </>)}
           <div style={`${userProfile ? 'display: none;' : ''}`}
             class="g-signin2" data-onsuccess="onSignIn"

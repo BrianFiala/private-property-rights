@@ -12,6 +12,7 @@ export default function PrivacyPolicy() {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <InfoItem
+          elevation={10}
           title="We will never share your information with anyone without your explicit consent. Ever."
           buttonAction={backToHome} />
       </Grid>

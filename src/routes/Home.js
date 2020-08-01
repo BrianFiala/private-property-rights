@@ -15,7 +15,7 @@ export default function Home() {
           identifier="Our Mission Statement"
           title="Why We Take Action"
           message="We are a collective of tenants and housing providers. The majority of Oakland housing providers are small, locally based members of the community. Tenant and housing provider laws trigger discord both between the housing provider and their tenants, and between tenants themselves."
-          buttonAction={() => {route('/issues')}}
+          buttonAction={() => {route('/about')}}
           buttonText="Learn More" />
       </Grid>
       <Grid item xs={6}>
@@ -24,7 +24,7 @@ export default function Home() {
           identifier="Our Mission Statement"
           title="Why We Take Action"
           message="We are a collective of tenants and housing providers. The majority of Oakland housing providers are small, locally based members of the community. Tenant and housing provider laws trigger discord both between the housing provider and their tenants, and between tenants themselves."
-          buttonAction={() => {route('/issues')}}
+          buttonAction={() => {route('/news')}}
           buttonText="Learn More" />
       </Grid>
       <Grid item xs={6}>
@@ -33,7 +33,7 @@ export default function Home() {
           identifier="Our Mission Statement"
           title="Why We Take Action"
           message="We are a collective of tenants and housing providers. The majority of Oakland housing providers are small, locally based members of the community. Tenant and housing provider laws trigger discord both between the housing provider and their tenants, and between tenants themselves."
-          buttonAction={() => {route('/issues')}}
+          buttonAction={() => {route('/gethelp')}}
           buttonText="Learn More" />
       </Grid>
     </Grid>
