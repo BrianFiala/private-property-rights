@@ -1,4 +1,4 @@
-import {h, hydrate} from 'preact' /** @jsx h */
+import {h} from 'preact' /** @jsx h */
 import renderToString from 'preact-render-to-string'
 import {useState, useEffect} from 'preact/hooks'
 import 'fontsource-roboto/latin-300-normal.css'

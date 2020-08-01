@@ -1,8 +1,7 @@
 import {h} from 'preact' /** @jsx h */
 import {Paper} from '@material-ui/core'
 
-export default function MyPaper({elevation, children, unscrollable}) {  
-
+export default function MyPaper({elevation = 10, children, unscrollable}) {  
   return (
     <Paper
       elevation={elevation}

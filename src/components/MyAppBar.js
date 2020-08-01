@@ -20,31 +20,31 @@ export default function MyAppBar({toggleTheme}) {
     setTabValue(newValue)
   }
 
-  const openCityMenu = event => {
+  const openCityMenu = () => {
     setCityOpen(true)
   }
 
-  const closeCityMenu = event => {
+  const closeCityMenu = () => {
     setCityOpen(false)
   }
 
-  const openNewsMenu = event => {
+  const openNewsMenu = () => {
     setNewsOpen(true)
   }
 
-  const closeNewsMenu = event => {
+  const closeNewsMenu = () => {
     setNewsOpen(false)
   }
 
-  const openActionMenu = event => {
+  const openActionMenu = () => {
     setActionOpen(true)
   }
 
-  const closeActionMenu = event => {
+  const closeActionMenu = () => {
     setActionOpen(false)
   }
 
-  const handleTabMenuClick = event => {
+  const handleTabMenuClick = () => {
     setCityOpen(false)
     setNewsOpen(false)
     setActionOpen(false)

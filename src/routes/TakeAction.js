@@ -8,7 +8,6 @@ export default function TakeAction() {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <InfoItem
-          elevation={10}
           identifier="Let us know how we're doing"
           title="We'd like to hear from you!"
           message="Feel free to send us a message anytime."
