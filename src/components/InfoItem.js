@@ -4,7 +4,7 @@ import MyPaper from './MyPaper'
 import {Typography, Button} from '@material-ui/core'
 
 export default function InfoItem({
-  identifier, title, message, buttonAction, buttonText, children, elevation
+  identifier, title, message, buttonAction, buttonText, children, elevation = 10
 }) {
   return (
     <MyPaper elevation={elevation}>
