@@ -12,8 +12,12 @@
     "title": "Calendar"
   },
   {
-    "url": "/issues",
-    "title": "Issues"
+    "url": "/city",
+    "title": "City"
+  },
+  {
+    "url": "/gethelp",
+    "title": "Get Help"
   },
   {
     "url": "/news",

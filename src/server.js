@@ -1,4 +1,3 @@
-// const {h} = require('preact') /** @jsx h */
 const polka = require('polka')
 const {readFileSync} = require('fs')
 const compression = require('compression')()
@@ -7,7 +6,6 @@ const {OAuth2Client} = require('google-auth-library')
 const bundle = require('../build/ssr-build/ssr-bundle')
 const users = require('../secure/users.json')
 const keys = require('../secure/keys.json')
-// const App = bundle.default // can specifically specify entry here for server, so provide default for bundle, and separate for server
 const {PORT = 42230} = process.env
 const RGXBODY = /<div id="app"[^>]*>.*?(?=<script)/i
 const RGXCSS = /(?<=<style id="jss-server-side">).*?(?=<\/style>)/i
@@ -110,6 +108,7 @@ polka()
   .get('*', (req, res) => {
     res.setHeader('Cache-Control', 'no-cache')
     res.setHeader('Content-Type', 'text/html')
+    console.log('serving GET for', req.url)
     res.end(renderFullPage(req))
   })
   // .post('/update', (req, res) => {
