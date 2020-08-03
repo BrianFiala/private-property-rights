@@ -1,7 +1,7 @@
 import renderToString from 'preact-render-to-string'
 import {ServerStyleSheets} from '@material-ui/core/styles'
-import './styles'
-import App from './components/App'
+import './styles/index.scss'
+import App from './App'
 
 export const createCss = (url) => {
   const sheets = new ServerStyleSheets()

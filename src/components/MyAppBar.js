@@ -3,7 +3,7 @@ import {useState, useRef} from 'preact/hooks'
 import {useHeaderState} from '../contexts/HeaderStateProvider'
 import {AppBar, Tabs, Tab, IconButton, Button, MenuItem} from '@material-ui/core'
 import {Menu, Brightness4Outlined} from '@material-ui/icons'
-import {appBar, spacer, tab, button, menu, imageButton, themeToggle} from './index.scss'
+import {appBar, spacer, tab, button, menu, imageButton, themeToggle, homeAndTheme} from './index.scss'
 import MyDropDown from './MyDropDown'
 
 export default function MyAppBar({toggleTheme}) {
@@ -53,7 +53,7 @@ export default function MyAppBar({toggleTheme}) {
   return (
     <AppBar elevation={0} color="primary" className={appBar}>
       <div className={spacer}>
-        <aside>
+        <aside className={homeAndTheme}>
           <Button href="/" className={imageButton}>
             <img src="/assets/iit-logo.png" alt="go to home" className="appBarImage" />
           </Button>

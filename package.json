@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "preact watch",
-    "build": "preact build && cp src/server.js build/server.js",
+    "build": "preact build --preload && cp src/server.js build/server.js",
     "serve": "sirv build --cors --single",
     "dev": "preact watch",
     "lint": "eslint src",

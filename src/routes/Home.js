@@ -2,13 +2,14 @@ import {h} from 'preact' /** @jsx h */
 import InfoItem from '../components/InfoItem'
 import {route} from 'preact-router'
 import {Grid} from '@material-ui/core'
-import {homeItems, banner, bannerSpacer} from './index.scss'
+import {homeItems} from './index.scss'
+// import {homeItems, banner, bannerSpacer} from './index.scss'
 
 export default function Home() {
   return (
     <Grid container spacing={1} className={homeItems}>
-      <Grid item xs={12} className={banner} />
-      <Grid item xs={12} className={bannerSpacer} />
+      {/* <Grid item xs={12} className={banner} />
+      <Grid item xs={12} className={bannerSpacer} /> */}
       <Grid item xs={12}>
         <InfoItem
           identifier="Our Mission Statement"
