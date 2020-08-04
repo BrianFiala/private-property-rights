@@ -3,7 +3,7 @@ import {useState, useContext} from 'preact/hooks'
 
 const HeaderStateContext = createContext()
 export const useHeaderState = () => useContext(HeaderStateContext)
-export const tabValues = ['/about', '/news', '/issues', '/calendar']
+export const tabValues = ['/about', '/news', '/gethelp', '/city', '/calendar']
 
 
 export const HeaderStateProvider = ({children, url}) => {

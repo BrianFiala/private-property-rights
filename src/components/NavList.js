@@ -29,6 +29,14 @@ export default function NavList() {
           <ListItemText className={route === '/about' ? secondary : primary} primary="ABOUT" />
         </Link>
       </ListItem>
+      <ListItem component="li" button key="gethelp" onClick={onClick}>
+        <Link className={link} href="/gethelp">
+          <ListItemIcon>
+            <EmojiPeople aria-hidden="true" className={route === '/gethelp' ? secondary : primary} />
+          </ListItemIcon>
+          <ListItemText className={route === '/gethelp' ? secondary : primary} primary="GET HELP" />
+        </Link>
+      </ListItem>
       <ListItem component="li" button key="news" onClick={onClick}>
         <Link className={link} href="/news">
           <ListItemIcon>
@@ -37,12 +45,12 @@ export default function NavList() {
           <ListItemText className={route === '/news' ? secondary : primary} primary="NEWS" />
         </Link>
       </ListItem>
-      <ListItem component="li" button key="issues" onClick={onClick}>
-        <Link className={link} href="/issues">
+      <ListItem component="li" button key="city" onClick={onClick}>
+        <Link className={link} href="/city">
           <ListItemIcon>
-            <NotificationImportant aria-hidden="true" className={route === '/issues' ? secondary : primary} />
+            <NotificationImportant aria-hidden="true" className={route === '/city' ? secondary : primary} />
           </ListItemIcon>
-          <ListItemText className={route === '/issues' ? secondary : primary} primary="ISSUES" />
+          <ListItemText className={route === '/city' ? secondary : primary} primary="CITY" />
         </Link>
       </ListItem>
       <ListItem component="li" button key="calendar" onClick={onClick}>
