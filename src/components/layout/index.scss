@@ -18,19 +18,23 @@
   max-width: spacing(186);
 }
 
+.backgroundColorizer {
+  background: linear-gradient($primary 50%, 90%, $secondary);
+}
+
 .footer {
   width: 100%;
-  max-height: spacing(8);
   justify-content: space-between;
   display: flex;
   align-items: center;
   color: $lightText;
-  padding-bottom: spacing(.5);
+  padding: spacing(1) 0;
+  margin-top: spacing(2);
   
-  @media (min-width: 455px) {
+  @media (min-width: #{spacing(75)}) {
+    padding: spacing(2) 0;
     max-width: spacing(180);
-    margin: 0 auto;
-    padding: spacing(1) 0;
+    margin: spacing(3) auto 0;
   }
 }
 

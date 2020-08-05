@@ -139,3 +139,30 @@
 .buttons {
   margin-left: spacing(2);
 }
+
+.textFieldSection {
+  display: flex;
+  flex-grow: 1;
+  margin-top: spacing(2);
+}
+
+.textFieldLeft {
+  flex-grow: 1;
+  margin-right: spacing(1);
+}
+
+.textFieldRight {
+  flex-grow: 1;
+  margin-left: spacing(1);
+}
+
+.textFieldWide {
+  flex-grow: 1;
+  margin-top: spacing(2);
+}
+
+.subscriberCheckboxes {
+  margin-top: spacing(4);
+  display: flex;
+  justify-content: space-evenly;
+}
