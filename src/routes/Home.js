@@ -1,14 +1,27 @@
 import {h} from 'preact' /** @jsx h */
-import InfoItem from '../components/InfoItem'
+import {useEffect} from 'preact/hooks'
 import {route} from 'preact-router'
+import {useVideos} from '../contexts/VideosProvider'
+import VideoPlayer from '../components/VideoPlayer'
+import InfoItem from '../components/InfoItem'
 import {Grid} from '@material-ui/core'
-import {homeItems, banner, bannerSpacer} from './index.scss'
+// import {homeItems, banner, bannerSpacer} from './index.scss'
+import {homeItems} from './index.scss'
 
 export default function Home() {
+  const {videos, refreshVideos, sizes, videosLoaded} = useVideos()
+
+  useEffect(() => {
+    if (!videosLoaded) refreshVideos()
+  }, [refreshVideos, videosLoaded])
+
   return (
     <Grid container spacing={1} className={homeItems}>
-      <Grid item xs={12} className={banner} />
-      <Grid item xs={12} className={bannerSpacer} />
+      {/* <Grid item xs={12} className={banner} />
+      <Grid item xs={12} className={bannerSpacer} /> */}
+      {videos?.[0] && 
+        <VideoPlayer video={videos[0]} sizes={sizes} autoplay />
+      }
       <Grid item xs={12}>
         <InfoItem
           identifier="Our Mission Statement"

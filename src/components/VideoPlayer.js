@@ -5,12 +5,12 @@ import VideoAdminMenu from './VideoAdminMenu'
 import MyPaper from '../components/MyPaper'
 import Title from '../components/Title'
 
-export default function VideoPlayer({ video, sizes }) {
+export default function VideoPlayer({ video, sizes, autoplay }) {
   const {adminModeEnabled} = useAdminState()
 
   const src = video.host === 'youtube'
     ? `https://www.youtube-nocookie.com/embed/${video.id}`
-    : `https://player.vimeo.com/video/${video.id}?dnt=true`
+    : `https://player.vimeo.com/video/${video.id}?dnt=true&title=0&byline=0${autoplay ? '&autoplay=1' : ''}`
 
   return (
     <Grid item
@@ -31,7 +31,8 @@ export default function VideoPlayer({ video, sizes }) {
           <iframe
             style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: none;" 
             src={src}
-            allowfullscreen /> 
+            allowfullscreen
+            allow={`fullscreen${autoplay ? '; autoplay' : ''}`} /> 
         </div>
       </MyPaper>
     </Grid>

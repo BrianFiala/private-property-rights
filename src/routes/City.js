@@ -1,5 +1,5 @@
 import {h} from 'preact' /** @jsx h */
-import {useEffect} from 'preact/hooks' /** @jsx h */
+import {useEffect} from 'preact/hooks'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import {Grid, IconButton} from '@material-ui/core'
 import {useVideos} from '../contexts/VideosProvider'
@@ -9,38 +9,12 @@ import Title from '../components/Title'
 import InfoItem from '../components/InfoItem'
 import {heading} from './index.scss'
 
-const sizes = (videos) => {
-  return {
-    xs: 12,
-    sm: 12,
-    md: (() => {
-      if (videos.length > 1) return 6
-      return 12
-    })(),
-    lg: (() => {
-      switch(videos.length) {
-      case 1: return 12
-      case 2: return 6
-      }
-      return 6
-    })(),
-    xl: (() => {
-      switch(videos.length) {
-      case 1: return 12
-      case 2: return 6
-      case 3: return 6
-      }
-      return 6
-    })()
-  }
-}
-
 export default function City() {
-  const {videos, refreshVideos} = useVideos()
+  const {videos, refreshVideos, sizes, videosLoaded} = useVideos()
 
   useEffect(() => {
-    refreshVideos()
-  }, [refreshVideos])
+    if (!videosLoaded) refreshVideos()
+  }, [refreshVideos, videosLoaded])
   
   // TODO: add lazy loading of videos
   return (
@@ -73,7 +47,7 @@ export default function City() {
       { videos && videos.map(video => (
         <VideoPlayer
           video={video}
-          sizes={sizes(videos)} />
+          sizes={sizes} />
       ))}
     </Grid>
   )
