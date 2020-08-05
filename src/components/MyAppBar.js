@@ -57,7 +57,7 @@ export default function MyAppBar({toggleTheme}) {
       <div className={spacer}>
         <aside className={homeAndTheme}>
           <Button href="/" className={imageButton}>
-            <img src="/assets/iit-logo.png" alt="go to home" className="appBarImage" />
+            <img src="/assets/iit-logo-jeannie.png" alt="go to home" className="appBarImage" />
           </Button>
           <IconButton
             className={themeToggle}
