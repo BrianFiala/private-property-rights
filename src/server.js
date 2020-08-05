@@ -1,14 +1,11 @@
-const {h} = require('preact')
 const polka = require('polka')
 const {readFileSync} = require('fs')
 const compression = require('compression')()
-const render = require('preact-render-to-string')
 const bodyParser = require('body-parser')
 const {OAuth2Client} = require('google-auth-library')
 const bundle = require('../build/ssr-build/ssr-bundle')
 const users = require('../secure/users.json')
 const keys = require('../secure/keys.json')
-const App = bundle.default
 const {PORT = 42230} = process.env
 const RGXBODY = /<div id="app"[^>]*>.*?(?=<script)/i
 const RGXCSS = /(?<=<style id="jss-server-side">).*?(?=<\/style>)/i
@@ -23,7 +20,6 @@ const template = readFileSync('build/index.html', 'utf8')
 const client = new OAuth2Client(keys.client_id, keys.client_secret)
 
 const renderFullPage = (req) => {
-  // try grabbing the createCss straight out of the ssr-bundle!!
   let properTemplate = template
   // switch (req.url) {
   // case '/admin':
@@ -50,10 +46,7 @@ const renderFullPage = (req) => {
   // default:
   //   properTemplate = template
   // }
-  // console.log('used template ${prop})
   const {html, css} = bundle.createCss(req.url)
-  console.log('\n\n\n\n', html)
-  console.log('\n\n\n\n', css)
   const withBody = properTemplate.replace(RGXBODY, html)
   const withStyle = withBody.replace(RGXCSS, css)
   return withStyle
@@ -72,8 +65,10 @@ const googleAuthentication = async (req, res, next) => {
   }).catch(err => {
     console.log(`\ngoogle auth error for token:${authToken}`, err)
     res.statusCode = 401
-    return next()
   })
+
+  if (res.statusCode !== 200) return next()
+
   const payload = data.getPayload()
   res.locals = {
     googleId: payload.sub
@@ -111,9 +106,9 @@ polka()
     res.end(JSON.stringify(res.locals.userProfile))
   })
   .get('*', (req, res) => {
-    // console.log('received request for', req.url)
     res.setHeader('Cache-Control', 'no-cache')
     res.setHeader('Content-Type', 'text/html')
+    console.log('serving GET for', req.url)
     res.end(renderFullPage(req))
   })
   // .post('/update', (req, res) => {

@@ -1,27 +1,12 @@
-html, body {
-  margin: 0!important;
-  margin-top: 0!important;
-  margin-right: 0!important;
-  margin-bottom: 0!important;
-  margin-left: 0!important;
-  padding: 0!important;
-  padding-top: 0!important;
-  padding-right: 0!important;
-  padding-bottom: 0!important;
-  padding-left: 0!important;
-  background-color: #303030;
-}
+// export variables for theme things
+@import './functions', './variables';
+$pacman-yellow: rgb(255, 255, 100);
 
 html, body, #app {
   overflow-x: hidden;
   position: relative;
-  margin: 0;
   width: 100vw;
-  min-height: 100vh;
-}
-
-.abcRioButton {
-  background-color: #607d8b!important;
+  height: 100vh;
 }
 
 .loader, .loader-wrapper {
@@ -34,14 +19,14 @@ html, body, #app {
 .loader-wrapper {
   z-index: 1299;
   height: 100%;
-  background-color: #303030;
+  background-color: $primary;
   transition: opacity .23s ease;
 }
 
 .loader {
   top: 33vh;
   background-color: transparent;
-  color: #90a4ae;
+  color: $pacman-yellow;
   display: flex;
   flex-direction: column;
   align-items: center
@@ -57,7 +42,7 @@ html, body, #app {
 .la-pacman {
   display: block;
   font-size: 0;
-  color: #607d8b;
+  color: $pacman-yellow;
   width: 64px;
   height: 64px
 }
@@ -93,6 +78,7 @@ html, body, #app {
 
 .la-pacman>div:nth-child(3), .la-pacman>div:nth-child(4), .la-pacman>div:nth-child(5), .la-pacman>div:nth-child(6) {
   position: absolute;
+  color: white;
   top: 50%;
   left: 200%;
   width: 16px;
@@ -323,4 +309,8 @@ html, body, #app {
     -o-transform: translateY(-50%);
     transform: translateY(-50%)
   }
+}
+
+.abcRioButton {
+  background-color: $background !important;
 }

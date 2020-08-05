@@ -1,4 +1,5 @@
 import {h} from 'preact' /** @jsx h */
+
 export default function Loader() {
   return (
     <div class="loader-wrapper">

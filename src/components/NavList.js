@@ -1,109 +1,64 @@
 import {h} from 'preact' /** @jsx h */
 import {useHeaderState} from '../contexts/HeaderStateProvider'
-import {EmojiPeople, Event, NotificationImportant, Announcement, NewReleases} from '@material-ui/icons'
+import {EmojiPeople, Event, NotificationImportant, Announcement, Home} from '@material-ui/icons'
 import {List, Link, ListItem, ListItemText, ListItemIcon} from '@material-ui/core'
-import {makeStyles, useTheme} from '@material-ui/core/styles'
-
-const useStyles = makeStyles(theme => ({
-  list: {
-    overflow: 'hidden',
-    marginTop: theme.spacing(10)
-  },
-  link: {
-    display: 'flex',
-    height: '100%',
-    width: '100%',
-    padding: theme.spacing(1, 3, 1, 3)
-  },
-  secondary: {
-    color: theme.palette.secondary.main
-  },
-  xSmall: {
-    padding: theme.spacing(1, 2, 1, 2),
-    [theme.breakpoints.up(theme.spacing(51))]: {
-      display: 'none'
-    }
-  },
-  small: {
-    padding: theme.spacing(1, 2, 1, 2),
-    [theme.breakpoints.up(theme.spacing(71))]: {
-      display: 'none'
-    }
-  },
-  medium: {
-    padding: theme.spacing(1, 2, 1, 2),
-    [theme.breakpoints.up(theme.spacing(91))]: {
-      display: 'none'
-    }
-  },
-  large: {
-    padding: theme.spacing(1, 2, 1, 2),
-    [theme.breakpoints.up(theme.spacing(111))]: {
-      display: 'none'
-    }
-  },
-  xLarge: {
-    padding: theme.spacing(1, 2, 1, 2),
-    [theme.breakpoints.up(theme.spacing(131))]: {
-      display: 'none'
-    }
-  }
-}))
+import {list, link, secondary, primary} from './index.scss'
 
 export default function NavList() {
-  const {toggleDrawer, tabValue, setTabValue} = useHeaderState()
-  const classes = useStyles(useTheme())
+  const {toggleDrawer, route} = useHeaderState()
 
   function onClick(event) {
-    setTabValue(event.currentTarget.id)
     toggleDrawer(event, false)
   }
 
-  const tabColor = (thisTabValue = '') => {
-    if (thisTabValue === tabValue) return 'secondary'
-    return 'primary'
-  }
-
   return (
-    <List className={classes.list}>
-      <ListItem id="/takeaction" className={classes.xSmall} component="li" button key="takeaction" onClick={onClick}>
-        <Link className={classes.link} href="/takeaction">
+    <List className={list}>
+      <ListItem component="li" button key="home" onClick={onClick}>
+        <Link className={link} href="/">
           <ListItemIcon>
-            <NewReleases aria-hidden="true" color={tabColor('/takeaction')} />
+            <Home aria-hidden="true" className={route === '/' ? secondary : primary} />
           </ListItemIcon>
-          <ListItemText className={tabValue === '/takeaction' && classes.secondary} primary="TAKE ACTION" />
+          <ListItemText className={route === '/' ? secondary : primary} primary="HOME" />
         </Link>
       </ListItem>
-      <ListItem id="/about" className={classes.small} component="li" button key="about" onClick={onClick}>
-        <Link className={classes.link} href="/about">
+      <ListItem component="li" button key="about" onClick={onClick}>
+        <Link className={link} href="/about">
           <ListItemIcon>
-            <EmojiPeople aria-hidden="true" color={tabColor('/about')} />
+            <EmojiPeople aria-hidden="true" className={route === '/about' ? secondary : primary} />
           </ListItemIcon>
-          <ListItemText className={tabValue === '/about' && classes.secondary} primary="ABOUT" />
+          <ListItemText className={route === '/about' ? secondary : primary} primary="ABOUT" />
         </Link>
       </ListItem>
-      <ListItem id="/news" className={classes.medium} component="li" button key="news" onClick={onClick}>
-        <Link className={classes.link} href="/news">
+      <ListItem component="li" button key="gethelp" onClick={onClick}>
+        <Link className={link} href="/gethelp">
           <ListItemIcon>
-            <Announcement aria-hidden="true" color={tabColor('/news')} />
+            <EmojiPeople aria-hidden="true" className={route === '/gethelp' ? secondary : primary} />
           </ListItemIcon>
-          <ListItemText className={tabValue === '/news' && classes.secondary} primary="NEWS" />
+          <ListItemText className={route === '/gethelp' ? secondary : primary} primary="GET HELP" />
         </Link>
       </ListItem>
-      <ListItem id="/issues" className={classes.large} component="li" button key="issues" onClick={onClick}>
-        <Link className={classes.link} href="/issues">
+      <ListItem component="li" button key="news" onClick={onClick}>
+        <Link className={link} href="/news">
           <ListItemIcon>
-            <NotificationImportant aria-hidden="true" color={tabColor('/issues')} />
+            <Announcement aria-hidden="true" className={route === '/news' ? secondary : primary} />
           </ListItemIcon>
-          <ListItemText className={tabValue === '/issues' && classes.secondary} primary="ISSUES" />
+          <ListItemText className={route === '/news' ? secondary : primary} primary="NEWS" />
         </Link>
       </ListItem>
-      <ListItem id="/calendar" className={classes.xLarge} component="li" button key="calendar" onClick={onClick}>
-        <Link className={classes.link} href="/calendar">
+      <ListItem component="li" button key="city" onClick={onClick}>
+        <Link className={link} href="/city">
           <ListItemIcon>
-            <Event aria-hidden="true" color={tabColor('/calendar')} />
+            <NotificationImportant aria-hidden="true" className={route === '/city' ? secondary : primary} />
           </ListItemIcon>
-          <ListItemText className={tabValue === '/calendar' && classes.secondary} primary="CALENDAR" />
+          <ListItemText className={route === '/city' ? secondary : primary} primary="CITY" />
+        </Link>
+      </ListItem>
+      <ListItem component="li" button key="calendar" onClick={onClick}>
+        <Link className={link} href="/calendar">
+          <ListItemIcon>
+            <Event aria-hidden="true" className={route === '/calendar' ? secondary : primary} />
+          </ListItemIcon>
+          <ListItemText className={route === '/calendar' ? secondary : primary} primary="CALENDAR" />
         </Link>
       </ListItem>
     </List>

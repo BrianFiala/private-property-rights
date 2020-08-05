@@ -1,141 +1,165 @@
 import {h} from 'preact' /** @jsx h */
-import {makeStyles, useTheme} from '@material-ui/core/styles'
+import {useState, useRef} from 'preact/hooks'
+import {route} from 'preact-router'
 import {useHeaderState} from '../contexts/HeaderStateProvider'
-import {useAdminState} from '../contexts/AdminStateProvider'
-import {AppBar, Slide, Toolbar, useScrollTrigger, Tabs, Tab, IconButton} from '@material-ui/core'
-import {Home, Menu, Event, CheckBox, CheckBoxOutlineBlank, EmojiPeople,
-  Announcement, NewReleases, NotificationImportant} from '@material-ui/icons'
+import {AppBar, Tabs, Tab, IconButton, Button, MenuItem} from '@material-ui/core'
+import {Menu, Brightness4Outlined} from '@material-ui/icons'
+import {appBar, spacer, tab, button, menu, imageButton, themeToggle, homeAndTheme} from './index.scss'
+import MyDropDown from './MyDropDown'
 
-const useStyles = makeStyles(theme => ({
-  appBar: {
-    zIndex: 1301,
-    padding: theme.spacing(0, 2, 0, 2),
-    [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(0, 3, 0, 3)
-    }
-  },
-  toolBar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    [theme.breakpoints.up('lg')]: {
-      width: theme.spacing(154),
-      margin:'auto'
-    }
-  },
-  tab: {
-    width: theme.spacing(20)
-  },
-  xSmall: {
-    display: 'none',
-    [theme.breakpoints.up(theme.spacing(51))]: {
-      width: theme.spacing(20),
-      display: 'initial'
-    }
-  },
-  small: {
-    display: 'none',
-    [theme.breakpoints.up(theme.spacing(71))]: {
-      width: theme.spacing(20),
-      display: 'initial'
-    }
-  },
-  medium: {
-    display: 'none',
-    [theme.breakpoints.up(theme.spacing(91))]: {
-      width: theme.spacing(20),
-      display: 'initial'
-    }
-  },
-  large: {
-    display: 'none',
-    [theme.breakpoints.up(theme.spacing(111))]: {
-      width: theme.spacing(20),
-      display: 'initial'
-    }
-  },
-  xLarge: {
-    display: 'none',
-    [theme.breakpoints.up(theme.spacing(131))]: {
-      width: theme.spacing(20),
-      display: 'initial'
-    }
-  },
-  menu: {
-    [theme.breakpoints.up(theme.spacing(131))]: {
-      width: theme.spacing(20),
-      display: 'none'
-    }
-  }
-}))
-
-export default function MyAppBar() {
-  const classes = useStyles(useTheme())
+export default function MyAppBar({toggleTheme}) {
   const {toggleDrawer, tabValue, setTabValue} = useHeaderState()
-  const {userProfile, toggleAdminMode, adminModeEnabled} = useAdminState()
-  const trigger = useScrollTrigger({threshold: 32})
+  const [cityOpen, setCityOpen] = useState(false)
+  const [newsOpen, setNewsOpen] = useState(false)
+  const [actionOpen, setActionOpen] = useState(false)
+  const cityTab = useRef()
+  const newsTab = useRef()
+  const takeActionButton = useRef()
 
   const handleChange = (event, newValue) => {
     event.preventDefault()
-    if (newValue !== 'tabNoHighlight') {
-      setTabValue(newValue)
-    }
+    setTabValue(newValue)
+  }
+
+  const openCityMenu = () => {
+    setCityOpen(true)
+  }
+
+  const closeCityMenu = () => {
+    setCityOpen(false)
+  }
+
+  const openNewsMenu = () => {
+    setNewsOpen(true)
+  }
+
+  const closeNewsMenu = () => {
+    setNewsOpen(false)
+  }
+
+  const openActionMenu = () => {
+    setActionOpen(true)
+  }
+
+  const closeActionMenu = () => {
+    setActionOpen(false)
+  }
+
+  const handleTabMenuClick = (path) => {
+    setCityOpen(false)
+    setNewsOpen(false)
+    setActionOpen(false)
+    route(path)
   }
 
   return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      <AppBar
-        color="primary"
-        className={classes.appBar}>
-        <Toolbar
-          disableGutters
-          className={classes.toolBar}>
-          <Tabs
-            value={tabValue}
-            onChange={handleChange}
-            indicatorColor="secondary"
-            textColor="secondary"
-            aria-label="navigation">
-            <Tab icon={<Home />}
-              className={classes.tab}
-              // onClick={setOpen(false)}
-              label="HOME" href="/" value="/" />
-            <Tab icon={<NewReleases />}
-              className={classes.xSmall}
-              label="TAKE ACTION" href="/takeaction" value="/takeaction" />
-            <Tab icon={<EmojiPeople />}
-              className={classes.small}
-              label="ABOUT" href="/about" value="/about" />
-            <Tab icon={<Announcement />}
-              className={classes.medium}
-              label="NEWS" href="/news" value="/news" />
-            <Tab icon={<NotificationImportant />}
-              className={classes.large}
-              label="ISSUES" href="/issues" value="/issues" />
-            <Tab icon={<Event />}
-              className={classes.xLarge}
-              label="CALENDAR" href="/calendar" value="/calendar" />
-            {userProfile && (
-              <Tab
-                label="ADMIN"
-                onClick={toggleAdminMode}
-                aria-label="toggle admin mode"
-                value="tabNoHighlight"
-                icon={adminModeEnabled
-                  ? <CheckBox aria-hidden="true" />
-                  : <CheckBoxOutlineBlank aria-hidden="true" />} />
-            )}
-          </Tabs>
+    <AppBar elevation={10} color="primary" className={appBar}>
+      <div className={spacer}>
+        <aside className={homeAndTheme}>
+          <Button href="/" className={imageButton}>
+            <img src="/assets/iit-oakland-logo.png" alt="go to home" className="appBarImage" />
+          </Button>
           <IconButton
-            className={classes.menu}
+            className={themeToggle}
             edge="end"
-            color="secondary"
+            color="inherit"
+            aria-label="toggle visual theme"
+            onClick={toggleTheme}
+            onKeyDown={toggleTheme}>
+            <Brightness4Outlined />
+          </IconButton>
+        </aside>
+        <nav>
+          <Tabs value={tabValue} onChange={handleChange} aria-label="navigation">
+            <Tab className={tab} label="ABOUT US" href="/about" value="/about" />
+            <Tab className={tab} label="GET HELP" href="/gethelp" value="/gethelp" />
+            <Tab className={tab} label="NEWS" href="/news" value="/news"
+              ref={newsTab}
+              onMouseEnter={openNewsMenu}
+              aria-controls="news-menu-options"
+              aria-haspopup="true" />
+            <Tab className={tab} label="CITY" href="/city" value="/city"
+              ref={cityTab}
+              onMouseEnter={openCityMenu}
+              aria-controls="city-menu-options"
+              aria-haspopup="true" />
+            <Tab className={tab} label="CALENDAR" href="/calendar" value="/calendar" />
+          </Tabs>
+          <Button className={button}
+            href="/takeaction"
+            variant="outlined" color="inherit"
+            size="medium"
+            ref={takeActionButton}
+            onMouseEnter={openActionMenu}
+            aria-controls="take-action-options"
+            aria-haspopup="true">
+            Take Action
+          </Button>
+          <IconButton
+            className={menu}
+            edge="end"
+            color="inherit"
             aria-label="expand menu"
             onClick={toggleDrawer}
             onKeyDown={toggleDrawer}>
             <Menu />
           </IconButton>
-        </Toolbar>
-      </AppBar>
-    </Slide>
+        </nav>
+      </div>
+      <MyDropDown
+        id="city-tab-options"
+        anchorEl={cityTab}
+        setOpen={openCityMenu}
+        setClosed={closeCityMenu}
+        open={cityOpen}>
+        <MenuItem key="council-members" onClick={handleTabMenuClick}>
+          COUNCIL MEMBERS
+        </MenuItem>
+        <MenuItem key="election" onClick={handleTabMenuClick}>
+          2020 ELECTION
+        </MenuItem>
+        <MenuItem key="legislation" onClick={handleTabMenuClick}>
+          LEGISLATIONS
+        </MenuItem>
+      </MyDropDown>
+      <MyDropDown
+        id="news-tab-options"
+        anchorEl={newsTab}
+        setOpen={openNewsMenu}
+        setClosed={closeNewsMenu}
+        open={newsOpen}>
+        <MenuItem key="oakland" onClick={handleTabMenuClick}>
+          OAKLAND
+        </MenuItem>
+        <MenuItem key="bay-area" onClick={handleTabMenuClick}>
+          BAY AREA
+        </MenuItem>
+        <MenuItem key="california" onClick={handleTabMenuClick}>
+          CALIFORNIA
+        </MenuItem>
+        <MenuItem key="national" onClick={handleTabMenuClick}>
+          NATIONAL
+        </MenuItem>
+      </MyDropDown>
+      <MyDropDown
+        id="take-action-options"
+        anchorEl={takeActionButton}
+        setOpen={openActionMenu}
+        setClosed={closeActionMenu}
+        open={actionOpen}>
+        <MenuItem key="councilmembers" onClick={handleTabMenuClick}>
+          EMAIL COUNCILMEMBERS
+        </MenuItem>
+        <MenuItem key="mailing-list" onClick={handleTabMenuClick}>
+          JOIN MAILING LIST
+        </MenuItem>
+        <MenuItem key="petition" onClick={handleTabMenuClick}>
+          SIGN PETITION
+        </MenuItem>
+        <MenuItem key="calendar" onClick={handleTabMenuClick}>
+          UPCOMING MEETINGS
+        </MenuItem>
+      </MyDropDown>
+    </AppBar>
   )
 }

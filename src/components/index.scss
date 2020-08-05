@@ -1,0 +1,140 @@
+@import '../styles/functions', '../styles/variables';
+
+.appBar {
+  z-index: 1;
+  width: 100vw;
+  flex-direction: row;
+  color: $lightText;
+  padding: 0 spacing(2);
+  background-color: $background;
+
+  @media (min-width: #{spacing(75)}) {
+    height: spacing(10);
+    padding: 0 spacing(3);
+  }
+
+  .spacer {
+    margin: 0 auto;
+    width: 100vw;
+    max-width: spacing(180);
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    height: spacing(8);
+    padding: spacing(1) 0;
+
+    @media (min-width: #{spacing(75)}) {
+      height: spacing(10);
+      padding: spacing(2) 0;
+    }
+    
+    .homeAndTheme {
+      display: flex;
+    }
+  
+    .imageButton {
+      min-width: 0;
+      padding: 0;
+      
+      img {
+        height: spacing(6);
+        width: spacing(6);
+      }
+      
+      @media (min-width: #{spacing(75)}) {
+        img {
+          height: spacing(8);
+          width: spacing(8);
+        }
+      }
+    }
+
+    .themeToggle {
+      margin-left: spacing(3)
+    }
+  
+    nav {
+      display: flex;
+      
+      .tab {
+        display: none;
+        font-weight: 900;
+      }
+
+      .button {
+        margin: 0 spacing(3) 0 0;
+        border-radius: spacing(2);
+        font-weight: 900;
+      }
+
+      @media (min-width: #{spacing(102)}) {
+        .button {
+          margin: 0 0 0 spacing(3);
+        }
+
+        .tab {
+          width: spacing(12);
+          min-width: spacing(12);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .menu {
+          margin-left: spacing(2);
+          width: spacing(10);
+          display: none;
+        }
+      }    
+    }
+  }  
+}
+
+.drawerPaper {
+  width: spacing(10);
+  transition: width .2 ease-in;
+}
+
+.drawerPaperClose {
+  overflow-x: hidden;
+  width: 0;
+  border: 0;
+  transition: width .2 ease-out;
+}
+
+.list {
+  overflow: hidden;
+  margin-top: spacing(10);
+  color: $lightText;
+}
+
+.link {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: spacing(1) spacing(3);
+}
+
+.secondary {
+  color: $secondary;
+}
+
+.primary {
+  color: $lightText;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: spacing(1.5);
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.buttons {
+  margin-left: spacing(2);
+}

@@ -1,69 +1,50 @@
 import {h} from 'preact' /** @jsx h */
+import {useEffect} from 'preact/hooks'
+import {route} from 'preact-router'
+import {useVideos} from '../contexts/VideosProvider'
+import VideoPlayer from '../components/VideoPlayer'
 import InfoItem from '../components/InfoItem'
-import {Grid, TextField} from '@material-ui/core'
-import {useTheme, makeStyles} from '@material-ui/core/styles'
-
-const useStyles = makeStyles(theme => ({
-  textFieldSection: {
-    display: 'flex', 
-    flexGrow: 1, 
-    marginTop: theme.spacing(2)
-  },
-  textFieldName: {
-    flexGrow: 1,
-    marginRight: theme.spacing(1)
-  },
-  textFieldPhone: {
-    flexGrow: 1,
-    marginLeft: theme.spacing(1)
-  },
-  textFieldEmail: {
-    flexGrow: 1,
-    marginTop: theme.spacing(2)
-  }
-}))
+import {Grid} from '@material-ui/core'
+// import {homeItems, banner, bannerSpacer} from './index.scss'
+import {homeItems} from './index.scss'
 
 export default function Home() {
-  const classes = useStyles(useTheme())
+  const {videos, refreshVideos, sizes, videosLoaded} = useVideos()
+
+  useEffect(() => {
+    if (!videosLoaded) refreshVideos()
+  }, [refreshVideos, videosLoaded])
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={1} className={homeItems}>
+      {/* <Grid item xs={12} className={banner} />
+      <Grid item xs={12} className={bannerSpacer} /> */}
+      {videos?.[0] && 
+        <VideoPlayer video={videos[0]} sizes={sizes} autoplay />
+      }
       <Grid item xs={12}>
         <InfoItem
-          identifier="About Us"
-          title="We are here to help"
-          message="Oakland property laws are intense."
-          buttonAction={() => {}} />
+          identifier="Our Mission Statement"
+          title="Why We Take Action"
+          message="We are a collective of tenants and housing providers. The majority of Oakland housing providers are small, locally based members of the community. Tenant and housing provider laws trigger discord both between the housing provider and their tenants, and between tenants themselves."
+          buttonAction={() => {route('/about')}}
+          buttonText="Learn More" />
       </Grid>
-          
-      <Grid item xs={12}>
+      <Grid item xs={6}>
         <InfoItem
-          identifier="Stay informed by signing up for news and announcements"
-          title="Join Us!"
-          message="We will never share your information without your explicit consent. Ever. See our privacy policy for more details."
-          buttonAction={() => {}}
-          buttonText="Sign Me Up!">
-          <section className={classes.textFieldSection}>
-            <TextField
-              onChange={() => {}}
-              className={classes.textFieldName}
-              fullwidth
-              label="name (optional)"
-              variant="outlined" />
-            <TextField
-              onChange={() => {}}
-              className={classes.textFieldPhone}
-              fullwidth
-              label="phone (optional)"
-              variant="outlined" />
-          </section>
-          <TextField
-            onChange={() => {}}
-            className={classes.textFieldEmail}
-            fullwidth
-            label="email (required)"
-            variant="outlined" />
-        </InfoItem>
+          identifier="Our Mission Statement"
+          title="Why We Take Action"
+          message="We are a collective of tenants and housing providers. The majority of Oakland housing providers are small, locally based members of the community. Tenant and housing provider laws trigger discord both between the housing provider and their tenants, and between tenants themselves."
+          buttonAction={() => {route('/news')}}
+          buttonText="Learn More" />
+      </Grid>
+      <Grid item xs={6}>
+        <InfoItem
+          identifier="Our Mission Statement"
+          title="Why We Take Action"
+          message="We are a collective of tenants and housing providers. The majority of Oakland housing providers are small, locally based members of the community. Tenant and housing provider laws trigger discord both between the housing provider and their tenants, and between tenants themselves."
+          buttonAction={() => {route('/gethelp')}}
+          buttonText="Learn More" />
       </Grid>
     </Grid>
   )

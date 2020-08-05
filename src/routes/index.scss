@@ -1,0 +1,49 @@
+@import '../styles/functions', '../styles/variables';
+
+.textFieldSection {
+  display: flex;
+  flex-grow: 1 ;
+  margin-top: spacing(2);
+}
+
+.textFieldName {
+  flex-grow: 1;
+  margin-right: spacing(1);
+}
+
+.textFieldPhone {
+  flex-grow: 1;
+  margin-left: spacing(1);
+}
+
+.textFieldEmail {
+  flex-grow: 1;
+  margin-top: spacing(2);
+}
+
+.banner, .bannerSpacer {
+  height: 50vh;
+  width: calc(100vw - #{spacing(4)});
+  
+  @media (min-width: #{spacing(75)}) {
+    width: calc(100vw - #{spacing(6)});
+  }
+}
+
+.banner {
+  z-index: -1;
+  max-width: spacing(174);
+  position: fixed;
+  background: url(/assets/colorful-city.png) center/contain;
+  background-repeat: no-repeat;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.homeItems {
+  min-height: 100%;
+}
