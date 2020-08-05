@@ -21,7 +21,7 @@ export default function Home() {
     <Grid container spacing={1} className={homeItems}>
       {/* <Grid item xs={12} className={banner} />
       <Grid item xs={12} className={bannerSpacer} /> */}
-      {/* <VideoPlayer video={video} sizes={sizes} autoplay /> */}
+      <VideoPlayer video={video} sizes={sizes} autoplay />
       {/* <VideoPlayer video={video} sizes={sizes} /> */}
       <Grid item xs={12} md={12} lg={6}>
         <InfoItem
