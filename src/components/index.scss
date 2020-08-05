@@ -4,8 +4,9 @@
   z-index: 1;
   width: 100vw;
   flex-direction: row;
-  color: $primaryDarkText;
+  color: $lightText;
   padding: 0 spacing(2);
+  background-color: $background;
 
   @media (min-width: #{spacing(75)}) {
     height: spacing(10);
@@ -58,10 +59,13 @@
       
       .tab {
         display: none;
+        font-weight: 900;
       }
 
       .button {
         margin: 0 spacing(3) 0 0;
+        border-radius: spacing(2);
+        font-weight: 900;
       }
 
       @media (min-width: #{spacing(102)}) {
@@ -102,7 +106,7 @@
 .list {
   overflow: hidden;
   margin-top: spacing(10);
-  color: $primaryDarkText;
+  color: $lightText;
 }
 
 .link {
@@ -113,11 +117,11 @@
 }
 
 .secondary {
-  color: $secondaryDark;
+  color: $secondary;
 }
 
 .primary {
-  color: $primaryDarkText;
+  color: $lightText;
 }
 
 .heading {

@@ -9,7 +9,7 @@ export default function InfoItem({
   return (
     <MyPaper elevation={elevation}>
       <Title color="secondary">{identifier}</Title><br />
-      <Typography variant="h3">{title}</Typography><br />
+      <Typography color="primary" variant="h3">{title}</Typography><br />
       <Typography color="textPrimary" variant="body1">{message}</Typography>
       {children}
       {buttonText && buttonAction && (

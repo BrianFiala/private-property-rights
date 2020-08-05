@@ -3,27 +3,27 @@ import { createMuiTheme } from '@material-ui/core/styles'
 const paletteLight = {
   type: 'light',
   primary: {
-    main: '#DDA15E',
-    contrastText: '#283618'
+    main: 'rgb(48, 128, 184)',
+    contrastText: '#111'
   },
   secondary: {
-    main: '#606C38',
-    contrastText: '#283618'
+    main: 'rgb(69, 185, 195)',
+    contrastText: '#111'
   },
-  backgroundColor: '#FEFAE0'
+  backgroundColor: 'rgb(48, 128, 184)'
 }
 
 const paletteDark = {
   type: 'dark',
   primary: {
-    main: '#283618',
-    contrastText: '#FEFAE0'
+    main: 'rgb(48, 128, 184)',
+    contrastText: '#FFF'
   },
   secondary: {
-    main: '#BC6C25',
-    contrastText: '#283618'
+    main: 'rgb(69, 185, 195)',
+    contrastText: '#FFF'
   },
-  backgroundColor: '#283618'
+  backgroundColor: 'rgb(48, 128, 184)'
 }
 
 const props = {}

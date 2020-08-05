@@ -21,22 +21,22 @@
   margin-top: spacing(2);
 }
 
-// .banner, .bannerSpacer {
-//   height: 50vh;
-//   width: calc(100vw - #{spacing(4)});
+.banner, .bannerSpacer {
+  height: 50vh;
+  width: calc(100vw - #{spacing(4)});
   
-//   @media (min-width: #{spacing(75)}) {
-//     width: calc(100vw - #{spacing(6)});
-//   }
-// }
+  @media (min-width: #{spacing(75)}) {
+    width: calc(100vw - #{spacing(6)});
+  }
+}
 
-// .banner {
-//   z-index: -1;
-//   max-width: spacing(174);
-//   position: fixed;
-//   background: url(/assets/iit-logo.jpg) center/contain;
-//   background-repeat: no-repeat;
-// }
+.banner {
+  z-index: -1;
+  max-width: spacing(174);
+  position: fixed;
+  background: url(/assets/colorful-city.png) center/contain;
+  background-repeat: no-repeat;
+}
 
 .heading {
   display: flex;
@@ -45,12 +45,5 @@
 }
 
 .homeItems {
-  width: calc(100vw - #{spacing(4)});
   min-height: 100%;
-  
-  @media (min-width: #{spacing(75)}) {
-    max-width: spacing(180);
-    width: calc(100vw - #{spacing(6)});
-    margin: 0 auto;
-  }
 }

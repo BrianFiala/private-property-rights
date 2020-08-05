@@ -1,5 +1,6 @@
 import {h} from 'preact' /** @jsx h */
 import {useState, useRef} from 'preact/hooks'
+import {route} from 'preact-router'
 import {useHeaderState} from '../contexts/HeaderStateProvider'
 import {AppBar, Tabs, Tab, IconButton, Button, MenuItem} from '@material-ui/core'
 import {Menu, Brightness4Outlined} from '@material-ui/icons'
@@ -44,18 +45,19 @@ export default function MyAppBar({toggleTheme}) {
     setActionOpen(false)
   }
 
-  const handleTabMenuClick = () => {
+  const handleTabMenuClick = (path) => {
     setCityOpen(false)
     setNewsOpen(false)
     setActionOpen(false)
+    route(path)
   }
 
   return (
-    <AppBar elevation={0} color="primary" className={appBar}>
+    <AppBar elevation={10} color="primary" className={appBar}>
       <div className={spacer}>
         <aside className={homeAndTheme}>
           <Button href="/" className={imageButton}>
-            <img src="/assets/iit-logo.png" alt="go to home" className="appBarImage" />
+            <img src="/assets/iit-oakland-logo.png" alt="go to home" className="appBarImage" />
           </Button>
           <IconButton
             className={themeToggle}

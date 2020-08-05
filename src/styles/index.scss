@@ -1,5 +1,6 @@
 // export variables for theme things
 @import './functions', './variables';
+$pacman-yellow: rgb(255, 255, 100);
 
 html, body, #app {
   overflow-x: hidden;
@@ -18,14 +19,14 @@ html, body, #app {
 .loader-wrapper {
   z-index: 1299;
   height: 100%;
-  background-color: #303030;
+  background-color: $primary;
   transition: opacity .23s ease;
 }
 
 .loader {
   top: 33vh;
   background-color: transparent;
-  color: #90a4ae;
+  color: $pacman-yellow;
   display: flex;
   flex-direction: column;
   align-items: center
@@ -41,7 +42,7 @@ html, body, #app {
 .la-pacman {
   display: block;
   font-size: 0;
-  color: #607d8b;
+  color: $pacman-yellow;
   width: 64px;
   height: 64px
 }
@@ -77,6 +78,7 @@ html, body, #app {
 
 .la-pacman>div:nth-child(3), .la-pacman>div:nth-child(4), .la-pacman>div:nth-child(5), .la-pacman>div:nth-child(6) {
   position: absolute;
+  color: white;
   top: 50%;
   left: 200%;
   width: 16px;
@@ -310,5 +312,5 @@ html, body, #app {
 }
 
 .abcRioButton {
-  background-color: $darkBackground !important;
+  background-color: $background !important;
 }

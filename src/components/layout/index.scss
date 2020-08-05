@@ -1,17 +1,20 @@
 @import '../../styles/functions', '../../styles/variables';
 
 .contents {
-  padding: spacing(10) spacing(2) 0;
-  width: 100vw;
+  padding-top: spacing(10);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100vh;
-  overflow-y: scroll;
+  min-height: 100%;
   
   @media (min-width: #{spacing(75)}) {
-    padding: spacing(13) spacing(3) 0;
+    padding-top: spacing(13);
+    min-height: 100vh;
   }
+}
+
+.container {
+  max-width: spacing(186);
 }
 
 .footer {
@@ -20,7 +23,7 @@
   justify-content: space-between;
   display: flex;
   align-items: center;
-  color: $primaryDarkText;
+  color: $lightText;
   padding-bottom: spacing(.5);
   
   @media (min-width: 455px) {
@@ -34,20 +37,17 @@
   display: flex;
   padding: 0 spacing(1);
   margin: 0 spacing(1) 0 0;
-  @media (min-width: 343px) {
+  @media (min-width: 376px) {
     margin: 0 spacing(1) 0 spacing(3);
-  }
-  @media (min-width: 359px) {
-    margin: 0 spacing(1) 0 spacing(5);
   }
   @media (min-width: 455px) {
     margin: 0 spacing(1);
   }
-  color: $primaryDarkText;
+  color: $lightText;
 }
 
 .vertical {
   display: flex;
   align-items: center;
-  color: $primaryDarkText;
+  color: $lightText;
 }
