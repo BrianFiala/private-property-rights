@@ -2,23 +2,29 @@
 
 .textFieldSection {
   display: flex;
-  flex-grow: 1 ;
+  flex-grow: 1;
   margin-top: spacing(2);
 }
 
-.textFieldName {
+.textFieldLeft {
   flex-grow: 1;
   margin-right: spacing(1);
 }
 
-.textFieldPhone {
+.textFieldRight {
   flex-grow: 1;
   margin-left: spacing(1);
 }
 
-.textFieldEmail {
+.textFieldWide {
   flex-grow: 1;
   margin-top: spacing(2);
+}
+
+.subscriberCheckboxes {
+  margin-top: spacing(4);
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .banner, .bannerSpacer {

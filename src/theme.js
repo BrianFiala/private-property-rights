@@ -10,7 +10,10 @@ const paletteLight = {
     main: 'rgb(69, 185, 195)',
     contrastText: '#111'
   },
-  backgroundColor: 'rgb(48, 128, 184)'
+  backgroundColor: 'rgb(48, 128, 184)',
+  background: {
+    paper: '#EEE'
+  }
 }
 
 const paletteDark = {
@@ -23,7 +26,10 @@ const paletteDark = {
     main: 'rgb(69, 185, 195)',
     contrastText: '#FFF'
   },
-  backgroundColor: 'rgb(48, 128, 184)'
+  backgroundColor: 'rgb(48, 128, 184)',
+  background: {
+    paper: '#333'
+  }
 }
 
 const props = {}

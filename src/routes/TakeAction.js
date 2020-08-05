@@ -1,7 +1,7 @@
 import {h} from 'preact' /** @jsx h */
 import InfoItem from '../components/InfoItem'
 import {Grid, TextField} from '@material-ui/core'
-import {textFieldSection, textFieldName, textFieldPhone, textFieldEmail} from './index.scss'
+import {textFieldSection, textFieldLeft, textFieldRight, textFieldWide} from './index.scss'
 
 export default function TakeAction() {
   return (
@@ -24,20 +24,20 @@ export default function TakeAction() {
           <section className={textFieldSection}>
             <TextField
               onChange={() => {}}
-              className={textFieldName}
+              className={textFieldLeft}
               fullwidth
               label="name (optional)"
               variant="outlined" />
             <TextField
               onChange={() => {}}
-              className={textFieldPhone}
+              className={textFieldRight}
               fullwidth
               label="phone (optional)"
               variant="outlined" />
           </section>
           <TextField
             onChange={() => {}}
-            className={textFieldEmail}
+            className={textFieldWide}
             fullwidth
             label="email (optional)"
             variant="outlined" />
@@ -47,7 +47,7 @@ export default function TakeAction() {
               multiline
               rows="15"
               onChange={() => {}}
-              className={textFieldName}
+              className={textFieldLeft}
               fullwidth
               label="Share your thoughts"
               variant="outlined" />

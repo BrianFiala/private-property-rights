@@ -9,15 +9,15 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1, 
     marginTop: theme.spacing(2)
   },
-  textFieldName: {
+  textFieldLeft: {
     flexGrow: 1,
     marginRight: theme.spacing(1)
   },
-  textFieldPhone: {
+  textFieldRight: {
     flexGrow: 1,
     marginLeft: theme.spacing(1)
   },
-  textFieldEmail: {
+  textFieldWide: {
     flexGrow: 1,
     marginTop: theme.spacing(2)
   }
@@ -45,20 +45,20 @@ export default function Feedback() {
           <section className={classes.textFieldSection}>
             <TextField
               onChange={() => {}}
-              className={classes.textFieldName}
+              className={classes.textFieldLeft}
               fullwidth
               label="name (optional)"
               variant="outlined" />
             <TextField
               onChange={() => {}}
-              className={classes.textFieldPhone}
+              className={classes.textFieldRight}
               fullwidth
               label="phone (optional)"
               variant="outlined" />
           </section>
           <TextField
             onChange={() => {}}
-            className={classes.textFieldEmail}
+            className={classes.textFieldWide}
             fullwidth
             label="email (optional)"
             variant="outlined" />
@@ -68,7 +68,7 @@ export default function Feedback() {
               multiline
               rows="15"
               onChange={() => {}}
-              className={classes.textFieldName}
+              className={classes.textFieldLeft}
               fullwidth
               label="Share your thoughts"
               variant="outlined" />
