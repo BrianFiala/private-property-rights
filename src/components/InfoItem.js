@@ -13,8 +13,10 @@ export default function InfoItem({
       <Typography color="textPrimary" variant="body1">{message}</Typography>
       {children}
       {buttonText && buttonAction && (
-        <Button style={{marginTop: '16px'}}
-          color="secondary" size="large"
+        <Button
+          style={{marginTop: '16px'}}
+          color="secondary"
+          size="large"
           onClick={buttonAction}>
           {buttonText}
         </Button>
