@@ -3,18 +3,20 @@ import {Container} from '@material-ui/core'
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
-import {contents, container, backgroundColorizer} from './index.scss'
+import {frame, frameHighContrast, contents, container, backgroundColorizer, backgroundColorizerHighContrast} from './index.scss'
 
-export default function Layout({toggleTheme, url}) {
+export default function Layout({toggleTheme, toggleHighContrast, highContrast, url}) {
   return (<>
-    <Header toggleTheme={toggleTheme} />
-    <div className={backgroundColorizer}>
-      <Container maxWidth={false} className={container}>
-        <article className={contents}>
-          <Main url={url} />
-          <Footer />
-        </article>
-      </Container>
+    <Header toggleTheme={toggleTheme} toggleHighContrast={toggleHighContrast} highContrast={highContrast} />
+    <div className={highContrast ? frameHighContrast : frame}>
+      <div className={highContrast ? backgroundColorizerHighContrast : backgroundColorizer}>
+        <Container maxWidth={false} className={container}>
+          <article className={contents}>
+            <Main url={url} />
+            <Footer />
+          </article>
+        </Container>
+      </div>
     </div>
   </>)
 }

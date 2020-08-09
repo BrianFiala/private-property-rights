@@ -1,15 +1,41 @@
 @import '../../styles/functions', '../../styles/variables';
 
-.contents {
-  padding-top: spacing(10);
+.frame, .frameHighContrast {
+  width: 100vw;
+  height: calc(100% - #{spacing(8)});
+  overflow-x: hidden;
+
+  &HighContrast {
+    height: calc(100% - #{spacing(12)});
+  }
+
+  @media (min-width: #{spacing(75)}) {
+    height: calc(100% - #{spacing(10)});
+
+    &HighContrast {
+      height: calc(100% - #{spacing(14)});
+    }
+  }
+}
+
+.contents, .contentsHighContrast {
+  padding-top: spacing(2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100%;
+  min-height: calc(100vh - #{spacing(8)});
   
+  &HighContrast {
+    min-height: calc(100vh - #{spacing(12)});
+  }
+
   @media (min-width: #{spacing(75)}) {
-    padding-top: spacing(13);
-    min-height: 100vh;
+    padding-top: spacing(3);
+    min-height: calc(100vh - #{spacing(10)});
+
+    &HighContrast {
+      min-height: calc(100vh - #{spacing(14)});
+    }
   }
 }
 
@@ -18,8 +44,13 @@
   max-width: spacing(186);
 }
 
-.backgroundColorizer {
+.backgroundColorizer, .backgroundColorizerHighContrast {
+  width: 100vw;
   background: linear-gradient($primary 50%, 90%, $secondary);
+
+  &HighContrast {
+    background: linear-gradient($highPrimary 50%, 90%, $highBackground);
+  }
 }
 
 .footer {

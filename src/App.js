@@ -5,7 +5,7 @@ import 'fontsource-roboto/latin-400-normal.css'
 import 'fontsource-roboto/latin-500-normal.css'
 import 'fontsource-roboto/latin-700-normal.css'
 import 'fontsource-roboto/latin-900-normal.css'
-import {darkTheme, lightTheme} from './theme'
+import {darkTheme, lightTheme, highContrastTheme} from './theme'
 import {ThemeProvider, StylesProvider} from '@material-ui/core/styles'
 import {CssBaseline} from '@material-ui/core'
 import {AdminStateProvider} from './contexts/AdminStateProvider'
@@ -15,14 +15,23 @@ import Loader from './effects/Loader'
 import Layout from './components/layout/Layout'
 
 export default function App({url}) {
-  const [darkMode, setDarkMode] = useState(true)
   const [theme, setTheme] = useState(darkTheme)
+  const [darkMode, setDarkMode] = useState(true)
+  const [highContrast, setHighContrast] = useState(false)
 
   function toggleTheme() {
     const willBeDarkMode = !darkMode
     const newTheme = willBeDarkMode ? darkTheme : lightTheme
+    setHighContrast(false)
     setDarkMode(willBeDarkMode)
     setTheme(newTheme)
+  }
+
+  function toggleHighContrast() {
+    const willBeHighContrast = !highContrast
+    setHighContrast(willBeHighContrast)
+    if (willBeHighContrast) setTheme(highContrastTheme)
+    else setTheme(darkMode ? darkTheme : lightTheme)
   }
 
   useEffect(() => {
@@ -52,7 +61,11 @@ export default function App({url}) {
           <VideosProvider>
             <AdminStateProvider>
               <HeaderStateProvider url={currentUrl}>
-                <Layout toggleTheme={toggleTheme} url={currentUrl}/>
+                <Layout
+                  toggleTheme={toggleTheme}
+                  toggleHighContrast={toggleHighContrast}
+                  highContrast={highContrast}
+                  url={currentUrl} />
               </HeaderStateProvider>
             </AdminStateProvider>
           </VideosProvider>

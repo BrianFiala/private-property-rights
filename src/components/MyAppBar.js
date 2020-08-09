@@ -2,12 +2,12 @@ import {h} from 'preact' /** @jsx h */
 import {useState, useRef} from 'preact/hooks'
 import {route} from 'preact-router'
 import {useHeaderState} from '../contexts/HeaderStateProvider'
-import {AppBar, Tabs, Tab, IconButton, Button, MenuItem} from '@material-ui/core'
+import {AppBar, Tabs, Tab, IconButton, Button, MenuItem, FormControlLabel, Checkbox} from '@material-ui/core'
 import {Menu, Brightness4Outlined} from '@material-ui/icons'
-import {appBar, spacer, tab, button, menu, imageButton, themeToggle, homeAndTheme} from './index.scss'
+import {appBar, appBarSpacer, appBarSpacerHighContrast, spacer, tab, button, menu, imageButton, themeToggle, tabHighContrast, homeAndTheme, appBarHighContrast, spacerHighContrast, imageButtonHighContrast} from './index.scss'
 import MyDropDown from './MyDropDown'
 
-export default function MyAppBar({toggleTheme}) {
+export default function MyAppBar({toggleTheme, toggleHighContrast, highContrast}) {
   const {toggleDrawer, tabValue, setTabValue} = useHeaderState()
   const [cityOpen, setCityOpen] = useState(false)
   const [newsOpen, setNewsOpen] = useState(false)
@@ -52,12 +52,13 @@ export default function MyAppBar({toggleTheme}) {
     route(path)
   }
 
-  return (
-    <AppBar elevation={10} color="primary" className={appBar}>
-      <div className={spacer}>
+  return (<>
+    <div className={highContrast ? appBarSpacerHighContrast : appBarSpacer} />
+    <AppBar elevation={10} color="primary" className={highContrast ? appBarHighContrast : appBar}>
+      <div className={highContrast ? spacerHighContrast : spacer}>
         <aside className={homeAndTheme}>
-          <Button href="/" className={imageButton}>
-            <img src="/assets/iit-logo-jeannie.png" alt="go to home" className="appBarImage" />
+          <Button href="/" className={highContrast ? imageButtonHighContrast : imageButton}>
+            <img src={highContrast ? '/assets/iit-high-contrast.jpg' : '/assets/iit-oakland-logo.png'} alt="go to home" className="appBarImage" />
           </Button>
           <IconButton
             className={themeToggle}
@@ -68,22 +69,31 @@ export default function MyAppBar({toggleTheme}) {
             onKeyDown={toggleTheme}>
             <Brightness4Outlined />
           </IconButton>
+          <FormControlLabel
+            control={
+              <Checkbox
+                style={highContrast ? {color: '#FFF', marginLeft: '24px'} : {marginLeft: '24px', color: 'inherit'}}
+                checked={highContrast}
+                onChange={toggleHighContrast}
+                name="toggleHighCOntrast" />
+            }
+            label="high contrast" />
         </aside>
         <nav>
           <Tabs value={tabValue} onChange={handleChange} aria-label="navigation">
-            <Tab className={tab} label="ABOUT US" href="/about" value="/about" />
-            <Tab className={tab} label="GET HELP" href="/gethelp" value="/gethelp" />
-            <Tab className={tab} label="NEWS" href="/news" value="/news"
+            <Tab className={highContrast ? tabHighContrast : tab} label="ABOUT US" href="/about" value="/about" />
+            <Tab className={highContrast ? tabHighContrast : tab} label="GET HELP" href="/gethelp" value="/gethelp" />
+            <Tab className={highContrast ? tabHighContrast : tab} label="NEWS" href="/news" value="/news"
               ref={newsTab}
               onMouseEnter={openNewsMenu}
               aria-controls="news-menu-options"
               aria-haspopup="true" />
-            <Tab className={tab} label="CITY" href="/city" value="/city"
+            <Tab className={highContrast ? tabHighContrast : tab} label="CITY" href="/city" value="/city"
               ref={cityTab}
               onMouseEnter={openCityMenu}
               aria-controls="city-menu-options"
               aria-haspopup="true" />
-            <Tab className={tab} label="CALENDAR" href="/calendar" value="/calendar" />
+            <Tab className={highContrast ? tabHighContrast : tab} label="CALENDAR" href="/calendar" value="/calendar" />
           </Tabs>
           <Button className={button}
             href="/takeaction"
@@ -161,5 +171,5 @@ export default function MyAppBar({toggleTheme}) {
         </MenuItem>
       </MyDropDown>
     </AppBar>
-  )
+  </>)
 }
