@@ -46,10 +46,10 @@
 
 .backgroundColorizer, .backgroundColorizerHighContrast {
   width: 100vw;
-  background: linear-gradient($primary 50%, 90%, $secondary);
+  background: linear-gradient($primary 50%, 80%, $secondary);
 
   &HighContrast {
-    background: linear-gradient($highPrimary 50%, 90%, $highBackground);
+    background: linear-gradient($highPrimary 50%, 80%, $highBackground);
   }
 }
 

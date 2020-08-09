@@ -100,19 +100,21 @@ export default function MyAppBar() {
             <Tab className={highContrast ? tabHighContrast : tab}
               label="TOPICS"
               href="/topics"
-              value="/Topics"
-              ref={topicsTab}
-              onMouseEnter={openTopicsMenu}
-              aria-controls="topics-menu-options"
-              aria-haspopup="true" />
+              value="/topics"
+              // ref={topicsTab}
+              // onMouseEnter={openTopicsMenu}
+              // aria-controls="topics-menu-options"
+              // aria-haspopup="true"
+            />
             <Tab className={highContrast ? tabHighContrast : tab}
               label="ELECTION"
               href="/election"
               value="/election"
-              ref={electionTab}
-              onMouseEnter={openElectionMenu}
-              aria-controls="election-menu-options"
-              aria-haspopup="true" />
+              // ref={electionTab}
+              // onMouseEnter={openElectionMenu}
+              // aria-controls="election-menu-options"
+              // aria-haspopup="true"
+            />
             <Tab className={highContrast ? tabHighContrast : tab}
               label="RESOURCES"
               href="/resources"
@@ -123,10 +125,11 @@ export default function MyAppBar() {
             href="/takeaction"
             variant="outlined" color="inherit"
             size="medium"
-            ref={takeActionButton}
-            onMouseEnter={openActionMenu}
-            aria-controls="take-action-options"
-            aria-haspopup="true">
+            // ref={takeActionButton}
+            // onMouseEnter={openActionMenu}
+            // aria-controls="take-action-options"
+            // aria-haspopup="true"
+          >
             Take Action
           </Button>
           <IconButton
@@ -140,7 +143,7 @@ export default function MyAppBar() {
           </IconButton>
         </nav>
       </div>
-      <MyDropDown
+      {/* <MyDropDown
         id="election-tab-options"
         anchorEl={electionTab}
         setOpen={openElectionMenu}
@@ -204,7 +207,7 @@ export default function MyAppBar() {
           onClick={handleTabMenuClick}>
           UPCOMING MEETINGS
         </MenuItem>
-      </MyDropDown>
+      </MyDropDown> */}
     </AppBar>
   </>)
 }

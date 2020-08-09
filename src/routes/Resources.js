@@ -5,7 +5,7 @@ import InfoItem from '../components/InfoItem'
 export default function Resources() {
   return (
     <Grid container
-      spacing={3}
+      spacing={2}
       justify="center">
       <Grid item xs={12} md={6}>
         <InfoItem

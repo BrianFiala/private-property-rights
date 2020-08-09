@@ -90,7 +90,7 @@ const authorization = (req, res, next) => {
 }
 
 const logging = (req, res, next) => {
-  console.log(`~> Received ${req.method} on ${req.url}`)
+  console.log(`~> Received ${req.method} for ${req.url}`)
   return next()
 }
 

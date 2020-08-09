@@ -13,7 +13,7 @@ export default function About() {
   }, [refreshVideos, videosLoaded])
 
   return (
-    <Grid container spacing={1} justify="center">
+    <Grid container spacing={2} justify="center">
       <Grid item xs={12} md={12} lg={6}>
         <InfoItem
           identifier="About Us"
