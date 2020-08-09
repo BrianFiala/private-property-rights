@@ -1,16 +1,32 @@
 import {h} from 'preact' /** @jsx h */
+import {useState} from 'preact/hooks'
 import {
   Grid, TextField, FormControl, FormLabel, FormGroup,
-  FormControlLabel, Checkbox, Typography, Button
+  FormControlLabel, Checkbox, Typography, Button,
+  InputLabel, Select, MenuItem
 } from '@material-ui/core'
 import MyPaper from '../components/MyPaper'
 import Title from '../components/Title'
 import {
   textFieldSection, textFieldLeft, textFieldRight,
-  textFieldWide, subscriberCheckboxes
+  textFieldWide, subscriberCheckboxes, votingDistrictSelect
 } from './index.scss'
 
 export default function Home() {
+  const [resident, setResident] = useState(false)
+  const [votingDistrict, setVotingDistrict] = useState('')
+
+  const changeResidency = (event) => {
+    debugger
+    const isResident = event.target.value === 'on'
+    if (!isResident) setVotingDistrict('')
+    setResident(isResident)
+  }
+
+  const changeDistrict = (event) => {
+    setVotingDistrict(event.target.value)
+  }
+
   return (
     <Grid item xs={12}>
       <MyPaper elevation={10}>
@@ -79,6 +95,46 @@ export default function Home() {
                   control={<Checkbox name="volunteering" />}
                   label="volunteering" />
               </FormGroup>
+            </FormControl>
+          </section>
+          <section className={subscriberCheckboxes}>
+            <FormControl component="fieldset">
+              <FormLabel color="secondary" component="legend">Residency and Employment</FormLabel><br />
+              <FormGroup>
+                <FormControlLabel
+                  control={<Checkbox name="resident" onChange={changeResidency} />}
+                  label="Do you live in Oakland?" />
+                <FormControlLabel
+                  control={<Checkbox name="worker" />}
+                  label="Do you work in Oakland?" />
+                <FormControlLabel
+                  control={<Checkbox name="tenantWorkers" />}
+                  label="Do you have tenants who work in Oakland?" />
+              </FormGroup>
+            </FormControl>
+            <FormControl
+              variant="outlined"
+              className={votingDistrictSelect}
+              disabled={!resident}>
+              <InputLabel id="voting-district-label">Voting District</InputLabel>
+              <Select
+                labelId="voting-district-label"
+                id="voting-district"
+                value={votingDistrict}
+                onChange={changeDistrict}
+                label="Voting District"
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={1}>District 1</MenuItem>
+                <MenuItem value={2}>District 2</MenuItem>
+                <MenuItem value={3}>District 3</MenuItem>
+                <MenuItem value={4}>District 4</MenuItem>
+                <MenuItem value={5}>District 5</MenuItem>
+                <MenuItem value={6}>District 6</MenuItem>
+                <MenuItem value={7}>District 7</MenuItem>
+              </Select>
             </FormControl>
           </section>
           <section className={textFieldSection}>
