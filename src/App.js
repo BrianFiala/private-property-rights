@@ -46,8 +46,7 @@ export default function App({url}) {
 
   // maybe this is unneeded
   const currentUrl = url
-    ? url
-    : (typeof window !== 'undefined'
+    ? url : (typeof window !== 'undefined'
       ? window.location.pathname
       : '/')
 
@@ -60,12 +59,11 @@ export default function App({url}) {
           <Loader />
           <VideosProvider>
             <AdminStateProvider>
-              <HeaderStateProvider url={currentUrl}>
-                <Layout
-                  toggleTheme={toggleTheme}
-                  toggleHighContrast={toggleHighContrast}
-                  highContrast={highContrast}
-                  url={currentUrl} />
+              <HeaderStateProvider
+                toggleTheme={toggleTheme}
+                toggleHighContrast={toggleHighContrast}
+                highContrast={highContrast}>
+                <Layout highContrast={highContrast} url={currentUrl} />
               </HeaderStateProvider>
             </AdminStateProvider>
           </VideosProvider>

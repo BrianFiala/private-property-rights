@@ -3,8 +3,7 @@
     "key": 1,
     "title": "Cool Strobing Sculpture, or Something",
     "host": "vimeo",
-    "id": "116582567",
-    "featured": true
+    "id": "116582567"
   },
   {
     "key": 2,
@@ -14,15 +13,14 @@
   },
   {
     "key": 3,
-    "title": "Cat Gently Pets a Bird",
+    "title": "Hello From the Inside",
     "host": "youtube",
-    "id": "gAaHNYxkS_E",
-    "featured": true
+    "id": "M5azNpTwVk8"
   },
   {
     "key": 4,
-    "title": "Cat Gently Pets a Bird",
+    "title": "Staying Fit in Unhealthy Times",
     "host": "youtube",
-    "id": "gAaHNYxkS_E"
+    "id": "n-XyXSjAsPs"
   }
 ]

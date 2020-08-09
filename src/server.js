@@ -13,7 +13,7 @@ const template = readFileSync('build/index.html', 'utf8')
 // const adminTemplate = readFileSync('build/admin/index.html', 'utf8')
 // const calendarTemplate = readFileSync('build/calendar/index.html', 'utf8')
 // const issuesTemplate = readFileSync('build/issues/index.html', 'utf8')
-// const newsTemplate = readFileSync('build/news/index.html', 'utf8')
+// const topicsTemplate = readFileSync('build/topics/index.html', 'utf8')
 // const takeActionTemplate = readFileSync('build/takeaction/index.html', 'utf8')
 // const privacyTemplate = readFileSync('build/privacypolicy/index.html', 'utf8')
 // const termsOfServiceTemplate = readFileSync('build/termsofservice/index.html', 'utf8')
@@ -31,8 +31,8 @@ const renderFullPage = (req) => {
   // case '/issues':
   //   properTemplate = issuesTemplate
   //   break
-  // case '/news':
-  //   properTemplate = newsTemplate
+  // case '/topics':
+  //   properTemplate = topicsTemplate
   //   break
   // case '/privacypolicy':
   //   properTemplate = privacyTemplate

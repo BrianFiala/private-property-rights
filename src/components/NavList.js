@@ -5,8 +5,8 @@ import {EmojiPeople, Event, NotificationImportant, Announcement, Home} from '@ma
 import {List, Link, ListItem, ListItemText, ListItemIcon} from '@material-ui/core'
 import {list, link, secondary, primary, highContrastText} from './index.scss'
 
-export default function NavList({ highContrast }) {
-  const {toggleDrawer, route} = useHeaderState()
+export default function NavList() {
+  const {toggleDrawer, route, highContrast} = useHeaderState()
 
   function onClick(event) {
     toggleDrawer(event, false)
@@ -30,36 +30,28 @@ export default function NavList({ highContrast }) {
           <ListItemText className={clsx(highContrast ? highContrastText : (route === '/about' ? secondary : primary))} primary="ABOUT" />
         </Link>
       </ListItem>
-      <ListItem component="li" button key="gethelp" onClick={onClick}>
-        <Link className={link} href="/gethelp">
+      <ListItem component="li" button key="topics" onClick={onClick}>
+        <Link className={link} href="/topics">
           <ListItemIcon>
-            <EmojiPeople aria-hidden="true" className={clsx(highContrast ? highContrastText : (route === '/gethelp' ? secondary : primary))} />
+            <Announcement aria-hidden="true" className={clsx(highContrast ? highContrastText : (route === '/topics' ? secondary : primary))} />
           </ListItemIcon>
-          <ListItemText className={clsx(highContrast ? highContrastText : (route === '/gethelp' ? secondary : primary))} primary="GET HELP" />
+          <ListItemText className={clsx(highContrast ? highContrastText : (route === '/topics' ? secondary : primary))} primary="TOPICS" />
         </Link>
       </ListItem>
-      <ListItem component="li" button key="news" onClick={onClick}>
-        <Link className={link} href="/news">
+      <ListItem component="li" button key="election" onClick={onClick}>
+        <Link className={link} href="/election">
           <ListItemIcon>
-            <Announcement aria-hidden="true" className={clsx(highContrast ? highContrastText : (route === '/news' ? secondary : primary))} />
+            <NotificationImportant aria-hidden="true" className={clsx(highContrast ? highContrastText : (route === '/election' ? secondary : primary))} />
           </ListItemIcon>
-          <ListItemText className={clsx(highContrast ? highContrastText : (route === '/news' ? secondary : primary))} primary="NEWS" />
+          <ListItemText className={clsx(highContrast ? highContrastText : (route === '/election' ? secondary : primary))} primary="ELECTION" />
         </Link>
       </ListItem>
-      <ListItem component="li" button key="city" onClick={onClick}>
-        <Link className={link} href="/city">
+      <ListItem component="li" button key="resources" onClick={onClick}>
+        <Link className={link} href="/resources">
           <ListItemIcon>
-            <NotificationImportant aria-hidden="true" className={clsx(highContrast ? highContrastText : (route === '/city' ? secondary : primary))} />
+            <EmojiPeople aria-hidden="true" className={clsx(highContrast ? highContrastText : (route === '/resources' ? secondary : primary))} />
           </ListItemIcon>
-          <ListItemText className={clsx(highContrast ? highContrastText : (route === '/city' ? secondary : primary))} primary="CITY" />
-        </Link>
-      </ListItem>
-      <ListItem component="li" button key="calendar" onClick={onClick}>
-        <Link className={link} href="/calendar">
-          <ListItemIcon>
-            <Event aria-hidden="true" className={clsx(highContrast ? highContrastText : (route === '/calendar' ? secondary : primary))} />
-          </ListItemIcon>
-          <ListItemText className={clsx(highContrast ? highContrastText : (route === '/calendar' ? secondary : primary))} primary="CALENDAR" />
+          <ListItemText className={clsx(highContrast ? highContrastText : (route === '/resources' ? secondary : primary))} primary="RESOURCES" />
         </Link>
       </ListItem>
     </List>
