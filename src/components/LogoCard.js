@@ -11,7 +11,8 @@ export default function Home() {
     <Grid item xs={12} md={6}>
       <MyPaper>
         <aside className={highContrast ? logoBackgroundHighContrast : logoBackground}>
-          <img src="/assets/iit-oakland-logo.png" style={{width: '100%', maxWidth: '450px', height: 'auto'}} />
+          <div />
+          {/* <img src="/assets/iit-oakland-logo.png" style={{width: '100%', maxWidth: '450px', height: 'auto'}} /> */}
         </aside>
       </MyPaper>
     </Grid>

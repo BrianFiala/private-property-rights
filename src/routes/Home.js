@@ -26,7 +26,7 @@ export default function Home() {
         <InfoItem
           identifier="Our Mission Statement"
           title="Why We Take Action"
-          message="We are a collective of tenants and housing providers. The majority of Oakland housing providers are small, locally based members of the community. Tenant and housing provider laws trigger discord both between the housing provider and their tenants, and between tenants themselves."
+          message="We are Oakland neighbors working together for sustainable housing and local policies that benefits our entire community.  We seek sound legislation that is transparent and fair to solve our housing and economic challenges. We believe in responsible policies that maintain neighborhood stability, protect long term residents and vulnerable seniors from displacement, strength local small business, and preserve affordable low income housing for renters and support those who provide it."
           buttonAction={() => {route('/about')}}
           buttonText="Learn More" />
       </Grid>

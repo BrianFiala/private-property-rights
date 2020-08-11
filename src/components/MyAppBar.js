@@ -64,7 +64,7 @@ export default function MyAppBar() {
       <div className={highContrast ? spacerHighContrast : spacer}>
         <aside className={homeAndTheme}>
           <Button href="/" className={highContrast ? imageButtonHighContrast : imageButton}>
-            <img alt="go to home"
+            <img alt="home"
               className="appBarImage"
               src={highContrast
                 ? '/assets/iit-high-contrast.jpg'
