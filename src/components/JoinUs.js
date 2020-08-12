@@ -3,15 +3,27 @@ import {useState} from 'preact/hooks'
 import {
   Grid, TextField, FormControl, FormLabel, FormGroup,
   FormControlLabel, Checkbox, Typography, Button,
-  InputLabel, Select, MenuItem
+  InputLabel, Select, MenuItem,
+  Dialog, DialogTitle, DialogContent, DialogContentText
 } from '@material-ui/core'
 import MyPaper from '../components/MyPaper'
+import LogoCard from '../components/LogoCard'
 import Title from '../components/Title'
 import { textFieldWide, votingDistrictSelect } from './index.scss'
 
 export default function Home() {
   const [resident, setResident] = useState(false)
   const [votingDistrict, setVotingDistrict] = useState('')
+  const [thankYouOpen, setThankYouOpen] = useState(false)
+  const [oopsOpen, setOopsOpen] = useState(false)
+
+  const handleThankYouClose = () => {
+    setThankYouOpen(false)
+  }
+
+  const handleOopsClose = () => {
+    setOopsOpen(false)
+  }
 
   const changeResidency = (event) => {
     const isResident = event.target.checked
@@ -30,8 +42,22 @@ export default function Home() {
       method: 'POST',
       body: formData
     })
-    if (res.ok) console.log('groovy')
-    else console.log('bogus')
+
+    if (res.ok) {
+      console.log('groovy')
+      setThankYouOpen(true)
+      event.target.reset()
+    }
+    else {
+      setOopsOpen(true)
+      console.log('bogus')
+    }
+
+    setTimeout(() => {
+      console.log('thank you closing')
+      handleThankYouClose()
+      handleOopsClose()
+    }, 3000)
   }
 
   return (
@@ -41,7 +67,6 @@ export default function Home() {
         <Typography color="primary" variant="h3">Join Us!</Typography><br />
         <Typography color="textPrimary" variant="body1">We will never share your information without your explicit consent. Ever. Your information will be stored with strict confidentiality. All we require is your email, but anything else you are willing to share will really help.</Typography>
         <form id="join-us-form" onSubmit={onSubmit}>
-        {/* <form id="join-us-form" action="/subscribe" method="post"> */}
           <Grid container spacing={2} style={{marginTop: '16px'}}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -95,7 +120,6 @@ export default function Home() {
                 </FormGroup>
               </FormControl>
             </Grid>
-            {/* TODO: prop justify must be used on container */}
             <Grid item xs={12} sm={6} justify="center" style={{display: 'flex', marginTop: '16px'}}>
               <FormControl component="fieldset" style={{width: '230px'}}>
                 <FormLabel color="secondary" component="legend">What are you interested in?</FormLabel><br />
@@ -175,6 +199,12 @@ export default function Home() {
           </Grid>
         </form>
       </MyPaper>
+      <Dialog open={thankYouOpen} onClose={handleThankYouClose} maxWidth="xs" fullWidth>
+        <LogoCard title="Thank You!" message="We Are In It Together!" />
+      </Dialog>
+      <Dialog open={oopsOpen} onClose={handleOopsClose} maxWidth="xs" fullWidth>
+        <LogoCard title="Oops. We were unable to process your info." message="Please check your details and try again." />
+      </Dialog>
     </Grid>
   )
 }

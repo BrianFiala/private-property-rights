@@ -21,17 +21,19 @@ export default function Home() {
     <Grid container spacing={1} className={homeItems}>
       {/* <Grid item xs={12} className={banner} />
       <Grid item xs={12} className={bannerSpacer} /> */}
-      <LogoCard />
+      <Grid item xs={12} md={6}>
+        <LogoCard />
+      </Grid>
       <Grid item xs={12} md={6} lg={6}>
         <InfoItem
           identifier="Our Mission Statement"
           title="Why We Take Action"
-          message="We are Oakland neighbors working together for sustainable housing and local policies that benefits our entire community.  We seek sound legislation that is transparent and fair to solve our housing and economic challenges. We believe in responsible policies that maintain neighborhood stability, protect long term residents and vulnerable seniors from displacement, strength local small business, and preserve affordable low income housing for renters and support those who provide it."
+          message="We are Oakland neighbors working together for sustainable housing and local policies that benefit our entire community.  We seek sound legislation that is transparent and fair to solve our housing and economic challenges. We believe in responsible policies that maintain neighborhood stability, protect long term residents and vulnerable seniors from displacement, strengthen local small businesses, preserve affordable low income housing for renters, and support those who provide it."
           buttonAction={() => {route('/about')}}
           buttonText="Learn More" />
       </Grid>
       {/* <VideoPlayer video={video} sizes={sizes} autoplay /> */}
-      <VideoPlayer video={video} sizes={sizes} />
+      {/* <VideoPlayer video={video} sizes={sizes} /> */}
       <Grid item xs={12} md={6} lg={6}>
         <InfoItem
           title="Who, What, and Why"
