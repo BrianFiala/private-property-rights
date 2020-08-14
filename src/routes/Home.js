@@ -33,7 +33,7 @@ export default function Home() {
           buttonText="Learn More" />
       </Grid>
       {/* <VideoPlayer video={video} sizes={sizes} autoplay /> */}
-      {/* <VideoPlayer video={video} sizes={sizes} /> */}
+      <VideoPlayer video={video} sizes={sizes} />
       <Grid item xs={12} md={6} lg={6}>
         <InfoItem
           title="Who, What, and Why"

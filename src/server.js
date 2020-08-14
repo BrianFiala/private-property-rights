@@ -1,11 +1,13 @@
+const path = require('path')
 const polka = require('polka')
-const {readFileSync} = require('fs')
+const {readFileSync, writeFileSync} = require('fs')
 const compression = require('compression')()
 const bodyParser = require('body-parser')
 const formParser = require('multer')()
 const {OAuth2Client} = require('google-auth-library')
 const bundle = require('../build/ssr-build/ssr-bundle')
 const users = require('../secure/users.json')
+const admins = require('../secure/admins.json')
 const keys = require('../secure/keys.json')
 const {PORT = 42230} = process.env
 const RGXBODY = /<div id="app"[^>]*>.*?(?=<script)/i
@@ -82,11 +84,11 @@ const authorization = (req, res, next) => {
   console.log(res.statusCode)
   if (req.url !== '/auth') return next()
   if (res.statusCode !== 200 || !res.locals || !res.locals.googleId) return next()
-  if (!users[res.locals.googleId]) {
+  if (!admins[res.locals.googleId]) {
     res.statusCode = 403
     return next()
   }
-  res.locals.userProfile = users[res.locals.googleId]
+  res.locals.userProfile = admins[res.locals.googleId]
   return next()
 }
 
@@ -114,8 +116,23 @@ polka()
     res.end(renderFullPage(req))
   })
   .post('/subscribe', (req, res) => {
-    console.log('req.body', req.body)
-    res.statusCode = 204
+    console.table(req.body)
+    const email = req.body?.email
+    if (typeof email === 'string' && email.length) {
+      console.log('email', email)
+      users[email] = req.body
+      console.log(JSON.stringify(users))
+      writeFileSync(path.join(__dirname, '../secure/users.json'), JSON.stringify(users, null, 2), (err) => {
+        if (err) {
+          res.statusCode = 504
+          console.error('ERROR: failed to write user to filesystem. req.body:', req.body)
+        } else {
+          res.statusCode = 204
+        }
+      })
+    } else {
+      res.statusCode = 400
+    }
     res.end()
   })
   .listen(PORT, err => {

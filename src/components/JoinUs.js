@@ -3,8 +3,7 @@ import {useState} from 'preact/hooks'
 import {
   Grid, TextField, FormControl, FormLabel, FormGroup,
   FormControlLabel, Checkbox, Typography, Button,
-  InputLabel, Select, MenuItem,
-  Dialog, DialogTitle, DialogContent, DialogContentText
+  InputLabel, Select, MenuItem, Dialog, FormHelperText,
 } from '@material-ui/core'
 import MyPaper from '../components/MyPaper'
 import LogoCard from '../components/LogoCard'
@@ -16,9 +15,18 @@ export default function Home() {
   const [votingDistrict, setVotingDistrict] = useState('')
   const [thankYouOpen, setThankYouOpen] = useState(false)
   const [oopsOpen, setOopsOpen] = useState(false)
+  const [mapOpen, setMapOpen] = useState(false)
 
   const handleThankYouClose = () => {
     setThankYouOpen(false)
+  }
+
+  const openMap = () => {
+    setMapOpen(true)
+  }
+
+  const handleMapClose = () => {
+    setMapOpen(false)
   }
 
   const handleOopsClose = () => {
@@ -57,7 +65,7 @@ export default function Home() {
       console.log('thank you closing')
       handleThankYouClose()
       handleOopsClose()
-    }, 3000)
+    }, 2300)
   }
 
   return (
@@ -89,15 +97,18 @@ export default function Home() {
             <Grid item xs={12} sm={6}>
               <TextField
                 name="email"
+                type="email"
                 onChange={() => {}}
                 style={{display: 'flex', marginTop: '16px'}}
                 fullwidth
+                required
                 label="email (required)"
                 variant="outlined" />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 name="phone"
+                type="tel"
                 onChange={() => {}}
                 style={{display: 'flex', marginTop: '16px'}}
                 fullwidth
@@ -175,6 +186,22 @@ export default function Home() {
                   <MenuItem value={6}>District 6</MenuItem>
                   <MenuItem value={7}>District 7</MenuItem>
                 </Select>
+                <FormHelperText>
+                  <Button
+                    onClick={openMap}
+                    // style={{marginTop: '16px', width: '100%'}}
+                    color="secondary"
+                    size="large"
+                    type="button">
+                    Find your district here
+                  </Button>
+                  {/* <Link
+                    target="_blank"
+                    href="http://gisapps1.mapoakland.com/councildistricts/"
+                    variant="h6">
+                    
+                  </Link> */}
+                </FormHelperText>
               </FormControl>
             </Grid>
             <Grid item xs={12}>
@@ -183,6 +210,7 @@ export default function Home() {
                 autocomplete
                 multiline
                 rows="10"
+                inputProps={{maxLength: 3000}}
                 onChange={() => {}}
                 className={textFieldWide}
                 fullwidth
@@ -204,6 +232,22 @@ export default function Home() {
       </Dialog>
       <Dialog open={oopsOpen} onClose={handleOopsClose} maxWidth="xs" fullWidth>
         <LogoCard title="Oops. We were unable to process your info." message="Please check your details and try again." />
+      </Dialog>
+      <Dialog open={mapOpen} onClose={handleMapClose} maxWidth="md" fullWidth>
+        <MyPaper>
+          <iframe
+            title="Map of Oakland Voting Districts"
+            style="width: 100%; height: 60vh;" 
+            src="http://gisapps1.mapoakland.com/councildistricts/" /> 
+          <Button
+            onClick={handleMapClose}
+            style={{marginTop: '16px'}}
+            color="secondary"
+            size="large"
+            type="button">
+          CLOSE MAP
+          </Button>
+        </MyPaper>
       </Dialog>
     </Grid>
   )

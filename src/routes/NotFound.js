@@ -4,7 +4,7 @@ import {Grid} from '@material-ui/core'
 
 const backToHome = event => {
   event.preventDefault()
-  if (typeof window !== 'undefined') window.location.href = '//privatepropertyrights.info'
+  if (typeof window !== 'undefined') window.location.href = '//iitoakland.com'
 }
 
 export default function NotFound() {
