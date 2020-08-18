@@ -2,6 +2,7 @@ import {h} from 'preact' /** @jsx h */
 import InfoItem from '../components/InfoItem'
 import PrivacyPolicyDetails from '../components/PrivacyPolicyDetails'
 import {Grid} from '@material-ui/core'
+
 const backToHome = event => {
   event.preventDefault()
   if (typeof window !== 'undefined') window.location.href = '//iitoakland.com'
