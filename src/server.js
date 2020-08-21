@@ -1,15 +1,18 @@
 const path = require('path')
 const polka = require('polka')
+<<<<<<< HEAD
 const {readFileSync, writeFileSync} = require('fs')
+=======
+>>>>>>> f478174cd733e96b7c344445bbb49581f51f2fa6
 const compression = require('compression')()
 const bodyParser = require('body-parser')
 const formParser = require('multer')()
 const {OAuth2Client} = require('google-auth-library')
-const bundle = require('../build/ssr-build/ssr-bundle')
 const users = require('../secure/users.json')
 const admins = require('../secure/admins.json')
 const keys = require('../secure/keys.json')
 const {PORT = 42230} = process.env
+<<<<<<< HEAD
 const RGXBODY = /<div id="app"[^>]*>.*?(?=<script)/i
 const RGXCSS = /(?<=<style id="jss-server-side">).*?(?=<\/style>)/i
 const template = readFileSync('build/index.html', 'utf8')
@@ -55,6 +58,10 @@ const renderFullPage = (req) => {
   return withStyle
 }
 
+=======
+const client = new OAuth2Client(keys.client_id, keys.client_secret)
+
+>>>>>>> f478174cd733e96b7c344445bbb49581f51f2fa6
 const googleAuthentication = async (req, res, next) => {
   if (!['/auth', '/update'].includes(req.url)) return next()
   const authToken = req.headers.authorization
@@ -109,12 +116,11 @@ polka()
     if (res.statusCode !== 200) res.end()
     res.end(JSON.stringify(res.locals.userProfile))
   })
-  .get('*', (req, res) => {
-    res.setHeader('Cache-Control', 'no-cache')
-    res.setHeader('Content-Type', 'text/html')
-    console.log('serving GET for', req.url)
-    res.end(renderFullPage(req))
+  .post('/subscribe', (req, res) => {
+    console.log('req.body', req.body)
+    res.end()
   })
+<<<<<<< HEAD
   .post('/subscribe', (req, res) => {
     console.table(req.body)
     const email = req.body?.email
@@ -135,6 +141,8 @@ polka()
     }
     res.end()
   })
+=======
+>>>>>>> f478174cd733e96b7c344445bbb49581f51f2fa6
   .listen(PORT, err => {
     if (err) throw new Error(err)
     console.log(`> Running on localhost:${PORT}`)
