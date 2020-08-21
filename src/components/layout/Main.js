@@ -4,10 +4,9 @@ import {Router} from 'preact-router'
 import {useHeaderState, tabValues} from '../../contexts/HeaderStateProvider'
 import Home from '../../routes/Home'
 import About from '../../routes/About'
-import News from '../../routes/News'
-import City from '../../routes/City'
-import GetHelp from '../../routes/GetHelp'
-import Calendar from '../../routes/Calendar'
+import Topics from '../../routes/Topics'
+import Election from '../../routes/Election'
+import Resources from '../../routes/Resources'
 import TakeAction from '../../routes/TakeAction'
 import PrivacyPolicy from '../../routes/PrivacyPolicy'
 import TermsOfService from '../../routes/TermsOfService'
@@ -42,10 +41,9 @@ export default function Main({url}) {
     <Router url={url} onChange={handleRoute}>
       <Home path="/" />
       <About path="/about" />
-      <News path="/news" />
-      <City path="/city" />
-      <GetHelp path="/gethelp" />
-      <Calendar path="/calendar" />
+      <Topics path="/topics" />
+      <Election path="/election" />
+      <Resources path="/resources" />
       <TakeAction path="/takeaction" />
       <PrivacyPolicy path="/privacypolicy" />
       <TermsOfService path="/termsofservice" />

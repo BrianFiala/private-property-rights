@@ -2,9 +2,9 @@ import {h} from 'preact' /** @jsx h */
 import MyAppBar from '../MyAppBar'
 import MyDrawer from '../MyDrawer'
 
-export default function Header({toggleTheme}) {
+export default function Header() {
   return (<>
-    <MyAppBar toggleTheme={toggleTheme} />
+    <MyAppBar />
     <MyDrawer />
   </>)
 }

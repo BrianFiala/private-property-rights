@@ -1,47 +1,55 @@
 import {h} from 'preact' /** @jsx h */
-import {route} from 'preact-router'
+import {useEffect} from 'preact/hooks'
+import {Grid} from '@material-ui/core'
+import {useVideos} from '../contexts/VideosProvider'
+import VideoPlayer from '../components/VideoPlayer'
 import InfoItem from '../components/InfoItem'
-import {Grid, TextField} from '@material-ui/core'
-import {textFieldSection, textFieldLeft, textFieldRight, textFieldWide} from './index.scss'
 
 export default function About() {
+  const {videos, refreshVideos, sizes, videosLoaded} = useVideos()
+
+  useEffect(() => {
+    if (!videosLoaded) refreshVideos()
+  }, [refreshVideos, videosLoaded])
+
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={12}>
+    <Grid container spacing={2} justify="center">
+      <Grid item xs={12} md={12} lg={6}>
         <InfoItem
           identifier="About Us"
-          title="We are here to help"
-          message="We are a collective of tenants and housing providers. The majority of Oakland housing providers are small, locally based members of the community. Tenant and housing provider laws trigger discord both between the housing provider and their tenants, and between tenants themselves."
-          buttonAction={() => {route('/issues')}}
-          buttonText="Learn More" />
+          title="Who We Are"
+          message="We are a collective of tenants and housing providers that aim to provide a voice for those at risk." />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} md={12} lg={6}>
         <InfoItem
-          identifier="Stay informed by signing up for news and announcements"
-          title="Join Us!"
-          message="We will never share your information without your explicit consent. Ever. See our privacy policy for more details."
-          buttonAction={() => {}}
-          buttonText="Sign Me Up!">
-          <section className={textFieldSection}>
-            <TextField
-              onChange={() => {}}
-              className={textFieldLeft}
-              fullwidth
-              label="name (optional)"
-              variant="outlined" />
-            <TextField
-              onChange={() => {}}
-              className={textFieldRight}
-              fullwidth
-              label="phone (optional)"
-              variant="outlined" />
-          </section>
-          <TextField
-            onChange={() => {}}
-            className={textFieldWide}
-            fullwidth
-            label="email (required)"
-            variant="outlined" />
+          identifier="Meet the Collective"
+          title="Our Stories"
+          message="Each of us has a unique perspective. We hope you enjoy hearing our stories." />
+      </Grid>
+      { videos && videos.map(video => (
+        <VideoPlayer
+          video={video}
+          sizes={sizes} />
+      ))}
+      <Grid item xs={12} md={12} lg={6}>
+        <InfoItem
+          identifier="Here's What People Are Saying"
+          title="Quotes"
+          message={`Steve S., "I've lived in Oakland all my life. I love this city, but I am scared about the direction housing regulation is taking. Where are people going to live when rental providers leave because of overbearing draconian policy?"`} />
+      </Grid>
+      <Grid item xs={12} md={6} lg={3}>
+        <InfoItem
+          identifier="Some Pretty Pictures"
+          title="Here's a Chicken"
+          message="We hope you think Cucumber is cute. We think she is turbo-dorbs." />
+      </Grid>
+      <Grid item xs={12} md={6} lg={3}>
+        <InfoItem
+          identifier="Cucumber!">
+          <img src="/assets/cucumber.jpg" style={{
+            width: '100%',
+            height: 'auto'
+          }} />
         </InfoItem>
       </Grid>
     </Grid>

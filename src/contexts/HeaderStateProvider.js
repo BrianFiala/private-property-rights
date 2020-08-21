@@ -3,10 +3,10 @@ import {useState, useContext} from 'preact/hooks'
 
 const HeaderStateContext = createContext()
 export const useHeaderState = () => useContext(HeaderStateContext)
-export const tabValues = ['/about', '/gethelp', '/news', '/city', '/calendar']
+export const tabValues = ['/about', '/resources', '/topics', '/election']
 
 
-export const HeaderStateProvider = ({children, url}) => {
+export const HeaderStateProvider = ({children, url, toggleTheme, toggleHighContrast, highContrast}) => {
   const [open, setOpen] = useState(false)
   const [tabValue, setTabValue] = useState(tabValues.includes(url) ? url : false)
   const [route, setRoute] = useState(url)
@@ -18,14 +18,20 @@ export const HeaderStateProvider = ({children, url}) => {
     }
   }
 
+  const contextValue = {
+    tabValue,
+    setTabValue,
+    route,
+    setRoute,
+    open,
+    toggleDrawer,
+    toggleTheme,
+    toggleHighContrast,
+    highContrast
+  }
+
   return (
-    <HeaderStateContext.Provider value={{
-      tabValue,
-      setTabValue,
-      route,
-      setRoute,
-      open,
-      toggleDrawer}}>
+    <HeaderStateContext.Provider value={contextValue}>
       {children}
     </HeaderStateContext.Provider>
   )

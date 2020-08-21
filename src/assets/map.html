@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <title>City of Oakland Council District Locator </title>
+  <link rel="stylesheet" href="https://js.arcgis.com/3.21/esri/themes/calcite/dijit/calcite.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://js.arcgis.com/3.21/esri/css/esri.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    function toggle() {
+
+      var x = document.getElementById('contentp');
+      if (x.style.display === 'none') {
+        x.style.display = 'block';
+      } else {
+        x.style.display = 'none';
+      }
+    }
+    function fcouncil(dist) {
+      council(dist);
+    }
+  </script>
+  <style>
+    html,
+    body,
+    #map {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #LocateButton {
+      position: absolute;
+      top: 95px;
+      left: 20px;
+      z-index: 50;
+      display: none;
+    }
+
+    body {
+      background-color: #FFFFFF;
+      overflow: hidden;
+      font-family: "Trebuchet MS";
+    }
+
+    #contentp {
+      height: 400px;
+      width: 200px;
+      background: #a2b7ee;
+      top: 80px;
+      right: 55px;
+      position: absolute;
+      font-size: xx-large;
+      border-radius: 4px;
+    }
+
+    #header {
+      width: 550px;
+      background: #283966;
+      text-align: center;
+      top: 20px;
+      left: 75px;
+      display: block;
+      position: absolute;
+      z-index: 20;
+      border-radius: 25px;
+      border: 2px solid #000000;
+      padding: 20px;
+      height: 50px;
+    }
+
+    #search {
+      border-radius: 5px;
+    }
+
+    #headertext {
+      display: block;
+      position: absolute;
+      z-index: 2;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+      vertical-align: central;
+    }
+
+    #cd1 {
+      background-color: #283966;
+      border-radius: 4px;
+      display: block;
+      position: absolute;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      top: 20px;
+      right: 75px;
+    }
+
+    #cd2 {
+      background-color: #283966;
+      border-radius: 4px;
+      display: block;
+      position: absolute;
+      border: none;
+      color: white;
+      padding: 15px 15px;
+      text-align: center;
+      text-decoration: none;
+      width: 180px;
+      font-size: 12px;
+    }
+
+    #cd {
+      border-radius: 5px;
+      border: none;
+      color: #283966;
+      height: 38px;
+      text-align: center;
+      text-decoration: none;
+      padding-top: 5px;
+      font-size: 12px;
+    }
+
+    .arcgisSearch .searchGroup .searchInput {
+      width: 15.625rem;
+    }
+  </style>
+  <script src="https://js.arcgis.com/3.21/"></script>
+  <script>
+    var map;
+    var graphic;
+    var currLocation;
+    var watchId;
+    var newgeom; var parcelsURL;
+    require([
+      "dojo/dom", "dojo/on",
+      "esri/map",
+      "esri/SpatialReference",
+      "esri/geometry/webMercatorUtils",
+      "esri/tasks/locator",
+      "esri/dijit/LocateButton",
+      "esri/geometry/Point",
+      "esri/dijit/Search",
+      "esri/layers/FeatureLayer",
+      "esri/symbols/PictureMarkerSymbol",
+      "esri/InfoTemplate",
+      "esri/layers/ArcGISImageServiceLayer",
+      "esri/layers/ArcGISDynamicMapServiceLayer",
+      "esri/symbols/SimpleFillSymbol",
+      "esri/renderers/SimpleRenderer",
+      "esri/symbols/SimpleLineSymbol",
+      "esri/tasks/IdentifyTask",
+      "esri/tasks/query", "esri/tasks/QueryTask",
+      "esri/tasks/IdentifyParameters",
+      "esri/dijit/Popup",
+      "esri/InfoTemplate",
+      "dojo/_base/array",
+      "esri/Color",
+      "dojo/dom-construct",
+      "dojo/domReady!"
+    ], function (
+      dom, on, Map, SpatialReference, webMercatorUtils, Locator, LocateButton, Point, Search, FeatureLayer, PictureMarkerSymbol, InfoTemplate, ArcGISImageServiceLayer, ArcGISDynamicMapServiceLayer, SimpleFillSymbol, SimpleRenderer,
+      SimpleLineSymbol, IdentifyTask, Query, QueryTask, IdentifyParameters, Popup, InfoTemplate,
+      arrayUtils, Color, domConstruct
+    ) {
+      newgeom = new esri.geometry.Point();
+      var identifyTask, identifyParams, addr;
+      addr = "";
+      var popup = new Popup({
+        fillSymbol: new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
+          new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+            new Color([255, 0, 0]), 2), new Color([255, 255, 0, 0.25]))
+      }, domConstruct.create("div"));
+      map = new esri.Map("map", {
+        infoWindow: popup,
+        navigationMode: 'classic',
+        sliderStyle: 'large',
+
+        logo: false,
+        showAttribution: false,
+        zoom: 1
+      });
+      var locatorUrl = "https://iitoakland.com/oakgis/rest/services/Oakland_Streets/GeocodeServer/";
+      var basemapnew = new esri.layers.ArcGISImageServiceLayer("https://iitoakland.com/oakgis/rest/services/Image_Services/Orthos2017/ImageServer", { "visible": false });
+      map.addLayer(basemapnew);
+      var basemapnew1 = new esri.layers.ArcGISDynamicMapServiceLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer");
+      map.addLayer(basemapnew1);
+      var operationalLayer1 = new esri.layers.ArcGISDynamicMapServiceLayer("https://iitoakland.com/oakgis/rest/services/Prod/CouncilDistricts/MapServer", { "opacity": 0.7 });
+      map.addLayer(operationalLayer1);
+
+      on(dom.byId('cd'), 'change', function (e) {
+        if (e.target.value == "0")
+          return;
+        else
+          council(e.target.value);
+
+      });
+
+      map.on("load", mapReady);
+      parcelsURL = "https://iitoakland.com/oakgis/rest/services/Prod/CouncilDistricts/MapServer";
+
+      function populateHiddenField(event) {
+
+        var candidate;
+        var symbol = new esri.symbol.SimpleMarkerSymbol();
+        map.graphics.clear();
+
+        var infoTemplate = new esri.InfoTemplate("Location", "Address: ${address}");
+        symbol.setStyle(esri.symbol.SimpleMarkerSymbol.STYLE_SQUARE);
+        symbol.setColor(new dojo.Color([153, 0, 51, 0.75]));
+
+        var geom;
+        var firstresult = event.results[0];
+        var result = firstresult[0];
+
+        if (result.feature.attributes.score > 80) {
+          var attributes = { address: result.feature.attributes.Match_addr, score: result.feature.attributes.score };
+          geom = result.feature.geometry;
+          addr = result.feature.attributes.Match_addr;
+          var graphic = new esri.Graphic(geom, symbol, attributes, infoTemplate);
+          map.graphics.add(graphic);
+          var displayText = result.feature.attributes.Match_addr;
+          var font = new esri.symbol.Font("16pt", esri.symbol.Font.STYLE_NORMAL, esri.symbol.Font.VARIANT_NORMAL, esri.symbol.Font.WEIGHT_BOLD, "Helvetica");
+          var textSymbol = new esri.symbol.TextSymbol(displayText, font, new dojo.Color("#666633"));
+          textSymbol.setOffset(0, 8);
+          map.graphics.add(new esri.Graphic(geom, textSymbol));
+        }
+        if (geom !== undefined) {
+          identifyTask1 = new IdentifyTask(parcelsURL);
+          identifyParams1 = new IdentifyParameters();
+          identifyParams1.tolerance = 1;
+          identifyParams1.returnGeometry = true;
+          identifyParams1.layerIds = [0];
+          identifyParams1.layerOption = IdentifyParameters.LAYER_OPTION_ALL;
+          identifyParams1.width = map.width;
+          identifyParams1.height = map.height;
+          executeIdentifyTaskGeom(geom);
+        }
+        else {
+          alert("Location not found");
+        }
+
+      }
+      function locationError(error) {
+        if (navigator.geolocation) {
+          navigator.geolocation.clearWatch(watchId);
+        }
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            alert("Location not provided");
+            break;
+
+          case error.POSITION_UNAVAILABLE:
+            alert("Current location not available");
+            break;
+
+          case error.TIMEOUT:
+            alert("Timeout");
+            break;
+
+          default:
+            alert("unknown error");
+            break;
+        }
+      }
+
+      function zoomToLocation(location) {
+        var spatialReference = new esri.SpatialReference({ wkid: 4326 });
+        var outspatialReference = new esri.SpatialReference({ wkid: 2227 });
+        var geometryService = new esri.tasks.GeometryService("https://iitoakland.com/oakgis/rest/services/Utilities/Geometry/GeometryServer");
+        var inputpoint = new esri.geometry.Point(location.coords.longitude, location.coords.latitude, spatialReference);
+        var PrjParams = new esri.tasks.ProjectParameters();
+        PrjParams.geometries = [inputpoint];
+        PrjParams.outSR = outspatialReference;
+        PrjParams.transformForward = true;
+        var newx; var newy;
+        geometryService.project(PrjParams, outputpoint);
+      }
+
+      function outputpoint(outputpoint) {
+        newgeom.x = outputpoint[0].x;
+        newgeom.y = outputpoint[0].y;
+        addGraphic(newgeom);
+
+      }
+      function addGraphic(pt) {
+        var symbol = new esri.symbol.SimpleMarkerSymbol(
+          esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE,
+          12,
+          new SimpleLineSymbol(
+            SimpleLineSymbol.STYLE_SOLID,
+            new Color([210, 105, 30, 0.5]),
+            8
+          ),
+          new Color([210, 105, 30, 0.9])
+        );
+        graphic = new esri.Graphic(pt, symbol);
+        map.graphics.add(graphic);
+        identifyTask1 = new IdentifyTask(parcelsURL);
+
+        identifyParams1 = new IdentifyParameters();
+        identifyParams1.tolerance = 1;
+        identifyParams1.returnGeometry = true;
+        identifyParams1.layerIds = [0];
+        identifyParams1.layerOption = IdentifyParameters.LAYER_OPTION_ALL;
+        identifyParams1.width = map.width;
+        identifyParams1.height = map.height;
+        executeIdentifyTaskGeom(newgeom);
+      }
+      function showLocation(location) {
+
+        var spatialReference = new esri.SpatialReference({ wkid: 4326 });
+        var outspatialReference = new esri.SpatialReference({ wkid: 2227 });
+        var geometryService = new esri.tasks.GeometryService("https://iitoakland.com/oakgis/rest/services/Utilities/Geometry/GeometryServer");
+        var inputpoint = new esri.geometry.Point(location.coords.longitude, location.coords.latitude, spatialReference);
+        var PrjParams = new esri.tasks.ProjectParameters();
+        PrjParams.geometries = [inputpoint];
+        PrjParams.outSR = outspatialReference;
+        PrjParams.transformForward = true;
+        var newx; var newy;
+        geometryService.project(PrjParams, outputpoint);
+
+      }
+
+      function mapReady() {
+        map.on("click", executeIdentifyTask);
+        identifyTask = new IdentifyTask(parcelsURL);
+
+        identifyParams = new IdentifyParameters();
+        identifyParams.tolerance = 1;
+        identifyParams.returnGeometry = true;
+        identifyParams.layerIds = [0];
+        identifyParams.layerOption = IdentifyParameters.LAYER_OPTION_ALL;
+        identifyParams.width = map.width;
+        identifyParams.height = map.height;
+      }
+      function executeIdentifyTaskGeom(geom) {
+        dom.byId("cd").value = "0";
+
+        identifyParams1.geometry = geom;
+        identifyParams1.mapExtent = map.extent;
+        var fgeom;
+        var deferred = identifyTask1.execute(identifyParams1)
+          .addCallback(function (response) {
+            return arrayUtils.map(response, function (result) {
+              var feature = result.feature;
+              var layerName = result.layerName;
+              fgeom = feature.geometry;
+              feature.attributes.layerName = layerName;
+              if (layerName === 'Council Districts') {
+                var semail = "<a href='mailto:" + feature.attributes.EMAIL;
+                semail += "'>" + feature.attributes.EMAIL + "</a>";
+                var sview = "Click <a target='_blank'  href='https://mapgis.oaklandnet.com/streetview/index.htm?address= " + addr;
+                sview += "'>here </a> for Street View";
+                var link = "<a  target='_blank' href='" + feature.attributes.LINK;
+                link += "'>Website</a>";
+                var taxParcelTemplate = new InfoTemplate(addr,
+                  "District:  ${FULLNAME} <br/>Council Member : ${COUNCILMEMBER} <br/> Email: " + semail + "<br/>" + link);
+                feature.setInfoTemplate(taxParcelTemplate);
+              }
+
+              return feature;
+            });
+          });
+
+        map.infoWindow.setFeatures([deferred]);
+        map.infoWindow.show(geom);
+        map.centerAndZoom(geom, 2);
+        map.setExtent(fgeom.getExtent(), 8);
+
+      }
+      function executeIdentifyTask(event) {
+        map.graphics.clear();
+        identifyParams.geometry = event.mapPoint;
+        identifyParams.mapExtent = map.extent;
+        var fgeom;
+        var deferred = identifyTask
+          .execute(identifyParams)
+          .addCallback(function (response) {
+            return arrayUtils.map(response, function (result) {
+              var feature = result.feature;
+              var layerName = result.layerName;
+
+              fgeom = feature.geometry;
+              feature.attributes.layerName = layerName;
+              if (layerName === 'Council Districts') {
+                var semail = "<a href='mailto:" + feature.attributes.EMAIL;
+                semail += "'>" + feature.attributes.EMAIL + "</a>";
+                var link = "<a target='_blank' href='" + feature.attributes.LINK;
+                link += "'>Website</a>";
+                var taxParcelTemplate = new InfoTemplate("${FULLNAME}",
+                  "District:  ${FULLNAME} <br/>Council Member : ${COUNCILMEMBER} <br/> Email: " + semail + "<br/>" + link);
+                feature.setInfoTemplate(taxParcelTemplate);
+              }
+
+              return feature;
+            });
+          });
+        map.infoWindow.setFeatures([deferred]);
+        map.infoWindow.show(event.mapPoint);
+        map.centerAndZoom(event.mapPoint, 2);
+        map.setExtent(fgeom.getExtent(), 6);
+      }
+
+      function council(c) {
+        var queryTask = new QueryTask("https://iitoakland.com/oakgis/rest/services/Prod/CouncilDistricts/MapServer/0");
+        var query = new Query();
+
+        query.returnGeometry = true;
+        query.outFields = ["NAME", "COUNCILMEMBER", "FULLNAME", "EMAIL", "LINK", "SHAPE"];
+        if (c == "8") {
+          query.where = "1=1";
+          stdist = "Council Districts";
+        }
+        else {
+          query.where = "Name = 'CCD" + c + "'";
+          stdist = "Council District " + c;
+        }
+
+        queryTask.execute(query, function (fset) {
+          if (fset.features.length == 1) {
+            showFeature(fset.features[0]);
+          }
+          else if (fset.features.length != 0) {
+          }
+          else
+            alert("No results found");
+        });
+        map.infoWindow.hide();
+        map.graphics.clear();
+      }
+
+      function showFeature(feature) {
+        var symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255, 0, 0]), 2), new dojo.Color([255, 0, 0, 0.3]));
+        feature.setSymbol(symbol);
+        var attr = feature.attributes;
+        var title = attr.FULLNAME;
+        var semail = "<a href='mailto:" + attr.EMAIL;
+        semail += "'>" + attr.EMAIL + "</a>";
+        var link = "<a target='_blank' href='" + attr.LINK;
+        link += "'>Website</a>";
+        var content = "Council Member : " + attr.COUNCILMEMBER
+          + "<br />Email: <a href='mailto:'" + attr.EMAIL + ">" + attr.EMAIL + "</a>" + "<br/> " + link;
+        stdist = attr.FULLNAME;
+        map.graphics.add(feature);
+        map.infoWindow.setTitle(title);
+        map.infoWindow.setContent(content);
+        map.setExtent(feature.geometry.getExtent(), 3);
+        map.infoWindow.show(feature.geometry.getExtent().getCenter());
+      }
+
+      var geoLocate = new LocateButton({
+        map: map
+      }, "LocateButton");
+
+      var search = new Search(
+        {
+          map: map,
+          enableSearchingAll: false,
+          enableSuggestions: true,
+          enableLabel: false,
+          enableInfoWindow: false,
+          autoComplete: true,
+          value: "150 Frank H Ogawa Plaza, Oakland, CA"
+        }, "search");
+
+      search.startup();
+      search.on("search-results", populateHiddenField);
+    });
+  </script>
+</head>
+
+<body>
+  <div id="map">
+    <nav class="navbar navbar-default" style="background-color: #283966;margin-bottom:2px">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+            aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" style="color:white;height:60px;" href="#">City of Oakland, CA - Council District
+            Locator</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav  navbar-left" style="padding:5px,5px;">
+            <li>
+              <div id="search" class="form-control"></div>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right" style="padding:5px,5px;">
+            <li class="dropdown">
+              <select id="cd" class="form-control">
+                <option value="0" selected>Select a Council District </option>
+                <option value="1">Council District 1</option>
+                <option value="2">Council District 2</option>
+                <option value="3">Council District 3</option>
+                <option value="4">Council District 4</option>
+                <option value="5">Council District 5</option>
+                <option value="6">Council District 6</option>
+                <option value="7">Council District 7</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        <div id="LocateButton" style="display:none"></div>
+      </div>
+    </nav>
+  </div>
+</body>
+
+</html>

@@ -32,6 +32,22 @@ const paletteDark = {
   }
 }
 
+const paletteHighContrast = {
+  type: 'light',
+  primary: {
+    main: '#2b499a',
+    contrastText: '#000'
+  },
+  secondary: {
+    main: '#2b499a',
+    contrastText: '#000'
+  },
+  backgroundColor: '#fffaf0',
+  background: {
+    paper: '#FFF'
+  }
+}
+
 const props = {}
 
 const overridesLight = {
@@ -54,6 +70,16 @@ const overridesDark = {
   }
 }
 
+const overridesHighContrast = {
+  MuiCssBaseline: {
+    '@global': {
+      body: {
+        backgroundColor: paletteHighContrast.primary.main
+      }
+    }
+  }
+}
+
 export const defaultsLight = {
   palette: paletteLight,
   props,
@@ -66,5 +92,12 @@ export const defaultsDark = {
   overrides: overridesDark
 }
 
+export const defaultsHighContrast = {
+  palette: paletteHighContrast,
+  props,
+  overrides: overridesHighContrast
+}
+
 export const darkTheme = createMuiTheme(defaultsDark)
 export const lightTheme = createMuiTheme(defaultsLight)
+export const highContrastTheme = createMuiTheme(defaultsHighContrast)

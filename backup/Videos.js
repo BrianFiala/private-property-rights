@@ -9,7 +9,7 @@ import Title from '../components/Title'
 import InfoItem from '../components/InfoItem'
 import {heading} from './index.scss'
 
-export default function City() {
+export default function Videos() {
   const {videos, refreshVideos, sizes, videosLoaded} = useVideos()
 
   useEffect(() => {

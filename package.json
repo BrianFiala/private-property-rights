@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "preact watch",
+    "copy": "cp ./src/server.js ./build/server.js && echo \"success\"",
     "build": "preact build --preload && cp src/server.js build/server.js",
     "serve": "sirv build --cors --single",
     "dev": "preact watch",
@@ -41,17 +42,18 @@
   },
   "devDependencies": {
     "enzyme": "^3.10.0",
-    "enzyme-adapter-preact-pure": "^2.2.1",
+    "enzyme-adapter-preact-pure": "^2.2.3",
     "eslint": "^6.0.1",
     "eslint-config-preact": "^1.1.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
     "jest-preset-preact": "^1.0.0",
+    "multer": "^1.4.2",
     "node-sass": "^4.14.1",
     "per-env": "^1.0.2",
     "preact-cli": "^3.0.1",
     "preact-render-spy": "^1.2.1",
-    "sass-loader": "^9.0.2",
+    "sass-loader": "^9.0.3",
     "sirv-cli": "^0.4.5"
   },
   "dependencies": {
@@ -61,7 +63,7 @@
     "fontsource-roboto": "^2.2.6",
     "google-auth-library": "^6.0.6",
     "polka": "^0.5.2",
-    "preact": "^10.4.6",
+    "preact": "^10.4.7",
     "preact-render-to-string": "^5.1.10",
     "preact-router": "^3.2.1"
   },
