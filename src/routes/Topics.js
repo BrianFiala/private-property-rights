@@ -1,45 +1,68 @@
 import {h} from 'preact' /** @jsx h */
-import {Grid, Typography} from '@material-ui/core'
+import {Grid, Typography, Link, Button} from '@material-ui/core'
 import InfoItem from '../components/InfoItem'
 
 export default function Topics() {
   return (
     <Grid container spacing={2}>
-      {/* <Grid item xs={12} md={12} lg={6}>
-        <InfoItem
-          identifier="Rent Control"
-          title="Costa Hawkins"
-          message="This is about rent control." />
-      </Grid>
-      <Grid item xs={12} md={12} lg={6}>
-        <InfoItem
-          identifier="It's All Going to Hell in a Handbasket"
-          title="TPO Ammendments"
-          message="(T)enants (P)rotection (O)rdinance. Tenants and housemates without credit checks." />
-      </Grid> */}
       <Grid item xs={12}>
         <InfoItem
-          identifier="This One Will Blow Your Mind"
+          identifier="STOP Taking Our Property Away"
           title="TOPA">
-          <Typography color="textPrimary" variant="h6">
-            The Oakland City Council is currently considering a radical ordinance called TOPA (Tenant’s Opportunity to Purchase Act).
-            The text of the ordinance is currently being withheld from the public by its authors, yet all indications currently point
-            to the legislation being similar, if not identical to, the TOPA ordinance recently shelved in Berkeley and the proposal
-            that was defeated in Richmond last year after overwhelming non-partisan opposition.
-            <br />
-            <br />
-            TOPA is being sold as a way to prevent displacement and promote ownership opportunities for tenants by giving them first right
-            to buy the property they live in. However, once the public is given the opportunity to read the specific details of the legislation,
-            it will quickly become clear that this proposal will not create opportunity for any of our residents.
-            <b> It uses our underprivileged as a front to grant the city the power to dictate how properties are sold, to who they can be sold,
-            and even how much they can be sold for.</b> <u>All while solely benefitting third party special interest groups.</u>
+          <Typography color="textPrimary">
+            The Oakland City Council is currently considering a radical ordinance called TOPA
+            (Tenant’s Opportunity to Purchase Act).
+            <br /><br />
+            The text of the ordinance is being withheld from the public by its authors,
+            yet all indications point to the legislation being similar, if not identical to,
+            the TOPA ordinance recently shelved in Berkeley and the proposal that was defeated
+            in Richmond last year after overwhelming non-partisan opposition.
+            <Link target="_blank"
+              href="https://drive.google.com/file/d/1CKf9vhefXLrhxFLLu1FjktdHrrJ6tt9O/view?usp=sharing">
+              <span> Read the Berkeley Ordinance here</span>
+            </Link>
+            <br /><br />
+            TOPA is being claimed as a way to prevent displacement and promote ownership
+            opportunities for tenants by giving them first right to buy the property they live in.
+            However, once the public is given the opportunity to read the specific details of the
+            legislation, it will quickly become clear that this proposal will not create
+            opportunity for any of our residents.
+            <b>
+              It uses our underprivileged as a front to grant the city the power to dictate how
+              properties are sold, to who they can be sold, and even how much they can be sold for.
+            </b>
+            All while solely benefitting third party special interest groups.
+            <br /><br />
           </Typography>
+          <Button
+            color="secondary"
+            variant="outlined"
+            style={{borderRadius: '20px'}}
+            size="large">
+            <Link target="_blank"
+              href="https://www.change.org/p/oakland-city-council-oppose-oakland-s-topa-ordinance">
+              Sign the petition here, we already have 2700 plus signatures!
+            </Link>
+          </Button>
+          {/* <Typography color="textPrimary">
+          </Typography> */}
         </InfoItem>
       </Grid>
       <Grid item xs={12} sm={6}>
-        <InfoItem
-          identifier="Renters"
-          message="Does buying a property that the city controls but you have to pay for sound good to you? TOPA would essentially remove all the financial benefits and freedom of ownership (appreciation, income, tenancy control), and leave you with all the responsi- bilities. How is that a worthwhile investment? Once the city forces the deed restriction on the property to make it “permanently affordable”, what is that property then worth to you and others? Would a bank even grant a borrower a loan under these conditions?" />
+        <InfoItem identifier="Renters">
+          <Typography color="textPrimary">
+            Does buying a property that the city controls but you have to pay for sound good to you?
+            TOPA would essentially remove all the financial benefits and freedom of ownership
+            (appreciation, income, tenancy control), and leave you with all the responsibilities.
+            How is that a worthwhile investment? Once the city forces the deed restriction on the
+            property to make it “permanently affordable”, what is that property then worth to you
+            and others? Would a bank even grant a borrower a loan under these conditions?
+            <br />
+            <br />
+            If you wish to continue renting after the building becomes permanently affordable,
+            you will very likely be evicted for not qualifying for affordable housing.
+          </Typography>
+        </InfoItem>
       </Grid>
       <Grid item xs={12} sm={6}>
         <InfoItem
@@ -48,7 +71,7 @@ export default function Topics() {
       </Grid>
       <Grid item xs={12}>
         <InfoItem identifier="So Who Does This Benefit?">
-          <Typography color="textPrimary" variant="h6">
+          <Typography color="textPrimary">
             So who looks to benefit from this ordinance? If you read the ordinance it quickly becomes clear: it’s <b>special interests groups</b>. Third party developers that can have the tenant’s TOPA rights transferred to them, leverage them against the owner, then later claim special exemptions from regulation.
             <br />
             <br />
@@ -64,15 +87,53 @@ export default function Topics() {
             </ul>
             <br />
             This is not a pro-tenant or pro-property owner argument; both sides will be harmed. TOPA only benefits outside special interest groups at the expense of everyone else and our City as a whole. Let’s protect our City from this destructive proposal, band together, and demand the City Council Stop TOPA.
+            <br />
+            <br />
+            Click here to email City Council to Stop TOPA.
           </Typography>
         </InfoItem>
       </Grid>
-      {/* <Grid item xs={12} md={12} lg={6}>
-        <InfoItem
-          identifier="Reduces Rental Unit Availability"
-          title="Prop 21"
-          message="Legislators will pile fees on top of standard rent, driving costs up for everyone." />
-      </Grid> */}
+      <Grid item xs={12}>
+        <InfoItem identifier="Facts & Myths About TOPA" >
+          <Typography color="textPrimary">
+            MYTH: The owner gets the fair market price.
+            <br />
+            <br />
+            FACT: If the tenant or nonprofit wants to purchase the property and the property does not go out on the open market, then the "fair market price" is never really determined. The fair market price is the price the market will bear. This fully disrupts the normal process of sale of residential real estate.
+            <br />
+            <br />
+            MYTH: TOPA is the only way tenants have a chance at purchasing a property.
+            <br />
+            <br />
+            FACT: Tenants currently have a chance to buy the property they occupy. In fact many times they have a direct line into the owner to request negotiating to sale --something the standard marketplace does not. But securing financing is difficult andr many times tenants will not have the financing they need to compete in the marketplace. Remember, TOPA does not provide tenants with financing. It only provides them with a lengthy amount of time to figure out if they can secure financing.
+            Tenant occupied multi-unit properties often remain on the market for long periods of time in rent-regulated cities. They will on average, sell below listing price. Nonprofits and Land Use trusts can easily buy these properties on the open market using subsidies from the City, along with the state's infusion of money aimed at affordable housing. 
+            <br />
+            <br />
+            MYTH: TOPA stabilizes existing housing for tenants and preserves affordable housing.
+            <br />
+            <br />
+            FACT: Berkeley is a highly-regulated, rent controlled city with strong protections given to tenants. The idea that tenants will lose their housing, or that their housing will automatically become unaffordable due to a change in ownership is untrue. Any new owner will also be subject to rent control and their tenants will have eviction protections.
+            <br />
+            <br />
+            MYTH: TOPA is the best use of affordable housing funds
+            <br />
+            <br />
+            FACT: TOPA will cost the City of Berkeley more than $1m annually just to administer. That's money that could be used for rent assistance, homelessness services or a myriad of other housing-related needs. 
+            <br />
+            <br />
+            MYTH: TOPA combats homelessness.
+            <br />
+            <br />
+            FACT: TOPA has been in existence in Washington D.C. for 40 years. D.C.'s population is 705,000 with a homeless population estimated around 6,000. Oakland has a population around 420,000 with an estimated homeless population of 4,000. Berkeley has a population of 122,000 with an estimated number of homeless at 1,100. The ratios between the three cities are remarkably the same. There is no proof TOPA has reduced the homeless population in D.C.
+            <br />
+            <br />
+            MYTH: TOPA helped tenants and nonprofits acquire a lot of rental housing in D.C.
+            <br />
+            <br />
+            FACT: From Oct. 26, 2009, through Aug. 15, 2015, out of 398 TOPA offers only 19 were successful. From 1980-2002, there is no data showing any rental housing was acquired by tenants or nonprofits under TOPA. In 2002, the program received an infusion of funding which allowed for the "preservation" of 3,500 units (that's units, not properties) from 2002-2018. In that scenario it is clear that funding was the key contributor to the ability to purchase -- not TOPA.
+          </Typography>
+        </InfoItem>
+      </Grid>
     </Grid>
   )
 }

@@ -21,7 +21,6 @@ export default function Home() {
     <Grid container spacing={1} className={homeItems}>
       {/* <Grid item xs={12} className={banner} />
       <Grid item xs={12} className={bannerSpacer} /> */}
-<<<<<<< HEAD
       <Grid item xs={12} md={6}>
         <LogoCard />
       </Grid>
@@ -35,11 +34,6 @@ export default function Home() {
       {/* <VideoPlayer video={video} sizes={sizes} autoplay /> */}
       <VideoPlayer video={video} sizes={sizes} />
       <Grid item xs={12} md={6} lg={6}>
-=======
-      {/* <VideoPlayer video={video} sizes={sizes} autoplay /> */}
-      {/* <VideoPlayer video={video} sizes={sizes} /> */}
-      <Grid item xs={12} md={12} lg={6}>
->>>>>>> f478174cd733e96b7c344445bbb49581f51f2fa6
         <InfoItem
           title="Who, What, and Why"
           message="We love Oakland, and we are proud to call ourselves Oaklandish. We are long time residents; many of us have lived here all of our lives. We believe in harmonious shared housing. We are deeply concerned about our city's housing policies and the direction our city council is taking us." />
