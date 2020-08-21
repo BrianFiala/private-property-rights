@@ -5,7 +5,7 @@ export default function Title({children, color = 'secondary'}) {
   return (
     <Typography
       component="h2"
-      variant="h5"
+      variant="h6"
       color={color}>
       {children}
     </Typography>
