@@ -72,7 +72,7 @@ export default function Home() {
     <Grid item xs={12}>
       <MyPaper elevation={10}>
         <Title color="secondary">Stay informed by signing up for news and announcements</Title><br />
-        <Typography color="primary" variant="h3">Join Us!</Typography><br />
+        <Typography color="primary" variant="h">Join Us!</Typography><br />
         <Typography color="textPrimary">We will never share your information without your explicit consent. Ever. Your information will be stored with strict confidentiality. All we require is your email, but anything else you are willing to share will really help.</Typography>
         <form id="join-us-form" onSubmit={onSubmit}>
           <Grid container spacing={2} style={{marginTop: '16px'}}>
@@ -198,7 +198,7 @@ export default function Home() {
                   {/* <Link
                     target="_blank"
                     href="http://gisapps1.mapoakland.com/councildistricts/"
-                    variant="h6">
+                   >
                     
                   </Link> */}
                 </FormHelperText>
