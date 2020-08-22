@@ -258,3 +258,14 @@
 .votingDistrictSelect {
   min-width: 200px;
 }
+
+.myPaper {
+  padding: spacing(3);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  @media (min-width: #{spacing(75)}) {
+    padding: spacing(4);
+  }
+}
