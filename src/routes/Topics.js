@@ -146,39 +146,28 @@ export default function Topics() {
               <Typography color="textPrimary">
                 <br /><br />
                 MYTH: The owner gets the fair market price.
-                <br />
-                <br />
+                <br /><br />
                 FACT: If the tenant or nonprofit wants to purchase the property and the property does not go out on the open market, then the "fair market price" is never really determined. The fair market price is the price the market will bear. This fully disrupts the normal process of sale of residential real estate.
-                <br />
-                <br />
+                <br /><br />
                 MYTH: TOPA is the only way tenants have a chance at purchasing a property.
-                <br />
-                <br />
+                <br /><br />
                 FACT: Tenants currently have a chance to buy the property they occupy. In fact many times they have a direct line into the owner to request negotiating to sale --something the standard marketplace does not. But securing financing is difficult andr many times tenants will not have the financing they need to compete in the marketplace. Remember, TOPA does not provide tenants with financing. It only provides them with a lengthy amount of time to figure out if they can secure financing.
                 Tenant occupied multi-unit properties often remain on the market for long periods of time in rent-regulated cities. They will on average, sell below listing price. Nonprofits and Land Use trusts can easily buy these properties on the open market using subsidies from the City, along with the state's infusion of money aimed at affordable housing. 
-                <br />
-                <br />
+                <br /><br />
                 MYTH: TOPA stabilizes existing housing for tenants and preserves affordable housing.
-                <br />
-                <br />
+                <br /><br />
                 FACT: Berkeley is a highly-regulated, rent controlled city with strong protections given to tenants. The idea that tenants will lose their housing, or that their housing will automatically become unaffordable due to a change in ownership is untrue. Any new owner will also be subject to rent control and their tenants will have eviction protections.
-                <br />
-                <br />
+                <br /><br />
                 MYTH: TOPA is the best use of affordable housing funds
-                <br />
-                <br />
+                <br /><br />
                 FACT: TOPA will cost the City of Berkeley more than $1m annually just to administer. That's money that could be used for rent assistance, homelessness services or a myriad of other housing-related needs. 
-                <br />
-                <br />
+                <br /><br />
                 MYTH: TOPA combats homelessness.
-                <br />
-                <br />
+                <br /><br />
                 FACT: TOPA has been in existence in Washington D.C. for 40 years. D.C.'s population is 705,000 with a homeless population estimated around 6,000. Oakland has a population around 420,000 with an estimated homeless population of 4,000. Berkeley has a population of 122,000 with an estimated number of homeless at 1,100. The ratios between the three cities are remarkably the same. There is no proof TOPA has reduced the homeless population in D.C.
-                <br />
-                <br />
+                <br /><br />
                 MYTH: TOPA helped tenants and nonprofits acquire a lot of rental housing in D.C.
-                <br />
-                <br />
+                <br /><br />
                 FACT: From Oct. 26, 2009, through Aug. 15, 2015, out of 398 TOPA offers only 19 were successful. From 1980-2002, there is no data showing any rental housing was acquired by tenants or nonprofits under TOPA. In 2002, the program received an infusion of funding which allowed for the "preservation" of 3,500 units (that's units, not properties) from 2002-2018. In that scenario it is clear that funding was the key contributor to the ability to purchase -- not TOPA.
               </Typography>
             </Grid>
