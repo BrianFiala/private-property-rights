@@ -65,10 +65,10 @@ polka()
     if (res.statusCode !== 200) res.end()
     res.end(JSON.stringify(res.locals.userProfile))
   })
-  .post('/subscribe', (req, res) => {
-    console.log('req.body', req.body)
-    res.end()
-  })
+  // .post('/subscribe', (req, res) => {
+  //   console.log('req.body', req.body)
+  //   res.end()
+  // })
   .post('/subscribe', (req, res) => {
     console.table(req.body)
     const email = req.body?.email
