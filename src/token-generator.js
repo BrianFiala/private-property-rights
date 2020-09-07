@@ -1,3 +1,4 @@
+// TO USE: MOVE TO secure/ 
 const fs = require('fs');
 const readline = require('readline');
 const {
@@ -9,10 +10,10 @@ const SCOPES = ['https://www.googleapis.com/auth/admin.directory.user'];
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
 // time.
-const TOKEN_PATH = '../secure/token.json';
+const TOKEN_PATH = 'token.json';
 
 // Load client secrets from a local file.
-fs.readFile('../secure/keys.json', (err, content) => {
+fs.readFile('keys.json', (err, content) => {
     if (err) return console.error('Error loading client secret file', err);
 
     // Authorize a client with the loaded credentials, then call the
